@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} affichet tableau {% endblock %}
+
+{% block body %}
+
+{% set nom = "Pepi" %}
+{% set tabNoms = ["Titi", "Toto", "Tutu"] %}
+
+{% for toto in tabNoms %}
+    <br>Bienvenue {{ toto }}
+{% endfor %}
+
+
+<h2> Nom: {{ nom }}</2>
+
+{% endblock %}

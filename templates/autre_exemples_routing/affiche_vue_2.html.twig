@@ -1,0 +1,19 @@
+    {% extends "base.html.twig" %}
+
+    {#commentaire#}
+    {% block body %}
+        <br>
+        Bonjour, je suis la vue 2.
+        <br>
+        Je me rajoute au contenue de base.
+        <br>
+        {{parent()}}
+    {% endblock %}
+
+
+
+    {% block javascript %}
+    <script>
+    alert ("je suis la vue afficheVue 2");
+    </script>
+    {% endblock %}
