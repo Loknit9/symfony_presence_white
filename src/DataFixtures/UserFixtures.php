@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -28,7 +29,7 @@ class UserFixtures extends Fixture
             ));
             $user->setNom ("nom".$i);
             $user->setPrenom ("prenom".$i);
-            $user->setDateNaissance ();
+            $user->setDateNaissance (new DateTime("4-4-23"));
             $user->setContact1 ("contact1".$i."@gmail.com");
             $user->setContact2 ("contact2".$i."@gmail.com");
             
