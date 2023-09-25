@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionController!{% endblock %}
+
+{% block body %}
+Voici action 1
+
+{{ dump (app.user) }}
+
+{{ dump (app.user.getRoles()) }}
+
+{% endblock %}
