@@ -1,6 +1,6 @@
 
 @REM Pour effacer, creer et remplir la base de donnees
-yes | del migrations\* 
+    echo yes | del migrations
 symfony console doctrine:database:drop --force --no-interaction
 symfony console doctrine:database:create --no-interaction
 symfony console make:migration --no-interaction

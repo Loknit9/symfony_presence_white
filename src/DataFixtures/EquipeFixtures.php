@@ -2,12 +2,13 @@
 
 namespace App\DataFixtures;
 
-use Faker;
 use Faker\Factory;
 use App\Entity\Equipe;
 
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+
+use Faker;
 
 class EquipeFixtures extends Fixture
 {
@@ -19,13 +20,13 @@ class EquipeFixtures extends Fixture
         for ($i = 0; $i <11; $i++){
             $equipe = new Equipe([
                 'nom' => rand(1,6),
-                'categorieAge' => 'U'.rand(5, 19),
+                'categorieAge' => rand(5, 19),
                 'categorieGenre' => $faker->randomElement(['G', 'B']),
             ]);
+            
+            $manager->persist($equipe);
         }
         
-        $manager->persist($equipe);
-
         $manager->flush();
     }
 }

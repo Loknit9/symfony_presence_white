@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -44,6 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contact2 = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Presence::class, orphanRemoval: true)]
+    private Collection $presences;
+
+    public function __construct()
+    {
+        $this->presences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -190,6 +200,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setContact2(?string $contact2): static
     {
         $this->contact2 = $contact2;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Presence>
+     */
+    public function getPresences(): Collection
+    {
+        return $this->presences;
+    }
+
+    public function addPresence(Presence $presence): static
+    {
+        if (!$this->presences->contains($presence)) {
+            $this->presences->add($presence);
+            $presence->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePresence(Presence $presence): static
+    {
+        if ($this->presences->removeElement($presence)) {
+            // set the owning side to null (unless already changed)
+            if ($presence->getUser() === $this) {
+                $presence->setUser(null);
+            }
+        }
 
         return $this;
     }
