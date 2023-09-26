@@ -33,7 +33,6 @@ class Equipe
     public function __construct(array $init =[])
     {
         $this->hydrate($init);
-        $this->users = new ArrayCollection();
     
     }
 

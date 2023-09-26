@@ -18,10 +18,9 @@ class EquipeFixtures extends Fixture
 
         for ($i = 0; $i <11; $i++){
             $equipe = new Equipe([
-                'nom' => $faker->numerify('U#'),
-                'categorieAge' => $faker->numberBetween(5, 9),
+                'nom' => rand(1,6),
+                'categorieAge' => 'U'.rand(5, 19),
                 'categorieGenre' => $faker->randomElement(['G', 'B']),
-
             ]);
         }
         

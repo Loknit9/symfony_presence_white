@@ -63,6 +63,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
 
-        return new Response ("Erreur dans le login");
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+
     }
 }
