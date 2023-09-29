@@ -6,6 +6,18 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+
 import './styles/app.css';
+
+// rajouter le .css de bootstrap
+import '~bootstrap/dist/css/bootstrap.css';
+
+
+// jquery
+const $ = require ('jquery');
+window.jQuery = $;
+window.$ = $;
+// importer bootstrap
+import 'bootstrap';
 
 // alert ("coucou");
