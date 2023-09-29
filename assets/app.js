@@ -10,7 +10,7 @@
 import './styles/app.css';
 
 // rajouter le .css de bootstrap
-import '~bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 // jquery
