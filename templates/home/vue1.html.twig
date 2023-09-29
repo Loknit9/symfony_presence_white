@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+            {% block javascripts %}
+            {{ parent() }}
+            {{ encore_entry_script_tags('vue1') }}
+        {% endblock %}
+
+{% block body %}
+
+je suis la vue1 j'ai mon propre script css (en creant une entry ds webpack config)
+
+{% endblock %}

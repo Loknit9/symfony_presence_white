@@ -14,6 +14,17 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <nav class="crumbs">
+            <ol>
+                <li class="crumb"><a href="{{ path ("home") }}">home</a></li>
+                <li class="crumb"><a href="{{ path ("vue1") }}">Vue1</a></li>
+                <li class="crumb"><a href="{{ path ("vue2") }}">Vue2</a></li>
+            </ol>
+        </nav>
+        
+    
+        {% block body %}
+        je suis le body de la page d'accueil
+        {% endblock %}
     </body>
 </html>
