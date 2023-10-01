@@ -14,16 +14,16 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig');
     }
 
-    #[Route('/vue1', name: 'vue1')]
+    #[Route('/presence', name: 'presence')]
     public function vue1(): Response
     {
-        return $this->render('home/vue1.html.twig');
+        return $this->render('home/presence.html.twig');
     }
 
-    #[Route('/vue2', name: 'vue2')]
+    #[Route('/message', name: 'message')]
     public function vue2(): Response
     {
-        return $this->render('home/vue2.html.twig');
+        return $this->render('home/message.html.twig');
     }
 
 
