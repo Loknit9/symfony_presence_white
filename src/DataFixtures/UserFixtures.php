@@ -25,7 +25,7 @@ class UserFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         
         //creation des users sans role
-        for($i=0; $i <40; $i++){
+        for($i=0; $i <30; $i++){
             $user = new User();
             $user->setEmail ("user".$i."@gmail.com");
             $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));

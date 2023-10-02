@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,15 +51,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
 
+    #[JoinTable(name:'equipes_coach')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coachs')]
     private Collection $equipesCoach;
-
+    
+    #[JoinTable(name:'equipes_joueur')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
     private Collection $equipesJoueur;
 
+    public function hydrate (array $vals){
+        foreach ($vals as $cle => $valeur){
+            if (isset ($vals[$cle])){
+                $nomSet = "set" . ucfirst($cle);
+                $this->$nomSet ($valeur);
+            }
+        }
+    }
 
-    public function __construct()
+    public function __construct(array $init =[])
     {
+        $this->hydrate($init);
         $this->presences = new ArrayCollection();
         $this->equipesCoach = new ArrayCollection();
         $this->equipesJoueur = new ArrayCollection();

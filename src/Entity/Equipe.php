@@ -46,7 +46,6 @@ class Equipe
         $this->hydrate($init);
         $this->coachs = new ArrayCollection();
         $this->joueurs = new ArrayCollection();
-  
     
     }
 
