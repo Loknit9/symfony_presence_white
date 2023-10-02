@@ -17,10 +17,12 @@ class EquipeFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
+
+
         for ($i = 0; $i <11; $i++){
             $equipe = new Equipe([
                 'nom' => rand(1,6),
-                'categorieAge' => rand(5,6,7,8,9,10,11,12,14,16,19),
+                'categorieAge' => 5,//arrayrand[5,6,7,8,9,10,11,12,14,16,19]),
                 'categorieGenre' => $faker->randomElement(['G', 'B']),
             ]);
             

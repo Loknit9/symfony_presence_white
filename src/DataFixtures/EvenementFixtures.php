@@ -18,7 +18,7 @@ class EvenementFixtures extends Fixture
         for ($i = 0; $i<40; $i++){
             $evenement = new Evenement([
                 'dateEvenement' => $faker->dateTimeBetween('-2 month', '+8 month'),
-                'typeEvenemen' => rand('match', 'entrainement', 'physique', 'gardien')
+                'typeEvenement' => 'match',//rand('match', 'entrainement', 'physique', 'gardien')
             ]);
             
             $manager->persist($evenement);
