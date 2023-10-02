@@ -25,6 +25,7 @@ class Evenement
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
 
+
     public function __construct()
     {
         $this->presences = new ArrayCollection();
@@ -88,4 +89,5 @@ class Evenement
 
         return $this;
     }
+
 }
