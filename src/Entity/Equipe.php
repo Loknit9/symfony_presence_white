@@ -27,6 +27,9 @@ class Equipe
     #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: EquipeEvenement::class, orphanRemoval: true)]
     private Collection $equipeEvenements;
 
+    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: UserEquipe::class, orphanRemoval: true)]
+    private Collection $userEquipes;
+
     public function hydrate (array $vals){
         foreach ($vals as $cle => $valeur){
             if (isset ($vals[$cle])){
@@ -39,6 +42,7 @@ class Equipe
     {
         $this->hydrate($init);
         $this->equipeEvenements = new ArrayCollection();
+        $this->userEquipes = new ArrayCollection();
     
     }
 
@@ -107,6 +111,36 @@ class Equipe
             // set the owning side to null (unless already changed)
             if ($equipeEvenement->getEquipe() === $this) {
                 $equipeEvenement->setEquipe(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserEquipe>
+     */
+    public function getUserEquipes(): Collection
+    {
+        return $this->userEquipes;
+    }
+
+    public function addUserEquipe(UserEquipe $userEquipe): static
+    {
+        if (!$this->userEquipes->contains($userEquipe)) {
+            $this->userEquipes->add($userEquipe);
+            $userEquipe->setEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserEquipe(UserEquipe $userEquipe): static
+    {
+        if ($this->userEquipes->removeElement($userEquipe)) {
+            // set the owning side to null (unless already changed)
+            if ($userEquipe->getEquipe() === $this) {
+                $userEquipe->setEquipe(null);
             }
         }
 
