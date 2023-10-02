@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EquipeRepository::class)]
@@ -22,6 +24,9 @@ class Equipe
     #[ORM\Column(length: 20)]
     private ?string $categorieGenre = null;
 
+    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: EquipeEvenement::class, orphanRemoval: true)]
+    private Collection $equipeEvenements;
+
     public function hydrate (array $vals){
         foreach ($vals as $cle => $valeur){
             if (isset ($vals[$cle])){
@@ -33,6 +38,7 @@ class Equipe
     public function __construct(array $init =[])
     {
         $this->hydrate($init);
+        $this->equipeEvenements = new ArrayCollection();
     
     }
 
@@ -73,6 +79,36 @@ class Equipe
     public function setCategorieGenre(string $categorieGenre): static
     {
         $this->categorieGenre = $categorieGenre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EquipeEvenement>
+     */
+    public function getEquipeEvenements(): Collection
+    {
+        return $this->equipeEvenements;
+    }
+
+    public function addEquipeEvenement(EquipeEvenement $equipeEvenement): static
+    {
+        if (!$this->equipeEvenements->contains($equipeEvenement)) {
+            $this->equipeEvenements->add($equipeEvenement);
+            $equipeEvenement->setEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipeEvenement(EquipeEvenement $equipeEvenement): static
+    {
+        if ($this->equipeEvenements->removeElement($equipeEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($equipeEvenement->getEquipe() === $this) {
+                $equipeEvenement->setEquipe(null);
+            }
+        }
 
         return $this;
     }
