@@ -28,6 +28,9 @@ class Equipe
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'equipesCoach')]
     private Collection $coachs;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'equipesJoueur')]
+    private Collection $joueurs;
+
 
 
     public function hydrate (array $vals){
@@ -42,6 +45,7 @@ class Equipe
     {
         $this->hydrate($init);
         $this->coachs = new ArrayCollection();
+        $this->joueurs = new ArrayCollection();
   
     
     }
@@ -109,6 +113,33 @@ class Equipe
     {
         if ($this->coachs->removeElement($coach)) {
             $coach->removeEquipesCoach($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getJoueurs(): Collection
+    {
+        return $this->joueurs;
+    }
+
+    public function addJoueur(User $joueur): static
+    {
+        if (!$this->joueurs->contains($joueur)) {
+            $this->joueurs->add($joueur);
+            $joueur->addEquipesJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoueur(User $joueur): static
+    {
+        if ($this->joueurs->removeElement($joueur)) {
+            $joueur->removeEquipesJoueur($this);
         }
 
         return $this;

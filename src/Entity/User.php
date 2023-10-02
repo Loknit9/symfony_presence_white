@@ -53,11 +53,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coachs')]
     private Collection $equipesCoach;
 
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
+    private Collection $equipesJoueur;
+
 
     public function __construct()
     {
         $this->presences = new ArrayCollection();
         $this->equipesCoach = new ArrayCollection();
+        $this->equipesJoueur = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -259,6 +263,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeEquipesCoach(Equipe $equipesCoach): static
     {
         $this->equipesCoach->removeElement($equipesCoach);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipesJoueur(): Collection
+    {
+        return $this->equipesJoueur;
+    }
+
+    public function addEquipesJoueur(Equipe $equipesJoueur): static
+    {
+        if (!$this->equipesJoueur->contains($equipesJoueur)) {
+            $this->equipesJoueur->add($equipesJoueur);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipesJoueur(Equipe $equipesJoueur): static
+    {
+        $this->equipesJoueur->removeElement($equipesJoueur);
 
         return $this;
     }
