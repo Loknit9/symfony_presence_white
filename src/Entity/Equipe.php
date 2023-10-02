@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +25,9 @@ class Equipe
     #[ORM\Column(length: 20)]
     private ?string $categorieGenre = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'equipesCoach')]
+    private Collection $coachs;
+
 
 
     public function hydrate (array $vals){
@@ -36,6 +41,7 @@ class Equipe
     public function __construct(array $init =[])
     {
         $this->hydrate($init);
+        $this->coachs = new ArrayCollection();
   
     
     }
@@ -77,6 +83,33 @@ class Equipe
     public function setCategorieGenre(string $categorieGenre): static
     {
         $this->categorieGenre = $categorieGenre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getCoachs(): Collection
+    {
+        return $this->coachs;
+    }
+
+    public function addCoach(User $coach): static
+    {
+        if (!$this->coachs->contains($coach)) {
+            $this->coachs->add($coach);
+            $coach->addEquipesCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoach(User $coach): static
+    {
+        if ($this->coachs->removeElement($coach)) {
+            $coach->removeEquipesCoach($this);
+        }
 
         return $this;
     }

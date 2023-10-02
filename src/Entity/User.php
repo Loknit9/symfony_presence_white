@@ -50,10 +50,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
 
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coachs')]
+    private Collection $equipesCoach;
+
 
     public function __construct()
     {
         $this->presences = new ArrayCollection();
+        $this->equipesCoach = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,6 +235,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $presence->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipesCoach(): Collection
+    {
+        return $this->equipesCoach;
+    }
+
+    public function addEquipesCoach(Equipe $equipesCoach): static
+    {
+        if (!$this->equipesCoach->contains($equipesCoach)) {
+            $this->equipesCoach->add($equipesCoach);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipesCoach(Equipe $equipesCoach): static
+    {
+        $this->equipesCoach->removeElement($equipesCoach);
 
         return $this;
     }
