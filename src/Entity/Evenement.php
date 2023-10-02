@@ -25,6 +25,9 @@ class Evenement
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
 
+    #[ORM\ManyToMany(targetEntity: Equipe::class, mappedBy: 'evenement')]
+    private Collection $equipes;
+
 
 
     public function hydrate (array $vals){
@@ -40,6 +43,7 @@ class Evenement
     {
         $this->hydrate($init);
         $this->presences = new ArrayCollection();
+        $this->equipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +105,31 @@ class Evenement
         return $this;
     }
 
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipes(): Collection
+    {
+        return $this->equipes;
+    }
 
+    public function addEquipe(Equipe $equipe): static
+    {
+        if (!$this->equipes->contains($equipe)) {
+            $this->equipes->add($equipe);
+            $equipe->addEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipe(Equipe $equipe): static
+    {
+        if ($this->equipes->removeElement($equipe)) {
+            $equipe->removeEvenement($this);
+        }
+
+        return $this;
+    }
 
 }
