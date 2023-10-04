@@ -14,6 +14,7 @@ class EvenementFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
+        
         $type = array('match', 'entrainement', 'physique', 'gardien');
 
         for ($i = 0; $i<40; $i++){

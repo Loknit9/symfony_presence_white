@@ -1,17 +1,12 @@
-@font-face {
-	font-family: 'Aller';
-	src: url('/fonts/Aller_Rg.ttf') format('ttf');
-}
 
 html {
     height: 100%;
 }
 
-
 body {
     margin: 0;
     padding: 0;
-    background-color:rgb(255, 254, 254);
+    background-color:white;
     font-family: 'Aller', sans-serif;
 }
 
