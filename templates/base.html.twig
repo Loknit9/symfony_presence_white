@@ -19,7 +19,7 @@
 		<header>
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="{{ path ('home') }}">Salut Coach!</a>
+					<a class="navbar-brand" href="{{ path ('home') }}"><img src="{{ asset('images/white_logo.png') }}" alt="Logo"></a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -35,12 +35,16 @@
 			</nav>
 		</header>
 		<main>
-			<div class="container-lg"> {% block body %}{% endblock %}
+			<div class="container-lg"> 
+			
+			{% block body %}
+			
+			{% endblock %}
 
 				<nav aria-label="">
 					<ul class="pagination">
 						<li class="page-item">
-							<a class="page-link" href="#">Previous</a>
+							<a class="page-link" href="{{ path ('app_login') }}">Previous</a>
 						</li>
 
 	

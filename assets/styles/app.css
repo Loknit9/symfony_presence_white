@@ -1,4 +1,3 @@
-
 html {
     height: 100%;
 }
@@ -47,3 +46,18 @@ main{
     text-decoration: none;
 }
 
+.bouton_equipe a:hover{
+    color: rgb(250, 6, 6);
+    border: 3px solid rgb(250, 6, 6);
+}
+.h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.btn{
+    min-width : 30%;
+    max-width: 30%;
+    border-radius: 20px;
+}

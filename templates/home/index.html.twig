@@ -13,12 +13,12 @@
 			</div>
 		{% endif %}
 
-		{# Salut {{ app.user.prenom }} !#}
-
-
-		<div class="list-group">
-			<a href="#" class="bouton_equipe">U19G2</a>
-			<a href="#" class="bouton_equipe">GK</a>
+		<div>
+			<h2 class="h2"> Salut{# Salut {{ app.user.prenom }} !#}</h2>
+		</div>
+		<div>
+			<a href="#" class="bouton_equipe">u19G2 {# {{ app.user.equipe}} !#}</a>
+			<a href="#" class="bouton_equipe">GK {# {{ app.user.equipe}} !#}</a>
 		</div>
 
 	{% endblock %}
