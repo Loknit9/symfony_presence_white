@@ -19,11 +19,13 @@ class EquipeFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
 
         $categorieAge = array(5,6,7,8,9,10,11,12,14,16,19);
+        $nom = array(1,2,3,4,5,6);
 
         for ($i = 0; $i <11; $i++){
             $equipe = new Equipe([
-                'nom' => rand(1,6),
-                'categorieAge' => array_rand($categorieAge),
+                'nom' => $nom[mt_rand(0, count($nom) - 1)],
+                'categorieAge' => $categorieAge[mt_rand(0, count($categorieAge) - 1)],
+
                 'categorieGenre' => $faker->randomElement(['G', 'B']),
             ]);
             
@@ -36,7 +38,6 @@ class EquipeFixtures extends Fixture implements DependentFixtureInterface
     {
         return ([
             UserFixtures::class,
-            EvenementFixtures::class,
         ]);
     }
 }

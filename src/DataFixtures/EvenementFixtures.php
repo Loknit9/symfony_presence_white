@@ -8,8 +8,9 @@ use Faker\Factory;
 use App\Entity\Evenement;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class EvenementFixtures extends Fixture
+class EvenementFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -20,12 +21,18 @@ class EvenementFixtures extends Fixture
         for ($i = 0; $i<40; $i++){
             $evenement = new Evenement([
                 'dateEvenement' => $faker->dateTimeBetween('-2 month', '+8 month'),
-                'typeEvenement' => array_rand($type)
+                'typeEvenement' => $type[mt_rand(0, count($type) - 1)]
             ]);
             
             $manager->persist($evenement);
         }
         $manager->flush();
 
+    }
+    public function getDependencies()
+    {
+        return ([
+            UserFixtures::class,
+        ]);
     }
 }
