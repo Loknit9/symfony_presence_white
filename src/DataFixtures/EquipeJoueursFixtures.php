@@ -14,7 +14,7 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Obtenir tous les users et puis tous les joueurs
+        // Obtenir tous les users et puis tous les role_joueurs
         $users = $manager
                 ->getRepository(User::class)
                 ->findAll();
