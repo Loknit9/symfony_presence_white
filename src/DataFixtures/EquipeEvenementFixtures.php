@@ -20,24 +20,23 @@ class EquipeEvenementFixturesPhp extends Fixture implements DependentFixtureInte
 
         //obtenir tous les evenements
         $repEvenements = $manager->getRepository(Evenement::class);
-        $arrayObjetEvenements = $repEvenements->findAll();
+        $arrayEvenements = $repEvenements->findAll();
 
         //parcourir les equipes et leur attribuer un evt
         foreach ($arrayObjetEquipes as $equipe){
-            $randomIndex = array_rand($arrayObjetEvenements);
-            $equipe->addEvenement($arrayObjetEvenements[$randomIndex]);
+            $randomIndex = array_rand($arrayEvenements);
+            $equipe->addEvenement($arrayEvenements[$randomIndex]);
             $manager->persist($equipe);
         }        
         $manager->flush();
-        dd($equipe);
     }
     
-    //fixer les dépendances de cette fixturesym
+    //fixer les dépendances de cette fixture
     public function getDependencies()
     {
-        return[
+        return([
             EvenementFixtures::class,
             EquipeFixtures::class,
-        ];
+        ]);
     }
 }

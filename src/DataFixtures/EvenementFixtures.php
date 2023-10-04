@@ -18,9 +18,9 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
         
         $type = array('match', 'entrainement', 'physique', 'gardien');
 
-        for ($i = 0; $i<40; $i++){
+        for ($i = 0; $i<10; $i++){
             $evenement = new Evenement([
-                'dateEvenement' => $faker->dateTimeBetween('-2 month', '+8 month'),
+                'dateEvenement' => $faker->dateTimeBetween('-4 month', '+0 day'),
                 'typeEvenement' => $type[mt_rand(0, count($type) - 1)]
             ]);
             
