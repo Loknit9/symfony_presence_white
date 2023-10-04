@@ -2,15 +2,16 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
-use App\Entity\Equipe;
-
-use Doctrine\Persistence\ObjectManager;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-
 use Faker;
+use Faker\Factory;
 
-class EquipeFixtures extends Fixture
+use App\Entity\Equipe;
+use Doctrine\Persistence\ObjectManager;
+
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
+class EquipeFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -30,5 +31,12 @@ class EquipeFixtures extends Fixture
         }
         
         $manager->flush();
+    }
+    public function getDependencies()
+    {
+        return ([
+            UserFixtures::class,
+            EvenementFixtures::class,
+        ]);
     }
 }
