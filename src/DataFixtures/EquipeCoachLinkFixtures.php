@@ -15,7 +15,7 @@ class EquipeCoachLinkFixtures extends Fixture implements DependentFixtureInterfa
     public function load(ObjectManager $manager): void
     {
 
-        // 1. Obtenir tous les coachs
+        // 1. Obtenir tous les users et puis tous les joueurs
         $users = $manager
             ->getRepository(User::class)
             ->findAll();
