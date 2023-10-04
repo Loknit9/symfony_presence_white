@@ -25,7 +25,7 @@ class UserFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         
         //creation des users sans role
-        for($i=0; $i <30; $i++){
+        for($i=0; $i <5; $i++){
             $user = new User();
             $user->setEmail ("user".$i."@gmail.com");
             $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));
@@ -55,7 +55,7 @@ class UserFixtures extends Fixture
         }
 
         //creation des users ROLE_COACH
-        for($i=0; $i <10; $i++){
+        for($i=0; $i <3; $i++){
             $user = new User();
             $user->setEmail ("userc".$i."@gmail.com");
             $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));
@@ -70,5 +70,6 @@ class UserFixtures extends Fixture
         }
 
         $manager->flush();
+
     }
 }

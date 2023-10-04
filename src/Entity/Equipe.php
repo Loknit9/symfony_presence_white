@@ -167,7 +167,7 @@ class Equipe
 
     public function removeEvenement(Evenement $evenement): static
     {
-        $this->evenement->removeElement($evenement);
+        $this->evenements->removeElement($evenement);
 
         return $this;
     }
