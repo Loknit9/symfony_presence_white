@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
+use App\Entity\Personne;
 use App\Entity\Equipe;
-use App\DataFixtures\UserFixtures;
+use App\DataFixtures\PersonneUserFixtures;
 use App\DataFixtures\EquipeFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -14,14 +14,14 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Obtenir tous les users et puis tous les role_joueurs
-        $users = $manager
-                ->getRepository(User::class)
+        // Obtenir tous les personnes et puis tous les role_joueurs
+        $personnes = $manager
+                ->getRepository(Personne::class)
                 ->findAll();
         $joueurs = [];
-        foreach ($users as $user){
-            if (in_array("ROLE_USER", $user->getRoles(), true)){
-                $joueurs[] = $user;
+        foreach ($personnes as $personne){
+            if (in_array("ROLE_USER", $personne->getUser()->getRoles(), true)){
+                $joueurs[] = $personne;
             }
         }
         // Obtenir toutes les equipes
@@ -29,7 +29,7 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
         $arrayObjEquipes = $repEquipes->findAll();
 
 
-        // Parcourir tous les users qui ont le role user et leur attribuer une equipe (avec add)
+        // Parcourir tous les personnes qui ont le role user et leur attribuer une equipe (avec add)
         foreach ($joueurs as $joueur) {
             $randomIndex = array_rand($arrayObjEquipes);
             $joueur->addEquipesJoueur($arrayObjEquipes[$randomIndex]);
@@ -41,7 +41,7 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            UserFixtures::class,
+            PersonneUserFixtures::class,
             EquipeFixtures::class,
         ];
     }

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: PersonneRepository::class)]
 class Personne
@@ -34,9 +35,11 @@ class Personne
     #[ORM\OneToOne(mappedBy: 'person', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[JoinTable('equipeCoach')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches')]
     private Collection $equipesCoaches;
-
+    
+    #[JoinTable('equipeJoueur')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
     private Collection $equipesJoueur;
 

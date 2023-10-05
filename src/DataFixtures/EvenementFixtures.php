@@ -7,6 +7,7 @@ use Faker\Factory;
 
 use App\Entity\Evenement;
 use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\PersonneUserFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -32,7 +33,7 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return ([
-            UserFixtures::class,
+            PersonneUserFixtures::class,
         ]);
     }
 }

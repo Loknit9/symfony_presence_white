@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
+use App\Entity\Personne;
 use App\Entity\Presence;
 use App\Entity\Evenement;
-use App\DataFixtures\UserFixtures;
+use App\DataFixtures\PersonneUserFixtures;
 use App\DataFixtures\EvenementFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,9 +20,9 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
         $etat = array('yes', 'no');
         $complement = array('present', 'absent', 'excusé', 'malade', 'renfort');
 
-        // obtenir un User au hasard
-        $repUser = $manager->getRepository(User::class);
-        $arrayUsers = $repUser->findAll();
+        // obtenir un Personne au hasard
+        $repPersonne = $manager->getRepository(Personne::class);
+        $arrayPersonnes = $repPersonne->findAll();
 
         // obtenir un Evenement au hasard
         $repEvenement = $manager->getRepository(Evenement::class);
@@ -36,8 +36,8 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
                 'complement' => $complement[mt_rand(0, count($complement) - 1)],
             ]);
 
-            $randomUser = $arrayUsers[array_rand($arrayUsers)];
-            $presence->setUser($randomUser);
+            $randomPersonne = $arrayPersonnes[array_rand($arrayPersonnes)];
+            $presence->setJoueur($randomPersonne);
             $randomEvenement = $arrayEvenements[array_rand($arrayEvenements)];
             $presence->setEvenement($randomEvenement);
             
@@ -50,7 +50,7 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return ([
-            UserFixtures::class,
+            PersonneUserFixtures::class,
             EvenementFixtures::class,
         ]);
     }

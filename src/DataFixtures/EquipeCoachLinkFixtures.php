@@ -2,11 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
 use App\Entity\Equipe;
-use App\DataFixtures\UserFixtures;
+use App\Entity\Personne;
 use App\DataFixtures\EquipeFixtures;
 use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\PersonneUserFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
@@ -15,14 +15,14 @@ class EquipeCoachLinkFixtures extends Fixture implements DependentFixtureInterfa
     public function load(ObjectManager $manager): void
     {
 
-        // 1. Obtenir tous les users et puis tous les joueurs
-        $users = $manager
-            ->getRepository(User::class)
+        // 1. Obtenir tous les personnes et puis tous les joueurs
+        $personnes = $manager
+            ->getRepository(Personne::class)
             ->findAll();
         $coaches = [];
-        foreach ($users as $user) {
-            if (in_array("ROLE_COACH", $user->getRoles(), true)) {
-                $coaches[] = $user;
+        foreach ($personnes as $personne) {
+            if (in_array("ROLE_COACH", $personne->getUser()->getRoles(), true)) {
+                $coaches[] = $personne;
             }
         }
 
@@ -43,7 +43,7 @@ class EquipeCoachLinkFixtures extends Fixture implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
-            UserFixtures::class,
+            PersonneUserFixtures::class,
             EquipeFixtures::class,
 
         ];
