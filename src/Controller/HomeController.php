@@ -15,14 +15,14 @@ class HomeController extends AbstractController
     #[Route('/', name:'home')]
     public function afficherEquipesCoaches (SerializerInterface $serializer): Response
     {
-        // obtenir le coach user qui est connecté dans l'entité personne (lié à l'equipe)
-        $user = $this->getRoles();
+        // lier le user qui est connecté à le personne (lié à l'equipe) qui coache
+        $user = $this->getUser();
         $person = $this->getPerson();
         
         $equipesCoaches = $person->getEquipesCoaches();
 
         $equipesCoachesJson = $serializer->serialize
-        ($equipesCoaches,'json', [AbstractNormalizer::IGNORED_ATTRIBUTES=>['user, personne']]);
+        ($equipesCoaches,'json', [AbstractNormalizer::IGNORED_ATTRIBUTES=>['user', 'personne']]); // on exclut les liens vers cette classe pour eviter le traitement circulaire
 
         dd($equipesCoachesJson);
 
