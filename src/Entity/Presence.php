@@ -27,15 +27,16 @@ class Presence
     #[ORM\JoinColumn(nullable: false)]
     private ?Personne $joueur = null;
 
-    public function hydrate (array $vals){
-        foreach ($vals as $cle => $valeur){
-            if (isset ($vals[$cle])){
+    public function hydrate(array $vals)
+    {
+        foreach ($vals as $cle => $valeur) {
+            if (isset($vals[$cle])) {
                 $nomSet = "set" . ucfirst($cle);
-                $this->$nomSet ($valeur);
+                $this->$nomSet($valeur);
             }
         }
     }
-    public function __construct(array $init =[])
+    public function __construct(array $init = [])
     {
         $this->hydrate($init);
     }

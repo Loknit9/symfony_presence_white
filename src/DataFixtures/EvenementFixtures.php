@@ -16,19 +16,18 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        
+
         $type = array('match', 'entrainement', 'physique', 'gardien');
 
-        for ($i = 0; $i<10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $evenement = new Evenement([
                 'dateEvenement' => $faker->dateTimeBetween('-4 month', '+0 day'),
                 'typeEvenement' => $type[mt_rand(0, count($type) - 1)]
             ]);
-            
+
             $manager->persist($evenement);
         }
         $manager->flush();
-
     }
     public function getDependencies()
     {

@@ -32,11 +32,10 @@ class EquipeCoachLinkFixtures extends Fixture implements DependentFixtureInterfa
 
         // 3. Parcourir tous les Users. Pour chaque User, rajouter (add) un Equipe aléatoire
         foreach ($coaches as $coach) {
-            $randomIndex = array_rand ($arrayObjEquipes); // l'index d'un Equipe, random
+            $randomIndex = array_rand($arrayObjEquipes); // l'index d'un Equipe, random
             $coach->addEquipesCoach($arrayObjEquipes[$randomIndex]);
-            
         }
-        
+
         $manager->flush();
     }
 

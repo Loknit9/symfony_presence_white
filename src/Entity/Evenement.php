@@ -30,16 +30,17 @@ class Evenement
 
 
 
-    public function hydrate (array $vals){
-        foreach ($vals as $cle => $valeur){
-            if (isset ($vals[$cle])){
+    public function hydrate(array $vals)
+    {
+        foreach ($vals as $cle => $valeur) {
+            if (isset($vals[$cle])) {
                 $nomSet = "set" . ucfirst($cle);
-                $this->$nomSet ($valeur);
+                $this->$nomSet($valeur);
             }
         }
     }
 
-    public function __construct(array $init =[])
+    public function __construct(array $init = [])
     {
         $this->hydrate($init);
         $this->presences = new ArrayCollection();
@@ -131,5 +132,4 @@ class Evenement
 
         return $this;
     }
-
 }

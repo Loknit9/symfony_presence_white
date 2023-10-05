@@ -15,11 +15,13 @@
 
 		<div>
 			<h2 class="h2">
-				Salut{# Salut {{ app.user.prenom }} !#}</h2>
+				Salut {{ app.user.prenom }} !</h2>
 		</div>
 		<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-			<button type="button" class="btn btn-primary">U19G2</button>
-			<button type="button" class="btn btn-primary">GK</button>
+		
+			{{ dump(equipesCoachesJson) }}
+
+			{# <button type="button" class="btn btn-primary">{{ app.person.getequipecoach }}</button>
 		</div>
 
 	{% endblock %}

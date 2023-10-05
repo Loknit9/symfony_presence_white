@@ -68,7 +68,6 @@ class PersonneUserFixtures extends Fixture
 
             $manager->persist($user);
             $user->setPerson($personne);
-
         }
 
         //creation des personnes ROLE_COACH
@@ -91,7 +90,6 @@ class PersonneUserFixtures extends Fixture
 
             $manager->persist($user);
             $user->setPerson($personne);
-
         }
 
 

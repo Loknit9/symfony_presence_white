@@ -16,11 +16,11 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
     {
         // Obtenir tous les personnes et puis tous les role_joueurs
         $personnes = $manager
-                ->getRepository(Personne::class)
-                ->findAll();
+            ->getRepository(Personne::class)
+            ->findAll();
         $joueurs = [];
-        foreach ($personnes as $personne){
-            if (in_array("ROLE_USER", $personne->getUser()->getRoles(), true)){
+        foreach ($personnes as $personne) {
+            if (in_array("ROLE_USER", $personne->getUser()->getRoles(), true)) {
                 $joueurs[] = $personne;
             }
         }
@@ -36,7 +36,6 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
         }
 
         $manager->flush();
-        
     }
     public function getDependencies()
     {
@@ -45,4 +44,4 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
             EquipeFixtures::class,
         ];
     }
-}   
+}

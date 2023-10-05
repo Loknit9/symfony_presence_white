@@ -38,7 +38,7 @@ class Personne
     #[JoinTable('equipeCoach')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches')]
     private Collection $equipesCoaches;
-    
+
     #[JoinTable('equipeJoueur')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
     private Collection $equipesJoueur;

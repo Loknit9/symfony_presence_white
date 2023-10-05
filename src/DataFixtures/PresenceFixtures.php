@@ -40,7 +40,7 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
             $presence->setJoueur($randomPersonne);
             $randomEvenement = $arrayEvenements[array_rand($arrayEvenements)];
             $presence->setEvenement($randomEvenement);
-            
+
 
             $manager->persist($presence);
         }
