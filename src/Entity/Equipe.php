@@ -25,11 +25,7 @@ class Equipe
     #[ORM\Column(length: 20)]
     private ?string $categorieGenre = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'equipesCoach')]
-    private Collection $coachs;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'equipesJoueur')]
-    private Collection $joueurs;
 
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'equipes')]
     private Collection $evenements;
@@ -47,8 +43,7 @@ class Equipe
     public function __construct(array $init =[])
     {
         $this->hydrate($init);
-        $this->coachs = new ArrayCollection();
-        $this->joueurs = new ArrayCollection();
+
         $this->evenements = new ArrayCollection();
     
     }
@@ -94,60 +89,8 @@ class Equipe
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getCoachs(): Collection
-    {
-        return $this->coachs;
-    }
-
-    public function addCoach(User $coach): static
-    {
-        if (!$this->coachs->contains($coach)) {
-            $this->coachs->add($coach);
-            $coach->addEquipesCoach($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCoach(User $coach): static
-    {
-        if ($this->coachs->removeElement($coach)) {
-            $coach->removeEquipesCoach($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getJoueurs(): Collection
-    {
-        return $this->joueurs;
-    }
-
-    public function addJoueur(User $joueur): static
-    {
-        if (!$this->joueurs->contains($joueur)) {
-            $this->joueurs->add($joueur);
-            $joueur->addEquipesJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJoueur(User $joueur): static
-    {
-        if ($this->joueurs->removeElement($joueur)) {
-            $joueur->removeEquipesJoueur($this);
-        }
-
-        return $this;
-    }
-
+    
+    
     /**
      * @return Collection<int, Evenement>
      */

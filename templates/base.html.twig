@@ -19,40 +19,33 @@
 		<header>
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="{{ path ('home') }}"><img src="{{ asset('images/white_logo.png') }}" alt="Logo"></a>
+					<a class="navbar-brand" href="#">Navbar</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div class="navbar-nav">
-							<a class="nav-link" href="{{ path ('presence') }}">Présences</a>
-							<a class="nav-link" href="{{ path ('message') }}">Messages</a>
-							<a class="nav-link" href="{{ path ('app_login') }}">Login</a>
-							<a class="nav-link" href="{{ path ('app_logout') }}">Deconnexion</a>
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+							<a class="nav-link" href="#">Features</a>
+							<a class="nav-link" href="#">Pricing</a>
+							<a class="nav-link disabled" aria-disabled="true">Disabled</a>
 						</div>
 					</div>
 				</div>
 			</nav>
 		</header>
 		<main>
-			<div class="container-lg"> 
-			
-			{% block body %}
-			
-			{% endblock %}
+			<div class="container-lg"> {% block body %}{% endblock %}
 
 				<nav aria-label="">
 					<ul class="pagination">
 						<li class="page-item">
 							<a class="page-link" href="{{ path ('app_login') }}">Previous</a>
 						</li>
-
-	
-						</li>
 					</ul>
 				</nav>
 			</div>
 		</body>
 	</body>
-</html></main></html>
+</html></body></html></main></html>
 

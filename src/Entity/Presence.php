@@ -21,10 +21,6 @@ class Presence
 
     #[ORM\ManyToOne(inversedBy: 'presences')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
-    #[ORM\ManyToOne(inversedBy: 'presences')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Evenement $evenement = null;
 
     public function hydrate (array $vals){
@@ -69,17 +65,6 @@ class Presence
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     public function getEvenement(): ?Evenement
     {

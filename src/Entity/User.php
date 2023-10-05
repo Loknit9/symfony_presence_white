@@ -33,31 +33,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $prenom = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateNaissance = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $contact1 = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $contact2 = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Presence::class, orphanRemoval: true)]
-    private Collection $presences;
-
-    #[JoinTable(name:'equipes_coach')]
-    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coachs')]
-    private Collection $equipesCoach;
-    
-    #[JoinTable(name:'equipes_joueur')]
-    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
-    private Collection $equipesJoueur;
 
     public function hydrate (array $vals){
         foreach ($vals as $cle => $valeur){
@@ -71,9 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct(array $init =[])
     {
         $this->hydrate($init);
-        $this->presences = new ArrayCollection();
-        $this->equipesCoach = new ArrayCollection();
-        $this->equipesJoueur = new ArrayCollection();
+ 
     }
 
     public function getId(): ?int
@@ -165,142 +142,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
 
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
+ 
 
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(?string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance(?\DateTimeInterface $dateNaissance): static
-    {
-        $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-
-    public function getContact1(): ?string
-    {
-        return $this->contact1;
-    }
-
-    public function setContact1(?string $contact1): static
-    {
-        $this->contact1 = $contact1;
-
-        return $this;
-    }
-
-    public function getContact2(): ?string
-    {
-        return $this->contact2;
-    }
-
-    public function setContact2(?string $contact2): static
-    {
-        $this->contact2 = $contact2;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Presence>
-     */
-    public function getPresences(): Collection
-    {
-        return $this->presences;
-    }
-
-    public function addPresence(Presence $presence): static
-    {
-        if (!$this->presences->contains($presence)) {
-            $this->presences->add($presence);
-            $presence->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removePresence(Presence $presence): static
-    {
-        if ($this->presences->removeElement($presence)) {
-            // set the owning side to null (unless already changed)
-            if ($presence->getUser() === $this) {
-                $presence->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Equipe>
-     */
-    public function getEquipesCoach(): Collection
-    {
-        return $this->equipesCoach;
-    }
-
-    public function addEquipesCoach(Equipe $equipesCoach): static
-    {
-        if (!$this->equipesCoach->contains($equipesCoach)) {
-            $this->equipesCoach->add($equipesCoach);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipesCoach(Equipe $equipesCoach): static
-    {
-        $this->equipesCoach->removeElement($equipesCoach);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Equipe>
-     */
-    public function getEquipesJoueur(): Collection
-    {
-        return $this->equipesJoueur;
-    }
-
-    public function addEquipesJoueur(Equipe $equipesJoueur): static
-    {
-        if (!$this->equipesJoueur->contains($equipesJoueur)) {
-            $this->equipesJoueur->add($equipesJoueur);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipesJoueur(Equipe $equipesJoueur): static
-    {
-        $this->equipesJoueur->removeElement($equipesJoueur);
-
-        return $this;
-    }
 
 }
