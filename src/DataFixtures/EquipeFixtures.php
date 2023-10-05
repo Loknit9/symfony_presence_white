@@ -22,7 +22,7 @@ class EquipeFixtures extends Fixture implements DependentFixtureInterface
         $categorieAge = array(5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 19);
         $nom = array(1, 2, 3, 4, 5, 6);
 
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $equipe = new Equipe([
                 'nom' => $nom[mt_rand(0, count($nom) - 1)],
                 'categorieAge' => $categorieAge[mt_rand(0, count($categorieAge) - 1)],

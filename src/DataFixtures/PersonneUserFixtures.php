@@ -28,7 +28,7 @@ class PersonneUserFixtures extends Fixture
 
 
         //creation des personnes 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 16; $i++) {
             $personne = new Personne();
             $personne->setNom($faker->lastName);
             $personne->setPrenom($faker->firstName);
@@ -50,7 +50,7 @@ class PersonneUserFixtures extends Fixture
         }
 
         //creation des personnes 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 2; $i++) {
             $personne = new Personne();
             $personne->setNom($faker->lastName);
             $personne->setPrenom($faker->firstName);

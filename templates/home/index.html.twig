@@ -5,23 +5,28 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-lg">
+<div class="container-lg">
 
-		{% if app.user %}
-			<div
-				class="mb-3">{# You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a> #}
-			</div>
-		{% endif %}
-
-		<div>
-			<h2 class="h2">
-				Salut {{ app.user.prenom }} !</h2>
+	{% if app.user %}
+		<div
+			class="mb-3">{# You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a> #}
 		</div>
-		<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+	{% endif %}
+
+	<div>
+		<h2 class="h2">
+			Salut {{ app.user.prenom }} 	!</h2>
+		{% block content %}
+			<h1>Équipes dont vous êtes le coach</h1>
+			<ul>
+				{% for equipe in equipes %}
+					<li>{{ equipe.nom }}</li>
+				{% endfor %}
+			</ul>
+		{% endblock %}
+
+		{# <button type="button" class="btn btn-primary">{{ app.person.getequipecoach }}</button>
+				</div>
 		
-			{{ dump(equipesCoachesJson) }}
+			{% endblock %}
 
-			{# <button type="button" class="btn btn-primary">{{ app.person.getequipecoach }}</button>
-		</div>
-
-	{% endblock %}
