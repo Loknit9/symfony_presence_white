@@ -14,12 +14,12 @@
 		{% endif %}
 
 		<div>
-			<h2 class="h2"> Salut{# Salut {{ app.user.prenom }} !#}</h2>
+			<h2 class="h2">
+				Salut{# Salut {{ app.user.prenom }} !#}</h2>
 		</div>
-		<div>
-			<a href="#" class="bouton_equipe">u19G2 {# {{ app.user.equipe}} !#}</a>
-			<a href="#" class="bouton_equipe">GK {# {{ app.user.equipe}} !#}</a>
+		<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+			<button type="button" class="btn btn-primary">U19G2</button>
+			<button type="button" class="btn btn-primary">GK</button>
 		</div>
 
 	{% endblock %}
-

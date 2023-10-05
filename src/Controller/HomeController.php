@@ -20,11 +20,4 @@ class HomeController extends AbstractController
         return $this->render('home/presence.html.twig');
     }
 
-    #[Route('/message', name: 'message')]
-    public function vue2(): Response
-    {
-        return $this->render('home/message.html.twig');
-    }
-
-
 }
