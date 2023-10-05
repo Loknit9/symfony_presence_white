@@ -17,14 +17,14 @@ class HomeController extends AbstractController
     {
         // lier le user qui est connecté à le personne (lié à l'equipe) qui coache
         $user = $this->getUser();
-        $person = $this->getPerson();
+        $personne->getUser()->getEquipesCoaches();
         
-        $equipesCoaches = $person->getEquipesCoaches();
 
-        $equipesCoachesJson = $serializer->serialize
-        ($equipesCoaches,'json', [AbstractNormalizer::IGNORED_ATTRIBUTES=>['user', 'personne']]); // on exclut les liens vers cette classe pour eviter le traitement circulaire
 
-        dd($equipesCoachesJson);
+        $equipesCoachJson = $serializer->serialize
+        ($equipesCoach,'json', [AbstractNormalizer::IGNORED_ATTRIBUTES=>['user', 'personne']]); // on exclut les liens vers cette classe pour eviter le traitement circulaire
+
+        dd($equipesCoachJson);
 
         return $this->render('home/index.html.twig');
     }
