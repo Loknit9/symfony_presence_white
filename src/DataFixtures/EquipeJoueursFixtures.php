@@ -32,11 +32,11 @@ class EquipeJoueursFixtures extends Fixture implements DependentFixtureInterface
         // Parcourir tous les users qui ont le role user et leur attribuer une equipe (avec add)
         foreach ($joueurs as $joueur) {
             $randomIndex = array_rand($arrayObjEquipes);
-            $user->addEquipesJoueur($arrayObjEquipes[$randomIndex]);
-            $manager->persist($joueur);
+            $joueur->addEquipesJoueur($arrayObjEquipes[$randomIndex]);
         }
 
         $manager->flush();
+        
     }
     public function getDependencies()
     {

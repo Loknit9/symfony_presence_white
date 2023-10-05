@@ -28,7 +28,7 @@ class UserFixtures extends Fixture
         for($i=0; $i <5; $i++){
             $user = new User();
             $user->setEmail ("user".$i."@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));
+            $user->setPassword($this->passwordHasher->hashPassword($user,'password'.$i ));
             $user->setNom ($faker->lastName);
             $user->setPrenom ($faker->firstName);
             $user->setRoles(['ROLE_USER']);
@@ -44,7 +44,7 @@ class UserFixtures extends Fixture
         for($i=0; $i <4; $i++){
             $user = new User();
             $user->setEmail ("usera".$i."@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));
+            $user->setPassword($this->passwordHasher->hashPassword($user,'password'.$i ));
             $user->setNom ($faker->lastName);
             $user->setPrenom ($faker->firstName);
             $user->setRoles(['ROLE_ADMIN']);
@@ -59,7 +59,7 @@ class UserFixtures extends Fixture
         for($i=0; $i <3; $i++){
             $user = new User();
             $user->setEmail ("userc".$i."@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user,'paswword'.$i ));
+            $user->setPassword($this->passwordHasher->hashPassword($user,'password'.$i ));
             $user->setNom ($faker->lastName);
             $user->setPrenom ($faker->firstName);
             $user->setRoles(['ROLE_COACH']);
