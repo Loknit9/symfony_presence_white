@@ -30,6 +30,12 @@ class Equipe
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'equipes')]
     private Collection $evenements;
 
+    #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesCoaches')]
+    private Collection $coaches;
+
+    #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesJoueur')]
+    private Collection $joueurs;
+
 
 
     public function hydrate (array $vals){
@@ -45,6 +51,8 @@ class Equipe
         $this->hydrate($init);
 
         $this->evenements = new ArrayCollection();
+        $this->coaches = new ArrayCollection();
+        $this->joueurs = new ArrayCollection();
     
     }
 
@@ -111,6 +119,60 @@ class Equipe
     public function removeEvenement(Evenement $evenement): static
     {
         $this->evenements->removeElement($evenement);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getCoaches(): Collection
+    {
+        return $this->coaches;
+    }
+
+    public function addCoach(Personne $coach): static
+    {
+        if (!$this->coaches->contains($coach)) {
+            $this->coaches->add($coach);
+            $coach->addEquipesCoach($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoach(Personne $coach): static
+    {
+        if ($this->coaches->removeElement($coach)) {
+            $coach->removeEquipesCoach($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getJoueurs(): Collection
+    {
+        return $this->joueurs;
+    }
+
+    public function addJoueur(Personne $joueur): static
+    {
+        if (!$this->joueurs->contains($joueur)) {
+            $this->joueurs->add($joueur);
+            $joueur->addEquipesJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoueur(Personne $joueur): static
+    {
+        if ($this->joueurs->removeElement($joueur)) {
+            $joueur->removeEquipesJoueur($this);
+        }
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PersonneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,22 @@ class Personne
 
     #[ORM\OneToOne(mappedBy: 'person', cascade: ['persist', 'remove'])]
     private ?User $user = null;
+
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches')]
+    private Collection $equipesCoaches;
+
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
+    private Collection $equipesJoueur;
+
+    #[ORM\OneToMany(mappedBy: 'joueur', targetEntity: Presence::class, orphanRemoval: true)]
+    private Collection $presences;
+
+    public function __construct()
+    {
+        $this->equipesCoaches = new ArrayCollection();
+        $this->equipesJoueur = new ArrayCollection();
+        $this->presences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,6 +128,84 @@ class Personne
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipesCoaches(): Collection
+    {
+        return $this->equipesCoaches;
+    }
+
+    public function addEquipesCoach(Equipe $equipesCoach): static
+    {
+        if (!$this->equipesCoaches->contains($equipesCoach)) {
+            $this->equipesCoaches->add($equipesCoach);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipesCoach(Equipe $equipesCoach): static
+    {
+        $this->equipesCoaches->removeElement($equipesCoach);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipesJoueur(): Collection
+    {
+        return $this->equipesJoueur;
+    }
+
+    public function addEquipesJoueur(Equipe $equipesJoueur): static
+    {
+        if (!$this->equipesJoueur->contains($equipesJoueur)) {
+            $this->equipesJoueur->add($equipesJoueur);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipesJoueur(Equipe $equipesJoueur): static
+    {
+        $this->equipesJoueur->removeElement($equipesJoueur);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Presence>
+     */
+    public function getPresences(): Collection
+    {
+        return $this->presences;
+    }
+
+    public function addPresence(Presence $presence): static
+    {
+        if (!$this->presences->contains($presence)) {
+            $this->presences->add($presence);
+            $presence->setJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePresence(Presence $presence): static
+    {
+        if ($this->presences->removeElement($presence)) {
+            // set the owning side to null (unless already changed)
+            if ($presence->getJoueur() === $this) {
+                $presence->setJoueur(null);
+            }
+        }
 
         return $this;
     }

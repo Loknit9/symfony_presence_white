@@ -23,6 +23,10 @@ class Presence
     #[ORM\JoinColumn(nullable: false)]
     private ?Evenement $evenement = null;
 
+    #[ORM\ManyToOne(inversedBy: 'presences')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Personne $joueur = null;
+
     public function hydrate (array $vals){
         foreach ($vals as $cle => $valeur){
             if (isset ($vals[$cle])){
@@ -74,6 +78,18 @@ class Presence
     public function setEvenement(?Evenement $evenement): static
     {
         $this->evenement = $evenement;
+
+        return $this;
+    }
+
+    public function getJoueur(): ?Personne
+    {
+        return $this->joueur;
+    }
+
+    public function setJoueur(?Personne $joueur): static
+    {
+        $this->joueur = $joueur;
 
         return $this;
     }
