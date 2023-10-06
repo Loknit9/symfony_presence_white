@@ -13,4 +13,10 @@ class GestionController extends AbstractController
     {
         return $this->render('gestion/action1.html.twig');
     }
+
+    #[Route('/home/presence')]
+    public function presence()
+    {
+        return $this->render('gestion/presence.html.twig');
+    }
 }

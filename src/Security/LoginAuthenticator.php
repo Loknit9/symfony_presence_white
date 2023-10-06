@@ -2,8 +2,8 @@
 
 namespace App\Security;
 
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
@@ -19,6 +19,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
+
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
@@ -26,7 +27,6 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
-
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
@@ -42,28 +42,23 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+  
+
+        return new RedirectResponse($this->urlGenerator->generate('home'));
 
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+
+        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    }
-
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
-    {
-
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-
     }
 }

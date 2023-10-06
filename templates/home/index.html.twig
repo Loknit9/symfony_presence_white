@@ -1,4 +1,18 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+
+<h1>Bienvenue au site!</h1>
+
+{% endblock %}
+
+
+
+
+
+{# {% extends "base.html.twig" %}
 
 
 {% block title %}Accueil
@@ -9,7 +23,7 @@
 
 	{% if app.user %}
 		<div
-			class="mb-3">{# You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a> #}
+			class="mb-3"> You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
 		</div>
 	{% endif %}
 
@@ -27,6 +41,6 @@
 
 		{# <button type="button" class="btn btn-primary">{{ app.person.getequipecoach }}</button>
 				</div>
-		
-			{% endblock %}
+	
 
+ #}
