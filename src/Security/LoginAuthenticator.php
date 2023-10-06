@@ -19,7 +19,6 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
-
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
@@ -27,6 +26,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
+
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
@@ -42,19 +42,25 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-  
-
-        return new RedirectResponse($this->urlGenerator->generate('home'));
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+    }
 
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+
+    // méthode faite par nous-mêmes. Enlevez les commentaires pour voir l'effet
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
+    {
+        // la méthode est doit renvoyer une réponse. 
+        // à nouse de rediriger, lancer une exception ou autre...
+        return new Response("Erreur dans le login");
     }
 
     protected function getLoginUrl(Request $request): string
