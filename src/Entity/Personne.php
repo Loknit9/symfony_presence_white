@@ -33,9 +33,6 @@ class Personne
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateNaissance = null;
 
-    #[ORM\OneToOne(mappedBy: 'person', cascade: ['persist', 'remove'])]
-    private ?User $user = null;
-
     #[JoinTable('equipeCoach')]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches')]
     private Collection $equipesCoaches;
@@ -46,6 +43,9 @@ class Personne
 
     #[ORM\OneToMany(mappedBy: 'joueur', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
+
+    #[ORM\OneToOne(mappedBy: 'person', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -119,22 +119,6 @@ class Personne
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): static
-    {
-        // set the owning side of the relation if necessary
-        if ($user->getPerson() !== $this) {
-            $user->setPerson($this);
-        }
-
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Equipe>
@@ -210,6 +194,23 @@ class Personne
                 $presence->setJoueur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getPerson() !== $this) {
+            $user->setPerson($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
