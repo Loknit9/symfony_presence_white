@@ -19,7 +19,8 @@ class GestionController extends AbstractController
         $em = $doctrine->getManager();
     
         $rep = $em->getRepository(Equipe::class);
-
+        
+        //obtenir toutes les equipes
         $equipes = $rep->findAll();
         $vars = ['equipes'=> $equipes];
 
@@ -38,13 +39,15 @@ class GestionController extends AbstractController
 
 
 
-  // {
-    //     $user = $this->getUser(); // Récupérer l'utilisateur actuel
+  // {     
+           //obtenir le user actuel  
+    //     $user = $this->getUser(); 
 
     //     $personne = $user->getPerson();
 
+           //obtenir la personne qui coach l'equipe 
     //     $equipesCoaches = $personne->getEquipesCoaches();
-    //      $vars = [equipesCoaches' => $equipesCoaches]
+    //     $vars = [equipesCoaches' => $equipesCoaches]
 
     //     return $this->render('gestion/home_coach.html.twig', $vars);
     // }

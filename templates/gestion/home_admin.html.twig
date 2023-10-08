@@ -13,16 +13,16 @@
     <h3>Admin</h3>
     <h3>Bienvenue, {{ app.user.username }}! </h3>
 
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <ul class="equipe_list">
-            {% for equipe in equipes %} 
-            {% set equipeLink = path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom }) %}  
-            <li>
-                <a href="{{ equipeLink }}" class="btn btn-outline-dark">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}
-            </li>        
-        {% endfor %}
-        </ul>
-    </div>
+    <ul class="equipe_list">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            {% for equipe in equipes %}
+                {% set equipeLink = path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom }) %}  
+                    <li>
+                        <a href="{{ equipeLink }}" class="btn btn-outline-dark">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}
+                    </li>        
+            {% endfor %}
+        </div>
+    </ul>
 
 {% endblock %}
 
