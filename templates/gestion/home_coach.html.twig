@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GestionController!{% endblock %}
+{% block title %}Accueil Coach!{% endblock %}
 
 {% block body %}
 Voici la page d'accueil du coach
 
-<h3>Équipes du Coach</h3>
-    <ul>
-        {% for equipe in equipesCoaches %}
-            <li>{{ equipe.getCategorieAge.getCategorie.getNom() }}</li>
+    <h3>Bienvenue, {{ app.user.username }}! </h3>
+
+
+    <ul class="equipe_list">
+        {% for equipe in equipes %}
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <li> <button class="btn btn-primary" type="button">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</button></li>
+        </div>
         {% endfor %}
     </ul>
 
-{{ dump (app.user) }}
-
-{{ dump (app.user.getRoles()) }}
 
 {% endblock %}

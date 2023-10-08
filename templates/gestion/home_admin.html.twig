@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GestionController!{% endblock %}
+{% block title %}Hello Admin!{% endblock %}
 
 {% block body %}
 {% block content %}
@@ -12,11 +12,15 @@
     <h3>Admin</h3>
     <h3>Bienvenue, {{ app.user.username }}! </h3>
 
-    <ul>
+    <ul class="equipe_list">
         {% for equipe in equipes %}
-            <li>{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</li>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <li> <button onclick="window.location.href = '#';" class="btn btn-outline-dark" type="button">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</button></li>
+        </div>
         {% endfor %}
     </ul>
+
+
 {% endblock %}
 
 {% endblock %}
