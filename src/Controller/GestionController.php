@@ -2,21 +2,26 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GestionController extends AbstractController
 {
-    #[Route('/gestion/action1')]
-    public function action1()
+    #[IsGranted('ROLE_COACH')]
+    #[Route("/gestion/homecoach")]
+    public function homecoach()
     {
-        return $this->render('gestion/action1.html.twig');
+        return $this->render('gestion/homecoach.html.twig');
     }
 
-    #[Route('/home/presence')]
-    public function presence()
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route("/gestion/homeadmin")]
+    public function homeadmin()
     {
-        return $this->render('gestion/presence.html.twig');
+        return $this->render('gestion/homeadmin.html.twig');
     }
+
+
 }

@@ -85,7 +85,7 @@ class PersonneUserFixtures extends Fixture
             //creation des users ROLE_COACH
             $user = new User();
             $user->setEmail("userc" . $i . "@gmail.com");
-            $user->setPassword($this->passwordHasher->hashPassword($user, 'passwordc' . $i));
+            $user->setPassword($this->passwordHasher->hashPassword($user, "passwordc" . $i));
             $user->setRoles(['ROLE_COACH']);
 
             $manager->persist($user);
