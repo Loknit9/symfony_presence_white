@@ -9,19 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GestionController extends AbstractController
 {
-    #[IsGranted('ROLE_COACH')]
-    #[Route("/gestion/homecoach")]
-    public function homecoach()
-    {
-        return $this->render('gestion/homecoach.html.twig');
-    }
-
     #[IsGranted('ROLE_ADMIN')]
-    #[Route("/gestion/homeadmin")]
+    #[Route("/gestion/home_admin", name:"home_admin")]
     public function homeadmin()
     {
         return $this->render('gestion/homeadmin.html.twig');
     }
 
+    #[IsGranted('ROLE_COACH')]
+    #[Route("/gestion/home_coach", name:"home_coach")]
+    public function homecoach()
+    {
+        return $this->render('gestion/homecoach.html.twig');
+    }
 
 }
