@@ -5,6 +5,13 @@
 {% block body %}
 Voici la page d'accueil du coach
 
+<h3>Équipes du Coach</h3>
+    <ul>
+        {% for equipe in equipesCoaches %}
+            <li>{{ equipe.getCategorieAge.getCategorie.getNom() }}</li>
+        {% endfor %}
+    </ul>
+
 {{ dump (app.user) }}
 
 {{ dump (app.user.getRoles()) }}

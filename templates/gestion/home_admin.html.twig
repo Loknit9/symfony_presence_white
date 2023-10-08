@@ -3,10 +3,20 @@
 {% block title %}Hello GestionController!{% endblock %}
 
 {% block body %}
-Voici la page d'accueil admin
+{% block content %}
+    
+    {# {% if app.user %}
+    {% set Person = app.user.personne %}
+    <h1>Bonjour Admin {{ personne.prenom }} !</h1>
+    {% endif %} #}
+    <h3>Admin</h3>
+    <h3>Bienvenue, {{ app.user.username }}! </h3>
 
-{{ dump (app.user) }}
-
-{{ dump (app.user.getRoles()) }}
+    <ul>
+        {% for equipe in equipes %}
+            <li>{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
 
 {% endblock %}

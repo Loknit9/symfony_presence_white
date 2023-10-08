@@ -64,7 +64,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         } 
         else {
             // Rediriger tous les autres utilisateurs (cas par défaut)
-            return new RedirectResponse($this->urlGenerator->generate('app_login'));
+            return new RedirectResponse($this->urlGenerator->generate('login'));
         }
     }
 
