@@ -9,17 +9,20 @@
     {% set Person = app.user.personne %}
     <h1>Bonjour Admin {{ personne.prenom }} !</h1>
     {% endif %} #}
+
     <h3>Admin</h3>
     <h3>Bienvenue, {{ app.user.username }}! </h3>
 
     <ul class="equipe_list">
         {% for equipe in equipes %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <li> <button onclick="window.location.href = '#';" class="btn btn-outline-dark" type="button">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</button></li>
+            {% set equipeLink = path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom }) %}  
+            <li>
+                <a href="{{ equipeLink }}" class="btn btn-outline-dark">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}
+            </li>        
         </div>
         {% endfor %}
     </ul>
-
 
 {% endblock %}
 

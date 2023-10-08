@@ -4,23 +4,29 @@ namespace App\Controller;
 
 
 use App\Entity\Equipe;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GestionController extends AbstractController
 {
+    //route pour arriversur la page admin après le login d'un admin
     #[IsGranted('ROLE_ADMIN')]
     #[Route("/gestion/home_admin", name:"home_admin")]
-    public function homeadmin()
+    public function homeadmin(ManagerRegistry $doctrine)
     {   
-        $admin = $this->getDoctrine()->getManager();
-        $equipes = $admin->getRepository(Equipe::class)->findAll();
+        $em = $doctrine->getManager();
+    
+        $rep = $em->getRepository(Equipe::class);
 
-        return $this->render('gestion/home_admin.html.twig', [
-            'equipes'=> $equipes,
-        ]);
+        $equipes = $rep->findAll();
+        $vars = ['equipes'=> $equipes];
+
+        return $this->render('gestion/home_admin.html.twig', $vars);
     }
+
+   //route pour arriver sur la page du coach qui c'est loggué.
 
     #[IsGranted('ROLE_COACH')]
     #[Route("/gestion/home_coach", name:"home_coach")]
@@ -38,10 +44,9 @@ class GestionController extends AbstractController
     //     $personne = $user->getPerson();
 
     //     $equipesCoaches = $personne->getEquipesCoaches();
+    //      $vars = [equipesCoaches' => $equipesCoaches]
 
-    //     return $this->render('gestion/home_coach.html.twig', [
-    //         'equipesCoaches' => $equipesCoaches,
-    //     ]);
+    //     return $this->render('gestion/home_coach.html.twig', $vars);
     // }
 
 }
