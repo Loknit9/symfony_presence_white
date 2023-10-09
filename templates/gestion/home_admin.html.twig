@@ -6,7 +6,7 @@
 {% block content %}
     
     {# {% if app.user %}
-    {% set Person = app.user.personne %}
+    {% set Person = app.user.personne.nom %}
     <h1>Bonjour Admin {{ personne.prenom }} !</h1>
     {% endif %} #}
 
@@ -15,10 +15,9 @@
 
     <ul class="equipe_list">
         <div class="d-grid gap-2 col-6 mx-auto">
-            {% for equipe in equipes %}
-                {% set equipeLink = path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom }) %}  
+            {% for equipe in equipes %} 
                     <li>
-                        <a href="{{ equipeLink }}" class="btn btn-outline-dark">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}
+                        <a href={{ path('equipe_list',{'id':equipe.id}) }}" class="btn btn-outline-dark">{{ equipe.getNom }}
                     </li>        
             {% endfor %}
         </div>

@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GestionController extends AbstractController
 {
-    //route pour arriversur la page admin après le login d'un admin
+    //route pour arriver sur la page admin après le login d'un admin
     #[IsGranted('ROLE_ADMIN')]
     #[Route("/gestion/home_admin", name:"home_admin")]
     public function homeadmin(ManagerRegistry $doctrine)
