@@ -39,8 +39,9 @@ class GestionController extends AbstractController
         //obtenir le user actuel  
         $user = $this->getUser();
 
+        //obtenir la personne liée au user (et sa fonction par rapport à l'eqquipe)
+        // c'est souligné en rouge par erreur le code fonctionne
         $personne = $user->getPerson();
-
 
         //obtenir la personne qui coach l'equipe 
         $equipesCoaches = $personne->getEquipesCoaches();
