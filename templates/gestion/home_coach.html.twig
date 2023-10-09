@@ -10,7 +10,9 @@
     <ul class="equipe_list">
         {% for equipe in equipesCoaches %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <li> <button class="btn btn-outline-dark" type="button">{{ equipe.getNom }}</button></li>
+            <li> 
+                <a href={{ path('calendrier',{'id':equipe.id}) }} class="btn btn-outline-dark" type="button">{{ equipe.getNom }}</a>
+            </li>
         </div>
         {% endfor %}
     </ul>
