@@ -8,7 +8,7 @@
     <h3>Salut {{ app.user.person.prenom }}! </h3>
 
     {# div du calendrier #}
-    <div id="div_calendrier" data-date="{{ 'evenementsJSON' }}" data-equipe="{{ 'evenementsJSON' }}">
+    <div id="div_calendrier" data-date="{{ evenementsJSON }}" data-equipe="{{ evenementsJSON }}">
         <a href="{{path ('afficher_calendrier_utilisateur') }}">Calendrier</a> 
     </div>
 
