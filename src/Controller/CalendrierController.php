@@ -11,6 +11,10 @@ class CalendrierController extends AbstractController
     #[Route('/calendrier', name: 'calendrier')]
     public function index(): Response
     {
+
+        // envoyer l'id de l'equipe 
+        // date de l'evenement
+
         return $this->render('calendrier/index.html.twig');
     }
 }
