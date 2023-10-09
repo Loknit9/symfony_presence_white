@@ -13,7 +13,7 @@ class GestionController extends AbstractController
 {
     //route pour arriver sur la page admin après le login d'un admin
     #[IsGranted('ROLE_ADMIN')]
-    #[Route("/gestion/home_admin", name:"home_admin")]
+    #[Route("/gestion/admin/home_admin", name:"home_admin")]
     public function homeadmin(ManagerRegistry $doctrine)
     {   
         $em = $doctrine->getManager();
@@ -29,10 +29,11 @@ class GestionController extends AbstractController
 
    //route pour arriver sur la page du coach qui c'est loggué.
 
-    #[IsGranted('ROLE_COACH')]
-    #[Route("/gestion/home_coach", name:"home_coach")]
+  
+    #[Route("/gestion/coach/home_coach", name:"home_coach")]
     public function homecoach()
     {
+        // dd($this->getUser());
 
         return $this->render('gestion/home_coach.html.twig');
     }

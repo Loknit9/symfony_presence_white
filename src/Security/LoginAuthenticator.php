@@ -52,13 +52,14 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         // Récupérer l'utilisateur connecté
         $user = $token->getUser();
+        // dd($user);
 
         // Vérifier le rôle de l'utilisateur
-        if (in_array('ROLE_COACH', $user->getRoles())) {
+        if (in_array('ROLE_COACH', $user->getRoles(),true)) {
             // Rediriger l'utilisateur avec le rôle de coach vers une page spécifique
             return new RedirectResponse($this->urlGenerator->generate('home_coach'));
         } 
-        elseif (in_array('ROLE_ADMIN', $user->getRoles())) {
+        elseif (in_array('ROLE_ADMIN', $user->getRoles(),true)) {
             // Rediriger l'utilisateur avec le rôle d'administrateur vers une page spécifique
             return new RedirectResponse($this->urlGenerator->generate('home_admin'));
         } 
