@@ -22,7 +22,7 @@ class EquipeListController extends AbstractController
 
         //obtenir la liste des joueurs de l'equipe
         $listJoueurs = $equipe->getJoueurs();
-        dd($listJoueurs);
+        //dd($listJoueurs[0]);
 
         // afficher ds la vue la liste des joueurs
         $vars = ['listJoueurs' => $listJoueurs];

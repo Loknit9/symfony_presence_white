@@ -4,14 +4,15 @@
 
 {% block body %}
 
+    <h3>Bienvenue, {{ app.user.person.nom }}! </h3>
 
     <ul>
         {% for equipesJoueur in listJoueurs %}
-            <li class="list-group-item">{{ equipesJoueur.nom }}{{ equipesJoueur.prenom }} /li>
+            <li class="list-group-item">{{ equipesJoueur.nom }} {{ equipesJoueur.prenom }} </li>
         {% endfor %}
     </ul>
 
-    <a href="{{ path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom}) }}">
+    {# <a href="{{ path('equipe_list', {'categorieAge': equipe.getCategorieAge, 'categorieGenre': equipe.getCategorieGenre, 'nom': equipe.getNom}) }}"> #}
         Retour à la liste des équipes
     </a>
 
