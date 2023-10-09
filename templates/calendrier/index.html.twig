@@ -8,30 +8,24 @@
     <h3>Salut {{ app.user.person.prenom }}! </h3>
 
     {# div du calendrier #}
-    <div id="div_calendrier" data-date="{{ }}" data-equipe="{{ }}"  ...........>
+    <div id="div_calendrier" data-date="{{ 'evenementsJSON' }}" data-equipe="{{ 'evenementsJSON' }}">
         <a href="{{path ('afficher_calendrier_utilisateur') }}">Calendrier</a> 
-
     </div>
 
 
     <script>
-
         let div_calendrier = document.getElementById('div_calendrier');
-
-
-
-        // click
         
-        window.href = "/liste/joueurs/" +  div_calendrier.dataset.date + "/" 
-                    + div_calendrier.dataset.equipe;
+        let link = document.querySelector('a[href="{{ path('afficher_calendrier_utilisateur', {'date': date, 'equipe': equipe }) }}"]');
+            window.href = "/liste/joueurs/" + div_calendrier.dataset.date + "/" div_calendrier.dataset.equipe;
     </script>
 
 
-    // mettre 
-    // mettre date-idEquipe 
+    
+    {# // mettre date-idEquipe  #}
 
-    <h6> Choisit une date</h6>
-    <h6> Calendrier</h6>
 
-</div>
+    
+
+
 {% endblock %}
