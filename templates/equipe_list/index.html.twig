@@ -7,10 +7,38 @@
     <h3>Salut, {{ app.user.person.prenom }}! </h3>
 
     <ul class="list-group">
+            <li class="list-group-item">
+                <ul class="list-inline">
+                    <li class="list-inline-item">This is a list item.</li>
+                    <li class="list-inline-item">And another one.</li>
+                    <li class="list-inline-item">But they're displayed inline.</li>
+                    <li class="list-inline-item">And another one.</li>
+                    <li class="list-inline-item">But they're displayed inline.</li>
+                </ul>
+            </li>  
         {% for equipesJoueur in listJoueurs %}
-            <li class="list-group-item">{{ equipesJoueur.nom }} {{ equipesJoueur.prenom }} </li>
+            <li class="list-group-item">
+                {{ equipesJoueur.nom }} {{ equipesJoueur.prenom }}
+                <div class="form-check form-check-inline">
+                </div>  
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                </div><div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                </div>
+            </li>    
         {% endfor %}
     </ul>
+
 
     {# <a href={{ path('equipe_list') }}> retour à la liste des équipes </a> #}
 
