@@ -3,15 +3,14 @@
 {% block title %}Accueil Coach!{% endblock %}
 
 {% block body %}
-Voici la page d'accueil du coach
-
-    <h3>Bienvenue, {{ app.user.username }}! </h3>
+<h5>Présences</h5>
+    <h3>Bienvenue, {{ app.user.person.prenom }}! </h3>
 
 
     <ul class="equipe_list">
         {% for equipe in equipesCoaches %}
         <div class="d-grid gap-2 col-6 mx-auto">
-            <li> <button class="btn btn-primary" type="button">{{ equipe.getCategorieAge }} {{ equipe.getCategorieGenre }} {{ equipe.getNom }}</button></li>
+            <li> <button class="btn btn-outline-dark" type="button">{{ equipe.getNom }}</button></li>
         </div>
         {% endfor %}
     </ul>
