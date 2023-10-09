@@ -32,13 +32,14 @@ class Evenement
     private ?\DateTimeInterface $end = null;
 
     #[ORM\Column(length: 7)]
-    private ?string $background_color = null;
+    private ?string $backgroundColor = null;
 
     #[ORM\Column(length: 7)]
-    private ?string $border_color = null;
+    private ?string $borderColor = null;
 
     #[ORM\Column(length: 7)]
-    private ?string $text_color = null;
+    private ?string $textColor = null;
+
 
     public function hydrate(array $vals)
     {
@@ -157,36 +158,36 @@ class Evenement
 
     public function getBackgroundColor(): ?string
     {
-        return $this->background_color;
+        return $this->backgroundColor;
     }
 
-    public function setBackgroundColor(string $background_color): static
+    public function setBackgroundColor(string $backgroundColor): static
     {
-        $this->background_color = $background_color;
+        $this->backgroundColor = $backgroundColor;
 
         return $this;
     }
 
     public function getBorderColor(): ?string
     {
-        return $this->border_color;
+        return $this->borderColor;
     }
 
-    public function setBorderColor(string $border_color): static
+    public function setBorderColor(string $borderColor): static
     {
-        $this->border_color = $border_color;
+        $this->borderColor = $borderColor;
 
         return $this;
     }
 
     public function getTextColor(): ?string
     {
-        return $this->text_color;
+        return $this->textColor;
     }
 
-    public function setTextColor(string $text_color): static
+    public function setTextColor(string $textColor): static
     {
-        $this->text_color = $text_color;
+        $this->textColor = $textColor;
 
         return $this;
     }
