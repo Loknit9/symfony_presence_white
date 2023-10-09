@@ -13,44 +13,42 @@ class GestionController extends AbstractController
 {
     //route pour arriver sur la page admin après le login d'un admin
     #[IsGranted('ROLE_ADMIN')]
-    #[Route("/gestion/admin/home_admin", name:"home_admin")]
+    #[Route("/gestion/admin/home_admin", name: "home_admin")]
     public function homeadmin(ManagerRegistry $doctrine)
-    {   
+    {
         $em = $doctrine->getManager();
-    
+
         $rep = $em->getRepository(Equipe::class);
-        
+
         //obtenir toutes les equipes
         $equipes = $rep->findAll();
-        $vars = ['equipes'=> $equipes];
+        $vars = ['equipes' => $equipes];
 
         return $this->render('gestion/home_admin.html.twig', $vars);
     }
 
-   //route pour arriver sur la page du coach qui c'est loggué.
+    //route pour arriver sur la page du coach qui c'est loggué.
 
-  
-    #[Route("/gestion/coach/home_coach", name:"home_coach")]
+
+    #[Route("/gestion/coach/home_coach", name: "home_coach")]
     public function homecoach()
     {
         // dd($this->getUser());
 
-        return $this->render('gestion/home_coach.html.twig');
+
+        //obtenir le user actuel  
+        $user = $this->getUser();
+
+        $personne = $user->getPerson();
+
+
+        //obtenir la personne qui coach l'equipe 
+        $equipesCoaches = $personne->getEquipesCoaches();
+
+        $vars = ['equipesCoaches' => $equipesCoaches];
+
+        return $this->render('gestion/home_coach.html.twig', $vars);
+
+
     }
-
-
-
-  // {     
-           //obtenir le user actuel  
-    //     $user = $this->getUser(); 
-
-    //     $personne = $user->getPerson();
-
-           //obtenir la personne qui coach l'equipe 
-    //     $equipesCoaches = $personne->getEquipesCoaches();
-    //     $vars = [equipesCoaches' => $equipesCoaches]
-
-    //     return $this->render('gestion/home_coach.html.twig', $vars);
-    // }
-
 }
