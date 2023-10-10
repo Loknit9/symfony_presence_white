@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Equipe;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,22 +14,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CalendrierController extends AbstractController
 {
-    #[Route('/calendrier/{date}/{equipe}', name: 'calendrier')]
-    public function afficherCalendrier(SerializerInterface $serializer, Request $req): Response
+    #[Route('/calendrier/{id_equipe}', name: 'calendrier')]
+    public function afficherCalendrier(SerializerInterface $serializer, Request $req, ManagerRegistry $doctrine): Response
     {
+        $em = $doctrine->getManager();
+        // obtenir l'equipe qui correspond au paramètre nom
+        $rep = $em->getRepository(Equipe::class);
 
-        // obtenir l'id de l'equipe et la date selectionnee ds l'url
-        $dateSelect = $req->get("date");
-        $equipeSelect = $req->get("equipe");
+        // obtenir l'id de l'equipe 
+
+        $equipeSelect = $rep ->find($req->get("id_equipe"));
         
-        //Obtenir tous les événements de l'équipe à la date choisie.
-        $evenements = $this->getEvenementsEquipeDateSelect($equipeSelect, $dateSelect);
-
-        //dd($evenementsEquipe[0]);
+        //Obtenir tous les événements de l'équipe
+        $evenementsEquipe = $equipeSelect->getEvenement();
         
-        $evenementsJSON = $serializer->serialize($evenements, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
-        $vars = ['evenementsJSON' => $evenementsJSON];
+        dd($equipeSelect);
+        
+       // $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
+        //$vars = ['evenementsJSON' => $evenementsJSON];
 
-        return $this->render('calendrier/index.html.twig', $vars);
+        //return $this->render('calendrier/index.html.twig', $vars);
     }
 }
