@@ -156,14 +156,14 @@ class Evenement
         return $this;
     }
 
-    public function getBackgroundColor(): ?string
+    public function getBackground_color(): ?string
     {
         return $this->background_color;
     }
 
-    public function setBackgroundColor(string $backgroundColor): static
+    public function setBackground_color(string $background_color): static
     {
-        $this->background_color = $backgroundColor;
+        $this->background_color = $background_color;
 
         return $this;
     }

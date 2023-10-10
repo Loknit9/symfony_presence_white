@@ -20,7 +20,7 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < 10; $i++) {
             $evenement = new Evenement();
-            $evenement->setTitle [mt_rand(0, count($type) - 1)];
+            $evenement->setTitle ($type[mt_rand(0, count($type) - 1)]);
             $evenement->setStart($date = $faker->dateTimeBetween('-4 month', '+0 day'));
             $evenement->setEnd($date);
             $evenement->setBackground_color ("#ff0000");
