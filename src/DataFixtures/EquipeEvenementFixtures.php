@@ -24,8 +24,12 @@ class EquipeEvenementFixtures extends Fixture implements DependentFixtureInterfa
 
         //parcourir les equipes et leur attribuer un evt
         foreach ($arrayObjetEquipes as $equipe) {
-            $randomIndex = array_rand($arrayEvenements);
-            $equipe->addEvenement($arrayEvenements[$randomIndex]);
+            $nombreEvenements = rand(6, 8);
+
+            for ($i = 0; $i < $nombreEvenements; $i++) {
+                $randomIndex = array_rand($arrayEvenements);
+                $equipe->addEvenement($arrayEvenements[$randomIndex]);
+            }
             $manager->persist($equipe);
         }
         $manager->flush();
