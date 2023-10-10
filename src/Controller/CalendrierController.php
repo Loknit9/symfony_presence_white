@@ -22,13 +22,12 @@ class CalendrierController extends AbstractController
         $rep = $em->getRepository(Equipe::class);
 
         // obtenir l'id de l'equipe 
-
         $equipeSelect = $rep ->find($req->get("id_equipe"));
         
         //Obtenir tous les événements de l'équipe
         $evenementsEquipe = $equipeSelect->getEvenement();
         
-        dd($equipeSelect);
+       
         
        // $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
         //$vars = ['evenementsJSON' => $evenementsJSON];

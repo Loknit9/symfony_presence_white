@@ -19,14 +19,13 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
         $type = array('match', 'entrainement', 'physique', 'gardien');
 
         for ($i = 0; $i < 10; $i++) {
-            $evenement = new Evenement([
-                'title' => $type[mt_rand(0, count($type) - 1)],
-                'start' => $date = $faker->dateTimeBetween('-4 month', '+0 day'),
-                'end' => $date,
-                'backgroundColor' =>"#ff0000",
-                'textColor' =>"#ffffff",
-                'borderColor' => "#000000",
-            ]);
+            $evenement = new Evenement();
+            $evenement->setTitle [mt_rand(0, count($type) - 1)];
+            $evenement->setStart($date = $faker->dateTimeBetween('-4 month', '+0 day'));
+            $evenement->setEnd($date);
+            $evenement->setBackground_color ("#ff0000");
+            $evenement->setText_color("#ffffff");
+            $evenement->setBorder_color("#000000");
 
             $manager->persist($evenement);
         }
