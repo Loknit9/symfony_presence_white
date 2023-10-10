@@ -27,9 +27,10 @@ class CalendrierController extends AbstractController
         //Obtenir tous les événements de l'équipe
         $evenementsEquipe = $equipeSelect->getEvenement();
         
-       
-        
-       // $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
+        //transformer l'array en objet
+
+        $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['presences', 'equipes']]);
+        dd ($evenementsJSON);
         //$vars = ['evenementsJSON' => $evenementsJSON];
 
         //return $this->render('calendrier/index.html.twig', $vars);

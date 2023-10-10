@@ -156,36 +156,36 @@ class Evenement
         return $this;
     }
 
-    public function getBackground_color(): ?string
+    public function getBackgroundColor(): ?string
     {
         return $this->background_color;
     }
 
-    public function setBackground_color(string $background_color): static
+    public function setBackgroundColor(string $background_color): static
     {
         $this->background_color = $background_color;
 
         return $this;
     }
 
-    public function getBorder_color(): ?string
+    public function getBorderColor(): ?string
     {
         return $this->border_color;
     }
 
-    public function setBorder_color(string $border_color): static
+    public function setBorderColor(string $border_color): static
     {
         $this->border_color = $border_color;
 
         return $this;
     }
 
-    public function getText_color(): ?string
+    public function getTextColor(): ?string
     {
         return $this->text_color;
     }
 
-    public function setText_color(string $text_color): static
+    public function setTextColor(string $text_color): static
     {
         $this->text_color = $text_color;
 

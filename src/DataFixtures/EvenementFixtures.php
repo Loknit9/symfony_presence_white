@@ -23,9 +23,9 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
             $evenement->setTitle ($type[mt_rand(0, count($type) - 1)]);
             $evenement->setStart($date = $faker->dateTimeBetween('-4 month', '+0 day'));
             $evenement->setEnd($date);
-            $evenement->setBackground_color ("#ff0000");
-            $evenement->setText_color("#ffffff");
-            $evenement->setBorder_color("#000000");
+            $evenement->setBackgroundcolor ("#ff0000");
+            $evenement->setTextcolor("#ffffff");
+            $evenement->setBordercolor("#000000");
 
             $manager->persist($evenement);
         }

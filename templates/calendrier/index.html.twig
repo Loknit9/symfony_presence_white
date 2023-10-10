@@ -2,6 +2,16 @@
 
 {% block title %}Calendrier{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('calendrier') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('calendrier') }}
+{% endblock %}
+
 {% block body %}
 
     <h5>Coach</h5>
@@ -9,8 +19,5 @@
 
     Calendrier
     {# div du calendrier #}
-    <div id="div_calendrier" data-date="{{ evenementsJSON }}">
-        <a href="{{path ('afficher_calendrier_utilisateur') }}">Calendrier</a> 
-    </div>
 
 {% endblock %}
