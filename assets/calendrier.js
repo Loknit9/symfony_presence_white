@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let eventsJSON = div_calendrier.dataset.calendrier;
 
-    HTMLFormControlsCollection.log (eventsJSON);
+    let eventArray = JSON.parse (eventsJSON);
+
+    console.log (eventsArray);
 
 
     // creer l'objet calendar (fullcalendar)
