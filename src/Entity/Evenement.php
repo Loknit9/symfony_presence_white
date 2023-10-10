@@ -17,7 +17,7 @@ class Evenement
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $typeEvenement = null;
+    private ?string $title = null;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
@@ -63,14 +63,14 @@ class Evenement
         return $this->id;
     }
 
-    public function getTypeEvenement(): ?string
+    public function getTitle(): ?string
     {
-        return $this->typeEvenement;
+        return $this->title;
     }
 
-    public function setTypeEvenement(string $typeEvenement): static
+    public function setTitle(string $title): static
     {
-        $this->typeEvenement = $typeEvenement;
+        $this->title = $title;
 
         return $this;
     }

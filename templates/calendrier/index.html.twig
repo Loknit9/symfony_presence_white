@@ -9,24 +9,8 @@
 
     Calendrier
     {# div du calendrier #}
-   {#  <div id="div_calendrier" data-date="{{ evenementsJSON }}" data-equipe="{{ evenementsJSON }}">
+    <div id="div_calendrier" data-date="{{ evenementsJSON }}">
         <a href="{{path ('afficher_calendrier_utilisateur') }}">Calendrier</a> 
     </div>
-
-
-    <script>
-        let div_calendrier = document.getElementById('div_calendrier');
-        
-        let link = document.querySelector('a[href="{{ path('afficher_calendrier_utilisateur', {'date': date, 'equipe': equipe }) }}"]');
-            window.href = "/liste/joueurs/" + div_calendrier.dataset.date + "/" div_calendrier.dataset.equipe;
-    </script>
- #}
-
-    
-    {# // mettre date-idEquipe  #}
-
-
-    
-
 
 {% endblock %}
