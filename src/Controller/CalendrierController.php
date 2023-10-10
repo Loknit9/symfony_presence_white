@@ -13,20 +13,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CalendrierController extends AbstractController
 {
     #[Route('/calendrier/{date}/{equipe}', name: 'calendrier')]
-    public function afficherCalendrier(SerializerInterface $serializer, Request $req, $date, $equipe): Response
+    public function afficherCalendrier(SerializerInterface $serializer, Request $req): Response
     {
 
-        // obtenir l'id de l'equipe
-        $equipe = $req->getContent();
+        // obtenir l'id de l'equipe et la date selectionnee ds l'url
+        $dateSelect = $req->get("date");
+        $equipeSelect = $req->get("equipe");
         
-        // recuperer la date de l'evenement ds l'url
-        $date = $req->getContent();
-        
-        $evenementsEquipe = $this->getEvenement($equipe, $date);
+        //Obtenir tous les événements de l'équipe à la date choisie.
+        $evenements = $this->getEvenementsEquipeDateSelect($equipeSelect, $dateSelect);
 
         //dd($evenementsEquipe[0]);
         
-        $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
+        $evenementsJSON = $serializer->serialize($evenements, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['evenement', 'equipe']]);
         $vars = ['evenementsJSON' => $evenementsJSON];
 
         return $this->render('calendrier/index.html.twig', $vars);
