@@ -4,8 +4,6 @@ import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
-import axios from "axios";
-
 
 //pour lancer le code js quand le dom est chargé
 document.addEventListener("DOMContentLoaded", function() {
@@ -15,14 +13,28 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let eventsJSON = div_calendrier.dataset.calendrier;
 
-    let eventArray = JSON.parse (eventsJSON);
+    let eventsArray = JSON.parse (eventsJSON);
 
-    console.log (eventsArray);
-
+    //console.log (eventsArray);
 
     // creer l'objet calendar (fullcalendar)
 
+    let calendar = new Calendar (div_calendrier, 
+        {
+            events: eventsArray,
+            displayEventTime: false, // cacher l'heure
+            initialView: "dayGridMonth",
+            initialDate: new Date(), // aujourd'hui
+            headerToolbar: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay",
+            },
+            plugins: [interactionPlugin, dayGridPlugin]
+        }     
+        );
 
+        calendar.render();
 
     // mettre le calendar ds le div
 

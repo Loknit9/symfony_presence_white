@@ -21,7 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addEntry('calendrier', './assets/calendrier.js') // mon script pour gerer le calendrier et importer la librairie
+    .addEntry('calendrier','./assets/calendrier.js') // mon script pour gerer le calendrier et importer la librairie
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
