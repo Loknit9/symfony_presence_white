@@ -17,12 +17,11 @@ class EvenementFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
         $type = array('match', 'entrainement', 'physique', 'gardien');
-        $date = $faker->dateTimeBetween('-4 month', '+0 day');
 
         for ($i = 0; $i < 10; $i++) {
             $evenement = new Evenement([
                 'typeEvenement' => $type[mt_rand(0, count($type) - 1)],
-                'start' => $date,
+                'start' => $date = $faker->dateTimeBetween('-4 month', '+0 day'),
                 'end' => $date,
                 'backgroundColor' =>"#ff0000",
                 'textColor' =>"#ffffff",
