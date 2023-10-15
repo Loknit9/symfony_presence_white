@@ -25,5 +25,15 @@ li{
     justify-content: center;
     width:40%;
     height:40%;
+}
 
+body{
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px;
+}
+
+.navbar {
+    padding-top: 0;
+    margin-bottom: 2em;
 }

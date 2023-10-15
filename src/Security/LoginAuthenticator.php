@@ -65,7 +65,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         } 
         else {
             // Rediriger tous les autres utilisateurs (cas par défaut)
-            return new RedirectResponse($this->urlGenerator->generate('login'));
+            return new RedirectResponse($this->urlGenerator->generate('app_login'));
         }
     }
 
@@ -73,9 +73,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     // méthode faite par nous-mêmes. Enlevez les commentaires pour voir l'effet
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        // la méthode est doit renvoyer une réponse. 
+        // la méthode doit renvoyer une réponse. 
         // à nouse de rediriger, lancer une exception ou autre...
-        return new Response("Erreur dans le login");
+        // return new Response("Erreur dans le login");
+        return new RedirectResponse($this->urlGenerator->generate(self::LOGIN_ROUTE));
     }
 
     protected function getLoginUrl(Request $request): string
