@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let eventsArray = JSON.parse (eventsJSON);
 
-    console.log (eventsArray);
+    // console.log (eventsArray);
 
     // creer l'objet calendar (fullcalendar)
 
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             dateClick: function (info){
                 console.log(info.dateStr);
+                window.location.href = "/afficher/liste/equipes/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
             }
             
         });

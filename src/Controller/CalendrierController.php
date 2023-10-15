@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Equipe;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,8 +32,22 @@ class CalendrierController extends AbstractController
 
         $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['presences', 'equipes']]);
 
+        // arranger les noms des proprietes
+        $evenementsJSON = str_replace ("backgroundColor", "background_color",$evenementsJSON);
+        $evenementsJSON = str_replace ("textColor", "text_color",$evenementsJSON);
+        $evenementsJSON = str_replace ("borderColor", "border_color",$evenementsJSON);
+
+        // id equipe pour envoyer l'id de l'equipe ds la vue
         $vars = ['evenementsJSON' => $evenementsJSON, 'id_equipe' => $equipeSelect->getId()];
 
         return $this->render('calendrier/index.html.twig', $vars);
+    }
+
+    #[Route ('/afficher/liste/equipes/{date}/{id_equipe}')]
+    public function afficheListeEquipes (Request $req){
+        $date = $req->get('date');
+        $id_equipe = $req->get('id');
+
+        dd (new DateTime($date));
     }
 }
