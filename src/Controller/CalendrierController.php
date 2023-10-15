@@ -38,7 +38,7 @@ class CalendrierController extends AbstractController
         $evenementsJSON = str_replace ("borderColor", "border_color",$evenementsJSON);
 
         // id equipe pour envoyer l'id de l'equipe ds la vue
-        $vars = ['evenementsJSON' => $evenementsJSON, 'id_equipe' => $equipeSelect->getId()];
+        $vars = ['evenementsJSON' => $evenementsJSON, 'id_equipe' => $equipeSelect->getId(), 'nom_equipe' => $equipeSelect->getNom(),];
 
         return $this->render('calendrier/index.html.twig', $vars);
     }

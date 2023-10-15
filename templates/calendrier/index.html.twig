@@ -16,7 +16,7 @@
 
     <h5>Coach</h5>
     <h3>Salut {{ app.user.person.prenom }}! </h3>
-    <h4>Equipe {{ equipe.nom }}</h4>
+    <h5>Equipe {{ nom_equipe }}</h5>
 
         <div id="div_calendrier" data-calendrier = "{{ evenementsJSON }}"  data-equipe = {{id_equipe}} class="calendar">
             {# <a href= "{{ path ('afficher_calendrier_utilisateur') }}">Calendrier</a> #}

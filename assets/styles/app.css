@@ -27,13 +27,25 @@ li{
     height:40%;
 }
 
+html{
+    height: 100%;
+}
+
 body{
-    max-width: 1200px;
-    margin: auto;
-    padding: 16px;
+    margin : 0;
+    padding : 0;
+}
+
+.container{
+    width: 60%;
+    margin: 0 auto;
 }
 
 .navbar {
-    padding-top: 0;
+    width: 100%;
+    margin: 0;
     margin-bottom: 2em;
+    height: 65px;
+    padding-top: 0;
+    padding-left: 5em;
 }
