@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             plugins: [interactionPlugin, dayGridPlugin],
 
+            // fixer les evts (click) charger una autre page (avec la date et l'equipe ds l'url)
             dateClick: function (info){
                 console.log(info.dateStr);
                 window.location.href = "/afficher/liste/equipes/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    // fixer les evts (click) charger una autre page (avec la date et l'equipe ds l'url)
 
 
 

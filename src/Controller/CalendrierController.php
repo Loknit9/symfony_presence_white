@@ -44,10 +44,26 @@ class CalendrierController extends AbstractController
     }
 
     #[Route ('/afficher/liste/equipes/{date}/{id_equipe}')]
-    public function afficheListeEquipes (Request $req){
+    public function afficheListeEquipes (Request $req, ManagerRegistry $doctrine){
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Equipe::class);
+
         $date = $req->get('date');
         $id_equipe = $req->get('id');
 
-        dd (new DateTime($date));
+
+        // obtenir l'equipe qui correspond au paramètre nom
+
+        $equipe = $rep ->find($id_equipe);
+        //obtenir la liste des joueurs
+        $listJoueurs = $equipe->getJoueurs();
+
+        // afficher ds la vue la liste des joueurs
+        $vars = ['listJoueurs' => $listJoueurs,'equipe' => $equipe, 'date'=>$date];
+
+        return $this->render('equipe_list/index.html.twig', $vars);
+
+        //dd (new DateTime($date));
+
     }
 }
