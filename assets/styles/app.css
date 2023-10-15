@@ -1,4 +1,46 @@
 
+:root {
+    --primary: #ff0000; 
+}
+
+.root {
+    --bs-blue: #ff0000; 
+}
+
+a{
+    color: #ff0000;
+}
+/* calendrier */
+.fc-col-header-cell-cushion:hover{
+    color: black;
+}
+
+.fc-col-header-cell-cushion{
+    color: black;
+}
+
+.fc-daygrid-day-number{
+    color:black
+}
+
+.fc-daygrid-day-number:hover{
+    color:#ff0000
+}
+
+.fc-daygrid-day-number:active{
+    color:#ff0000
+}
+
+.fc-daygrid-event-dot{
+    border-color: #ff0000;
+}
+
+.btn-danger{
+    background-color: #ff0000;
+}
+
+
+/* liste */
 .equipe_list{
     list-style-type: none;
 }
