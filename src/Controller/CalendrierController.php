@@ -31,7 +31,7 @@ class CalendrierController extends AbstractController
 
         $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['presences', 'equipes']]);
 
-        $vars = ['evenementsJSON' => $evenementsJSON];
+        $vars = ['evenementsJSON' => $evenementsJSON, 'id_equipe' => $equipeSelect->getId()];
 
         return $this->render('calendrier/index.html.twig', $vars);
     }

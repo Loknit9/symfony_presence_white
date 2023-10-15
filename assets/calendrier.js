@@ -3,9 +3,9 @@ import "./styles/calendrier.css";
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import axios from "axios";
 
-
-//pour lancer le code js quand le dom est chargé
+//pour lancer le code js quand le dom est chargé (pour pouvoir mettre les infos .js dans le haut du twig)
 document.addEventListener("DOMContentLoaded", function() {
 
     //obtenir les donnees (JSON) du controller
@@ -15,12 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let eventsArray = JSON.parse (eventsJSON);
 
-    //console.log (eventsArray);
+    console.log (eventsArray);
 
     // creer l'objet calendar (fullcalendar)
 
-    let calendar = new Calendar (div_calendrier, 
-        {
+    let calendar = new Calendar (div_calendrier, {
             events: eventsArray,
             displayEventTime: false, // cacher l'heure
             initialView: "dayGridMonth",
@@ -30,9 +29,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay",
             },
-            plugins: [interactionPlugin, dayGridPlugin]
-        }     
-        );
+            plugins: [interactionPlugin, dayGridPlugin],
+
+            dateClick: function (info){
+                console.log(info.dateStr);
+            }
+            
+        });
 
         calendar.render();
 
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    // fixer les evts (click) charger una autre page (avec la ate et l'equipe ds l'url)
+    // fixer les evts (click) charger una autre page (avec la date et l'equipe ds l'url)
 
 
 
@@ -52,4 +55,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-})
+});
