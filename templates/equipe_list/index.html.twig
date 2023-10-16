@@ -20,64 +20,46 @@
                         <th scope="col">R</th>
                     </tr>
                 </thead>
-                {% for equipesJoueur in listJoueurs %}
                 <tbody>
-                    <tr>
-                        <th scope="row">{{ equipesJoueur.nom }} {{ equipesJoueur.prenom }}</th>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios1" value="option1" checked>
-                                <label class="form-check-label" for="exampleRadios1"></label>
-                        </td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios2" value="option2" checked>
-                                <label class="form-check-label" for="exampleRadios1"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios3" value="option3" checked>
-                                <label class="form-check-label" for="exampleRadios1"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios4" value="option4" checked>
-                                <label class="form-check-label" for="exampleRadios1"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios5" value="option5" checked>
-                                <label class="form-check-label" for="exampleRadios1"></label>
-                            </div>
-                        </td>
-                    </tr>
+                    {% for equipesJoueur in listJoueurs %}
+                        <tr>
+                            <th scope="row">{{ equipesJoueur.nom }} {{ equipesJoueur.prenom }}</th>
+                            <td>
+                                <div class="form-check present">
+                                    <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1"></label>
+                            </td>
+                            <td>
+                                <div class="form-check absent">
+                                    <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios2" value="option2" checked>
+                                    <label class="form-check-label" for="exampleRadios1"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check excuse">
+                                    <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios3" value="option3" checked>
+                                    <label class="form-check-label" for="exampleRadios1"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check blesse">
+                                    <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios4" value="option4" checked>
+                                    <label class="form-check-label" for="exampleRadios1"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check renfort">
+                                    <input class="form-check-input" type="radio" name="radio_group_{{ loop.index }}" id="exampleRadios5" value="option5" checked>
+                                    <label class="form-check-label" for="exampleRadios1"></label>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
-            {% endfor %}
             </table>
         </div>
 
 
-
-    {# <a href={{ path('equipe_list') }}> retour à la liste des équipes </a> #}
+    <a href={{ path('home_admin') }}> retour à la liste des équipes </a>
 
 {% endblock %}
-
-                {# <div class="form-check form-check-inline">
-                </div>  
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                </div><div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                </div> #}
