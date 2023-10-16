@@ -34,13 +34,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // fixer les evts (click) charger une autre page (avec la date et l'equipe ds l'url)
             dateClick: function (info){
                 console.log(info.dateStr);
-                window.location.href = "/afficher/liste/equipes/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
+                window.location.href = "/liste/joueurs/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
             }
             
         });
 
         calendar.render();
-
-
 
 });

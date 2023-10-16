@@ -25,7 +25,7 @@ class EquipeListController extends AbstractController
         //dd($listJoueurs[0]);
 
         // afficher ds la vue la liste des joueurs
-        $vars = ['listJoueurs' => $listJoueurs,'equipe' => $equipe, ];
+        $vars = ['listJoueurs' => $listJoueurs,'equipe' => $equipe ];
 
         return $this->render('equipe_list/index.html.twig', $vars);
     }
