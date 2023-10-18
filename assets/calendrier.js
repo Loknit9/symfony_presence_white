@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // fixer les evts (click) charger une autre page (avec la date et l'equipe ds l'url)
             dateClick: function (info){
-                console.log(info.dateStr);
+                console.log(div_calendrier.dataset.equipe);
                 window.location.href = "/liste/joueurs/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
             }
             

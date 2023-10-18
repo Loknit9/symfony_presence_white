@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for equipesJoueur in listJoueurs %}
+                    {% for equipesJoueur in listeJoueurs %}
                         <tr>
                             <th scope="row">{{ equipesJoueur.nom }} {{ equipesJoueur.prenom }}</th>
                             <td>
@@ -62,6 +62,6 @@
         </div>
 
 
-    <a href={{ path('calendrier') }}> retour au calendrier </a>
+    {# <a href={{ path('calendrier') }}> retour au calendrier </a> #}
 
 {% endblock %}
