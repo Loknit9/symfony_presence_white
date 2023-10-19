@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Equipe;
 use App\Entity\Evenement;
-use App\Entity\Presence;
-use App\Form\PresenceType;
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,11 +59,27 @@ class EvenementController extends AbstractController
         $rep = $em->getRepository(Equipe::class);
 
         $equipe = $rep->find($req->get('id_equipe'));
+        $date = $rep->find($req->get('date'));
+        
 
         //obtenir la liste des joueurs de l'equipe
         $listeJoueurs = $equipe->getJoueurs();
 
         $evenement = new Evenement();
+
+        // fixer ici les valeur de base de l'Evenement (couleur, etc...),
+        // c.a.d. tout ce qu'on ne choisit pas dans le form
+        $evenement->setStart(new DateTime($date));
+        $evenement->setEnd(new DateTime($date));
+        $evenement->setBackgroundColor("#FFFF00");
+        $evenement->setBorderColor("#FF0000");
+        $evenement->setTextColor("#FFEE00");
+        // attention aux relations
+        
+
+
+
+
 
         $formEvenement = $this->createForm(EvenementType::class, $evenement);
 
