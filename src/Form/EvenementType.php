@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -21,11 +22,17 @@ class EvenementType extends AbstractType
                 'choices' => [
                     'Match' => 'Match',
                     'Entrainement' => 'Entrainement',
-                    'Physqiue' => 'Physique',
+                    'Physique' => 'Physique',
                     'GK' => 'GK',
-                ]
+                ],
+                    'label' => false,
             ])
-            ->add('start')
+            ->add('start', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false, 
+                'format' => 'dd/MM/yyyy', // Format de date personnalisé
+                'label' => false,
+            ])
             ->add('end')
             // ->add('background_color')
             // ->add('border_color')

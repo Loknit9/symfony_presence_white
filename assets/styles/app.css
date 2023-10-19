@@ -91,3 +91,21 @@ body{
     padding-top: 0;
     padding-left: 5em;
 }
+
+/* bouton radio */
+
+.form_presence{
+    flex: 2;
+    justify-content: space-between;
+}
+
+.espace {
+    margin-top: 1em;
+
+}
+
+.espace_radio{
+    margin-right: 1em;
+    display: block;
+    width: 100%; 
+}

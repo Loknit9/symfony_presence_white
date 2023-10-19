@@ -26,13 +26,10 @@ class PresenceType extends AbstractType
                         'blesse' => 'B',
                         'renfort' => 'R',
                     ],
-                    'expanded' => 'P',
-                    'expanded' => 'A',
-                    'expanded' => 'E',
-                    'expanded' => 'B',
-                    'expanded' => 'E',
+                    'expanded' => 'true',
                     'choice_label' => false,
-                    'label' => false
+                    'label' => false,
+                    'attr' => ['class' => 'espace_radio'], 
                 ]
             )
             ->add(

@@ -14,19 +14,8 @@
 
 
 	<div class="centre">
-		<table class="table">
-			
-			<tbody>
-				{{ form_start (formEvenement) }}
-
-
-				{{ form_row (formEvenement.title) }}
-				{{ form_row (formEvenement.start) }}
-
-				{# {{ form_row (formEvenement.end) }} #}
-
-				{{ form_row (formEvenement.equipe) }}
-
+		<table class="table espace">
+			<thead>
 				<tr>
 					<th scope="col">*</th>
 					<th scope="col">P</th>
@@ -35,18 +24,37 @@
 					<th scope="col">B</th>
 					<th scope="col">R</th>
 				</tr>
+			</thead>
+				{{ form_start (formEvenement) }}
+
+				<div class="espace">
+					{{ form_row (formEvenement.title) }}
+				</div>
+				<div class="espace">
+					{{ form_row (formEvenement.start) }}
+				</div>
+
+
+				{{ form_row (formEvenement.equipe) }}
+
+			<tbody>
 
 				{# {{ dump (joueur) }} #}
+
 				{% for formPresence in formEvenement.presences %}
                 {# obtenir les donnees de l'entite liee au formulaire, on peut acceder a tout  #}
 					{% set nomJoueur = formPresence.vars.data.joueur.nom %}
-					{{ nomJoueur}} {{ form_widget (formPresence.etat) }}
-					
-                    {{ form_widget (formPresence.joueur) }}
-
+					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
+				<tr>
+					<th>{{ prenomJoueur}} {{ nomJoueur}}</th> 
+					<td>{{ form_row (formPresence.etat) }}</td>
+                    <td>{{ form_widget (formPresence.joueur) }}</td>
+				</tr>
 				{% endfor %}
+			</tbody>	
+		</table>
 
-				<input class="btn btn-lg btn-danger" type="submit" value="Enregistrer">
+				<input class="btn btn-lg btn-danger espace" type="submit" value="Enregistrer">
 
 				{{ form_end (formEvenement, {render_rest: false}) }}
 
