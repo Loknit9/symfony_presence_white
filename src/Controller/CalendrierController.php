@@ -26,11 +26,11 @@ class CalendrierController extends AbstractController
         $equipeSelect = $rep ->find($req->get("id_equipe"));
         
         //Obtenir tous les événements de l'équipe
-        $evenementsEquipe = $equipeSelect->getEvenement();
+        $evenementsEquipe = $equipeSelect->getEvenements();
         
         //serialiser l'array en objet pour etre envoyé au calendrier
 
-        $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['presences', 'equipes']]);
+        $evenementsJSON = $serializer->serialize($evenementsEquipe, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['presences', 'equipe']]);
 
         // arranger les noms des proprietes
         $evenementsJSON = str_replace ("backgroundColor", "background_color",$evenementsJSON);
