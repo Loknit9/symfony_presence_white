@@ -4,8 +4,9 @@
 
 {% block body %}
 
-{{ form_start (formPresence) }}
-{{ form_widget (formPesence) }} 
+{{ form_start (formEvenement) }}
+{{ form_widget (formEvenement) }} 
+
 
     <h3>Salut, {{ app.user.person.prenom }}! </h3>
     <h4>Equipe {{ equipe.nom }}</h4>
@@ -68,6 +69,6 @@
 
     {# <a href={{ path('calendrier') }}> retour au calendrier </a> #}
 
-    {{ form_end (formPresence) }}
+    {{ form_end (formEvenement) }}
 
 {% endblock %}
