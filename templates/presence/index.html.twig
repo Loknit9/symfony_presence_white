@@ -4,6 +4,9 @@
 
 {% block body %}
 
+{{ form_start (formPresence) }}
+{{ form_widget (formPesence) }} 
+
     <h3>Salut, {{ app.user.person.prenom }}! </h3>
     <h4>Equipe {{ equipe.nom }}</h4>
     {# <h4>Date {{ 'date' }}</h4> #}
@@ -59,9 +62,12 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <input type="submit" value="Enregistrer">
         </div>
 
 
     {# <a href={{ path('calendrier') }}> retour au calendrier </a> #}
+
+    {{ form_end (formPresence) }}
 
 {% endblock %}

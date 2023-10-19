@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
             dateClick: function (info){
                 
                 console.log(div_calendrier.dataset.equipe);
-                window.location.href = "/liste/joueurs/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
+                window.location.href = "/presence/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
             }
             
         });
