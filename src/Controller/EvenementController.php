@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Equipe;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
+use App\Form\PresenceType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,9 +52,27 @@ class EvenementController extends AbstractController
     //     return $this->render('presence/index.html.twig', $vars);
     // }
 
+
+
+    // juste debug 
+    #[Route('/affiche/form/presence', name: 'form_presence_test')]
+    public function presenceTest ()
+    {
+        $form = $this->createForm(PresenceType::class);
+        $vars = ['formPresence' => $form->createView()];
+
+        return $this->render('evenement/affiche_form_presence.html.twig', $vars);
+
+
+    }
+
+    
     #[Route('/evenement/{date}/{id_equipe}', name: 'evenement')]
     public function evenement (ManagerRegistry $doctrine, Request $req)
     {
+
+        
+
         $em = $doctrine->getManager();
 
         // obtenir l'equipe qui correspond au paramètre nom

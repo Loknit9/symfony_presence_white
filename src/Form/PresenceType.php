@@ -14,22 +14,27 @@ class PresenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('presence', ChoiceType::class, [
-            'choices' => [
-                'present' => 'P',
-                'absent' => 'A',
-                'excuse' => 'E',
-                'blesse' => 'B',
-                'renfort' => 'R',
-            ],
-            'expanded' => 'P',
-            'expanded' => 'A',
-            'expanded' => 'E',
-            'expanded' => 'B',
-            'expanded' => 'E',
-        ])
-    
-        ->add('Enregistrer', SubmitType::class)
+            ->add(
+                'presence',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'present' => 'P',
+                        'absent' => 'A',
+                        'excuse' => 'E',
+                        'blesse' => 'B',
+                        'renfort' => 'R',
+                    ],
+                    'expanded' => 'P',
+                    'expanded' => 'A',
+                    'expanded' => 'E',
+                    'expanded' => 'B',
+                    'expanded' => 'E',
+                    'choice_label' => false,
+                    'label' => false
+                ]
+            )
+            // ->add('Enregistrer', SubmitType::class)
         ;
     }
 
