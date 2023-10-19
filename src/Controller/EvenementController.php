@@ -94,7 +94,7 @@ class EvenementController extends AbstractController
         // c.a.d. tout ce qu'on ne choisit pas dans le form
         $evenement->setStart(new DateTime($date));
         $evenement->setEnd(new DateTime($date));
-        $evenement->setBackgroundColor("#FFFF00");
+        $evenement->setBackgroundColor("#ff0000");
         $evenement->setBorderColor("#FF0000");
         $evenement->setTextColor("#FFEE00");
         // attention aux relations

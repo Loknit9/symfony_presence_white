@@ -19,8 +19,10 @@ class EvenementType extends AbstractType
         $builder
             ->add('title', ChoiceType::class, [
                 'choices' => [
-                    'match' => 'match',
-                    'entrainement' => 'entrainement',
+                    'Match' => 'Match',
+                    'Entrainement' => 'Entrainement',
+                    'Physqiue' => 'Physique',
+                    'GK' => 'GK',
                 ]
             ])
             ->add('start')
