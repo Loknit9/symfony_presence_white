@@ -27,14 +27,16 @@ class Equipe
 
 
 
-    #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'equipes')]
-    private Collection $evenements;
+  
 
     #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesCoaches')]
     private Collection $coaches;
 
     #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesJoueur')]
     private Collection $joueurs;
+
+    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: Evenement::class)]
+    private Collection $evenements;
 
 
 
@@ -51,9 +53,9 @@ class Equipe
     {
         $this->hydrate($init);
 
-        $this->evenements = new ArrayCollection();
         $this->coaches = new ArrayCollection();
         $this->joueurs = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,29 +101,6 @@ class Equipe
 
 
 
-    /**
-     * @return Collection<int, Evenement>
-     */
-    public function getEvenement(): Collection
-    {
-        return $this->evenements;
-    }
-
-    public function addEvenement(Evenement $evenement): static
-    {
-        if (!$this->evenements->contains($evenement)) {
-            $this->evenements->add($evenement);
-        }
-
-        return $this;
-    }
-
-    public function removeEvenement(Evenement $evenement): static
-    {
-        $this->evenements->removeElement($evenement);
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Personne>
@@ -172,6 +151,36 @@ class Equipe
     {
         if ($this->joueurs->removeElement($joueur)) {
             $joueur->removeEquipesJoueur($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Evenement>
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenements;
+    }
+
+    public function addEvenement(Evenement $evenement): static
+    {
+        if (!$this->evenements->contains($evenement)) {
+            $this->evenements->add($evenement);
+            $evenement->setEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvenement(Evenement $evenement): static
+    {
+        if ($this->evenements->removeElement($evenement)) {
+            // set the owning side to null (unless already changed)
+            if ($evenement->getEquipe() === $this) {
+                $evenement->setEquipe(null);
+            }
         }
 
         return $this;

@@ -22,8 +22,6 @@ class Evenement
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Presence::class, orphanRemoval: true)]
     private Collection $presences;
 
-    #[ORM\ManyToMany(targetEntity: Equipe::class, mappedBy: 'evenement')]
-    private Collection $equipes;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $start = null;
@@ -40,6 +38,9 @@ class Evenement
     #[ORM\Column(length: 7)]
     private ?string $text_color = null;
 
+    #[ORM\ManyToOne(inversedBy: 'evenements')]
+    private ?Equipe $equipe = null;
+
 
     public function hydrate(array $vals)
     {
@@ -55,7 +56,6 @@ class Evenement
     {
         $this->hydrate($init);
         $this->presences = new ArrayCollection();
-        $this->equipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,33 +100,6 @@ class Evenement
             if ($presence->getEvenement() === $this) {
                 $presence->setEvenement(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Equipe>
-     */
-    public function getEquipes(): Collection
-    {
-        return $this->equipes;
-    }
-
-    public function addEquipe(Equipe $equipe): static
-    {
-        if (!$this->equipes->contains($equipe)) {
-            $this->equipes->add($equipe);
-            $equipe->addEvenement($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEquipe(Equipe $equipe): static
-    {
-        if ($this->equipes->removeElement($equipe)) {
-            $equipe->removeEvenement($this);
         }
 
         return $this;
@@ -188,6 +161,18 @@ class Evenement
     public function setTextColor(string $text_color): static
     {
         $this->text_color = $text_color;
+
+        return $this;
+    }
+
+    public function getEquipe(): ?Equipe
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(?Equipe $equipe): static
+    {
+        $this->equipe = $equipe;
 
         return $this;
     }
