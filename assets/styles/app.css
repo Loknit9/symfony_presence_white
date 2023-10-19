@@ -4,7 +4,7 @@
 }
 
 .root {
-    --bs-blue: #ff0000; 
+    --bs-primary: #ff0000; 
 }
 
 a{
@@ -92,7 +92,7 @@ body{
     padding-left: 5em;
 }
 
-/* bouton radio */
+/* PresenceForm */
 
 .form_presence{
     flex: 2;
@@ -109,3 +109,31 @@ body{
     display: block;
     width: 100%; 
 }
+
+input[type="radio"]{
+    margin-right: 1em;
+}
+
+input[type="radio"]:checked{
+    color: #ff0000;
+}
+
+#evenement_title{
+    background-color: white;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    padding: 0.2em;
+    padding-left: 0.5em;
+    }
+
+#evenement_start{
+    background-color: black;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: black;
+    color: white;
+    padding: 0.2em;
+    padding-left: 0.5em;
+    width: 35%;
+    }  

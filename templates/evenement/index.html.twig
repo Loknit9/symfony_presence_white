@@ -18,20 +18,16 @@
 			<thead>
 				<tr>
 					<th scope="col">*</th>
-					<th scope="col">P</th>
-					<th scope="col">A</th>
-					<th scope="col">E</th>
-					<th scope="col">B</th>
-					<th scope="col">R</th>
+					<th scope="col">P &emsp;A &emsp;E &emsp;B &emsp;R &emsp;</th>
 				</tr>
 			</thead>
 				{{ form_start (formEvenement) }}
+				<div class="espace">
+					{{ form_row (formEvenement.start) }}
+				</div>
 
 				<div class="espace">
 					{{ form_row (formEvenement.title) }}
-				</div>
-				<div class="espace">
-					{{ form_row (formEvenement.start) }}
 				</div>
 
 
@@ -47,7 +43,7 @@
 					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
 				<tr>
 					<th>{{ prenomJoueur}} {{ nomJoueur}}</th> 
-					<td>{{ form_row (formPresence.etat) }}</td>
+					<td>{{ form_widget (formPresence.etat, {'attr': {'class': 'espace_radio'}}) }}</td>
                     <td>{{ form_widget (formPresence.joueur) }}</td>
 				</tr>
 				{% endfor %}

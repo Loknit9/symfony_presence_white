@@ -30,10 +30,11 @@ class EvenementType extends AbstractType
             ->add('start', DateType::class, [
                 'widget' => 'single_text',
                 'html5' => false, 
-                'format' => 'dd/MM/yyyy', // Format de date personnalisé
+                'format' => 'dd/MM/yyyy', 
                 'label' => false,
             ])
-            ->add('end')
+            // ->add('end')
+
             // ->add('background_color')
             // ->add('border_color')
             // ->add('text_color')
@@ -54,6 +55,7 @@ class EvenementType extends AbstractType
                     // formulaire de presence pour chaque jouer
                     'entry_type' => PresenceType::class, 
                     'entry_options' => ['label' => false],
+                    'by_reference' => false,
                 ]
                 );
     }
