@@ -16,9 +16,7 @@ class Presence
     #[ORM\Column(length: 255)]
     private ?string $etat = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $complement = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'presences')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Evenement $evenement = null;
@@ -58,18 +56,7 @@ class Presence
         return $this;
     }
 
-    public function getComplement(): ?string
-    {
-        return $this->complement;
-    }
-
-    public function setComplement(string $complement): static
-    {
-        $this->complement = $complement;
-
-        return $this;
-    }
-
+    
 
     public function getEvenement(): ?Evenement
     {

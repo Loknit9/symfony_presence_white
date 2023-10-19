@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Equipe;
+use App\Entity\Presence;
 use App\Entity\Evenement;
-use App\Form\EvenementType;
 use App\Form\PresenceType;
+use App\Form\EvenementType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -98,30 +99,33 @@ class EvenementController extends AbstractController
         // attention aux relations
         $evenement->setEquipe($equipe);
 
+        $em->persist($evenement);
+        // creer une Presence pour chaque Personne
+        foreach ($equipe->getJoueurs() as $joueur){
+            // au niveau de l'entite, pas du form
+            $presence = new Presence();
+            $presence->setJoueur($joueur); 
+            $em->persist($presence);            
+            $evenement->addPresence($presence);
+            
+        }
+
         // pour les presences on a besoin d'un formulaire
         // Chaque Presence dans le formulaire doit avoir une Personne
-        
-
-
-
-
-
-
-
         $formEvenement = $this->createForm(EvenementType::class, $evenement);
 
         // $presence sera rempli lors du submit avec les données du formulaire 
         $formEvenement->handleRequest($req);
-
+        
         // pour soumettre le form et stocker ds la bd
         if ($formEvenement->isSubmitted()) {  
 
+            // dd ($formEvenement->getData());
             $em->flush();
-            dd ($formEvenement->getData());
 
-            dd("enregistre");
 
-            return $this->redirectToRoute("equipe_list");
+
+            return $this->redirectToRoute("equipe_list", ['id' => $equipe->getId()]);
         }
         $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'equipe' => $equipe];
 
