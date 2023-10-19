@@ -16,12 +16,17 @@ class PresenceType extends AbstractType
         $builder
         ->add('presence', ChoiceType::class, [
             'choices' => [
-                'P' => '1',
-                'A' => '2',
-                'E' => '3',
-                'B' => '4',
-                'R' => '5',
+                'present' => 'P',
+                'absent' => 'A',
+                'excuse' => 'E',
+                'blesse' => 'B',
+                'renfort' => 'R',
             ],
+            'expanded' => 'P',
+            'expanded' => 'A',
+            'expanded' => 'E',
+            'expanded' => 'B',
+            'expanded' => 'E',
         ])
     
         ->add('Enregistrer', SubmitType::class)
