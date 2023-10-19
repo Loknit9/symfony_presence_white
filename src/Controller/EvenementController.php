@@ -68,7 +68,7 @@ class EvenementController extends AbstractController
     }
 
     
-    #[Route('/evenement/{date}/{id_equipe}', name: 'evenement')]
+    #[Route('/evenement/{date_evenement}/{id_equipe}', name: 'evenement')]
     public function evenement (ManagerRegistry $doctrine, Request $req)
     {
 
@@ -80,7 +80,8 @@ class EvenementController extends AbstractController
         $rep = $em->getRepository(Equipe::class);
 
         $equipe = $rep->find($req->get('id_equipe'));
-        $date = $rep->find($req->get('date'));
+        $date = $req->get('date_evenement');
+
         
 
         //obtenir la liste des joueurs de l'equipe

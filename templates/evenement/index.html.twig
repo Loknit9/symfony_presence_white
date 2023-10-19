@@ -40,6 +40,7 @@
 
 				{# {{ dump (joueur) }} #}
 				{% for formPresence in formEvenement.presences %}
+                {# obtenir les donnees de l'entite liee au formulaire, on peut acceder a tout  #}
 					{% set nomJoueur = formPresence.vars.data.joueur.nom %}
 					{{ nomJoueur}}
 					{{ form_widget (formPresence.etat) }}
