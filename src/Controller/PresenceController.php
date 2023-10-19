@@ -48,6 +48,5 @@ class PresenceController extends AbstractController
         $vars = ['formPresence' => $formPresence->createView(), 'listeJoueurs' => $listeJoueurs, 'equipe' => $equipe];
 
         return $this->render('presence/index.html.twig', $vars);
-
     }
 }
