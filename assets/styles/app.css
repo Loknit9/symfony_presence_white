@@ -104,11 +104,11 @@ body{
 
 }
 
-.espace_radio{
+/* .espace_radio{
     margin-right: 1em;
     display: block;
     width: 100%; 
-}
+} */
 
 input[type="radio"]{
     margin-right: 1em;
