@@ -1,46 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}Hello
+{% endblock %}
 
 {% block body %}
 
-    <h3>Salut, {{ app.user.person.prenom }}! </h3>
-    {# <h4>Equipe {{ equipe.nom }}</h4> #}
-    
-
-        <div class="centre">
-            <table class="table">
-               {#  <thead>
-                    <tr>
-                        <th scope="col">*</th>
-                        <th scope="col">P</th>
-                        <th scope="col">A</th>
-                        <th scope="col">E</th>
-                        <th scope="col">B</th>
-                        <th scope="col">R</th>
-                    </tr>
-                </thead>
-                    <table> #}
-        <thead>
-            <tr>
-                <th>Joueur</th>
-                <th>État</th>
-                <th>Nombre de Présences</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in recapPresencesJoueurs %}
-                <tr>
-                    <td>{{ item.joueur }}</td>
-                    <td>{{ item.etat }}</td>
-                    <td>{{ item.nombrePresences }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-        </div>
+	<h3>Salut,
+		{{ app.user.person.prenom }}!
+	</h3>
+	<h4>Equipe
+		{{ nomEquipe }}</h4>
 
 
-    {# <a href={{ path('home_admin') }}> retour à la liste des équipes </a> #}
+	<div class="centre">
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					{% for etat in etats %}
+						<th>{{ etat }}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for joueur, presenceCount in result %}
+					<tr>
+						<td>{{ joueur }}</td>
+						{% for etat in etats %}
+							<td>{{ presenceCount[etat] }}</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+	{# <a href={{ path('home_admin') }}> retour à la liste des équipes </a> #}
 
 {% endblock %}

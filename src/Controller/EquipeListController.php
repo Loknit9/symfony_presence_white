@@ -23,21 +23,34 @@ class EquipeListController extends AbstractController
         $nomEquipe = $equipe->getNom();
         $listJoueurs = $equipe->getJoueurs();
 
-        $query = $entityManager->createQuery('
-            SELECT j.nom AS joueur, p.etat, COUNT(p.id) AS nombrePresences
-            FROM App\Entity\Equipe e
-            JOIN e.joueurs j
-            LEFT JOIN j.presences p
-            WHERE e.id = :equipeId
-            GROUP BY j.id, p.etat
-        ');
+        $joueurs = $equipe->getJoueurs();
+        $etats = ['P', 'A', 'E', 'B', 'R']; 
 
-        $query->setParameter('equipeId', $id);
+        $result = [];
 
-        $recapPresencesJoueurs = $query->getResult();
+        foreach ($joueurs as $joueur) {
+            $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
+
+            $presenceCount = [];
+
+            foreach ($etats as $etat) {
+                // Comptez le nombre de présences par état pour ce joueur
+                $count = 0;
+                foreach ($joueur->getPresences() as $presence) {
+                    if ($presence->getEtat() === $etat) {
+                        $count++;
+                    }
+                }
+
+                $presenceCount[$etat] = $count;
+            }
+
+            $result[$joueurNom] = $presenceCount;
+        }
+;
 
         // afficher ds la vue la liste des joueurs
-        $vars = ['listJoueurs' => $listJoueurs,'nomEquipe' => $nomEquipe, 'recapPresencesJoueurs'=> $recapPresencesJoueurs ];
+        $vars = ['listJoueurs' => $listJoueurs,'nomEquipe' => $nomEquipe, 'etats' => $etats,'result' => $result, ];
 
         return $this->render('equipe_list/index.html.twig', $vars);
     }
