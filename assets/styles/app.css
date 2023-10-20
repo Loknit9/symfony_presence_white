@@ -1,56 +1,72 @@
+:root {
+    --primary: #ff0000;
+}
 
 :root {
-    --primary: #ff0000; 
+    --bs-primary: #ff0000;
 }
 
-.root {
-    --bs-primary: #ff0000; 
-}
-
-a{
+a {
     color: #ff0000;
 }
+
+/* input page login */
+:root{
+    --bs-link-hover-color: white;
+}
+.form-control{
+    background-color: #ffffff;
+    border-color: black;
+    margin-top: 1em;
+    width: 70%;
+    
+}
+
+.form-control :focus{
+    background-color: #1c1cb4;
+}
+
 /* calendrier */
-.fc-col-header-cell-cushion:hover{
+.fc-col-header-cell-cushion:hover {
     color: black;
 }
 
-.fc-col-header-cell-cushion{
+.fc-col-header-cell-cushion {
     color: black;
 }
 
-.fc-daygrid-day-number{
-    color:black
+.fc-daygrid-day-number {
+    color: black
 }
 
-.fc-daygrid-day-number:hover{
-    color:#ff0000
+.fc-daygrid-day-number:hover {
+    color: #ff0000
 }
 
-.fc-daygrid-day-number:active{
-    color:#ff0000
+.fc-daygrid-day-number:active {
+    color: #ff0000
 }
 
-.fc-daygrid-event-dot{
+.fc-daygrid-event-dot {
     border-color: #ff0000;
 }
 
-.btn-danger{
+.btn-danger {
     background-color: #ff0000;
 }
 
 
 /* liste */
-.equipe_list{
+.equipe_list {
     list-style-type: none;
 }
 
-li{
+li {
     margin-bottom: 0.3rem;
 }
 
-.btn btn-primary{
-        
+.btn btn-primary {
+
     background-color: #fefeff;
     border-radius: 10px;
     border: 4px solid rgb(0, 0, 0);
@@ -62,23 +78,23 @@ li{
 
 }
 
-.centre{
+.centre {
     align-items: center;
     justify-content: center;
-    width:40%;
-    height:40%;
+    width: 40%;
+    height: 40%;
 }
 
-html{
+html {
     height: 100%;
 }
 
-body{
-    margin : 0;
-    padding : 0;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.container{
+.container {
     width: 60%;
     margin: 0 auto;
 }
@@ -94,7 +110,7 @@ body{
 
 /* PresenceForm */
 
-.form_presence{
+.form_presence {
     flex: 2;
     justify-content: space-between;
 }
@@ -110,24 +126,24 @@ body{
     width: 100%; 
 } */
 
-input[type="radio"]{
+input[type="radio"] {
     margin-right: 1em;
 }
 
-input[type="radio"]:checked{
+input[type="radio"]:checked {
     color: #ff0000;
 }
 
-#evenement_title{
+#evenement_title {
     background-color: white;
     border-radius: 6px;
     border-style: solid;
     border-color: black;
     padding: 0.2em;
     padding-left: 0.5em;
-    }
+}
 
-#evenement_start{
+#evenement_start {
     background-color: black;
     border-radius: 6px;
     border-style: solid;
@@ -136,4 +152,19 @@ input[type="radio"]:checked{
     padding: 0.2em;
     padding-left: 0.5em;
     width: 35%;
-    }  
+}
+
+
+/* footer */
+#footer {
+    height: 50px;
+    background-color: #ffffff;
+    /* the footer's total height */
+}
+
+#footer-content {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px; 
+}
