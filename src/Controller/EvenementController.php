@@ -26,17 +26,12 @@ class EvenementController extends AbstractController
         $vars = ['formPresence' => $form->createView()];
         
         return $this->render('evenement/affiche_form_presence.html.twig', $vars);
-        
-        
     }
     
     
     #[Route('/evenement/{date_evenement}/{id_equipe}', name: 'evenement')]
     public function evenement (ManagerRegistry $doctrine, Request $req)
-    {
-        
-        
-        
+    {      
         $em = $doctrine->getManager();
         
         // obtenir l'equipe qui correspond au paramètre nom
@@ -44,12 +39,9 @@ class EvenementController extends AbstractController
         
         $equipe = $rep->find($req->get('id_equipe'));
         $date = $req->get('date_evenement');
-        
-        
-        
+                
         //obtenir la liste des joueurs de l'equipe
         $listeJoueurs = $equipe->getJoueurs();
-        
         
         $evenement = new Evenement();
         
@@ -58,8 +50,8 @@ class EvenementController extends AbstractController
         $evenement->setStart(new DateTime($date));
         $evenement->setEnd(new DateTime($date));
         $evenement->setBackgroundColor("#ff0000");
-        $evenement->setBorderColor("#FF0000");
-        $evenement->setTextColor("#FFEE00");
+        $evenement->setBorderColor("#ff0000");
+        $evenement->setTextColor("#ffffff");
         // attention aux relations
         $evenement->setEquipe($equipe);
         

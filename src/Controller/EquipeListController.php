@@ -15,26 +15,30 @@ class EquipeListController extends AbstractController
     {
         $em = $doctrine->getManager();
 
+        //recupérer l'equipe
         $em = $entityManager;
         $id = $req->get('id');
 
         $equipe = $em->getRepository(Equipe::class)->find($id);;
 
         $nomEquipe = $equipe->getNom();
-        $listJoueurs = $equipe->getJoueurs();
-
+        
+        //recupérer les joueurs de cette équipe
         $joueurs = $equipe->getJoueurs();
+
+        // initiale des états des présences
         $etats = ['P', 'A', 'E', 'B', 'R']; 
 
         $result = [];
 
+        // trouvez le total des présences de chaque joueur
         foreach ($joueurs as $joueur) {
             $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
 
             $presenceCount = [];
 
             foreach ($etats as $etat) {
-                // Comptez le nombre de présences par état pour ce joueur
+                // Comptez le nombre de présences par état pour chaque joueur
                 $count = 0;
                 foreach ($joueur->getPresences() as $presence) {
                     if ($presence->getEtat() === $etat) {
@@ -46,11 +50,10 @@ class EquipeListController extends AbstractController
             }
 
             $result[$joueurNom] = $presenceCount;
-        }
-;
+        };
 
         // afficher ds la vue la liste des joueurs
-        $vars = ['listJoueurs' => $listJoueurs,'nomEquipe' => $nomEquipe, 'etats' => $etats,'result' => $result, ];
+        $vars = ['joueurs' => $joueurs,'nomEquipe' => $nomEquipe, 'etats' => $etats,'result' => $result, ];
 
         return $this->render('equipe_list/index.html.twig', $vars);
     }

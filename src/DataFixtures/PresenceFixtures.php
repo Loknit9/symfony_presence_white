@@ -18,7 +18,7 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
     {
 
         
-        $etat = array('present', 'absent', 'excusé', 'malade', 'renfort');
+        $etat = array('P', 'A', 'E', 'B', 'R');
 
         // obtenir un Personne au hasard
         $repPersonne = $manager->getRepository(Personne::class);
@@ -30,7 +30,7 @@ class PresenceFixtures extends Fixture implements DependentFixtureInterface
 
 
 
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 60; $i++) {
             $presence = new Presence([
                 'etat' => $etat[mt_rand(0, count($etat) - 1)],
             ]);

@@ -20,11 +20,11 @@ class PresenceType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'present' => 'present',
-                        'absent' => 'absent',
-                        'excuse' => 'excuse',
-                        'blesse' => 'blesse',
-                        'renfort' => 'renfort',
+                        'present' => 'P',
+                        'absent' => 'A',
+                        'excuse' => 'E',
+                        'blesse' => 'B',
+                        'renfort' => 'R',
                     ],
                     'expanded' => true,
                     'choice_label' => false,
