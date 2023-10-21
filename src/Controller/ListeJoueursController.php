@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use DateTime;
-use App\Form\PresenceType;
 use App\Entity\Equipe;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;

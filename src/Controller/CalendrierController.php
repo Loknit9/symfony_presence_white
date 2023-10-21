@@ -43,13 +43,5 @@ class CalendrierController extends AbstractController
         return $this->render('calendrier/index.html.twig', $vars);
     }
 
-    // #[Route('/afficher/liste/equipes/{date}/{id_equipe}')]
-    // public function afficheListeEquipes (Request $req){
-    //     $date = $req->get ('date');
-    //     $id_equipe = $req->get('id');
 
-    //     //dd (new DateTime($date));
-
-
-    //}
 }

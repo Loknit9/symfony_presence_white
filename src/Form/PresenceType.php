@@ -28,8 +28,7 @@ class PresenceType extends AbstractType
                     ],
                     'expanded' => true,
                     'choice_label' => false,
-                    'label' => false,
-                    'attr' => ['class' => 'espace_radio'], 
+                    'label' => false, 
                 ]
             )
             ->add(
