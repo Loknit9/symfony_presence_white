@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h3>Salut, {{ app.user.person.prenom }}!
+	</h3>
+	<h4>Equipe {{ nomEquipe }}</h4>
+
+    <h3>Présences de {{ joueur.prenom }} {{ joueur.nom }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>État</th>
+                <th>Nombre de présences</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etat in etats %}
+                <tr>
+                    <td>{{ etat }}</td>
+                    <td>{{ presenceEtat [etat] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {# <a href="{{ path('equipe_list', { 'id': joueur.equipe.id }) }}">Retour à la liste des joueurs</a> #}
+</body>
+</html>

@@ -5,11 +5,13 @@
 
 {% block body %}
 
-	<h3>Salut, {{ app.user.person.prenom }}!
+	<h3>Salut,
+		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe {{ nomEquipe }}</h4>
+	<h4>Equipe
+		{{ nomEquipe }}</h4>
 
-
+	{# pour afficher les differents états possible et le otal pour chaque etats et chaque joueur dans un tableau #}
 	<div class="centre">
 		<table class="table">
 			<thead>
@@ -18,24 +20,32 @@
 					{% for etat in etats %}
 						<th>{{ etat }}</th>
 					{% endfor %}
+					<th></th>
+					{# Colonne pour le bouton "info" #}
 				</tr>
 			</thead>
 			<tbody>
-				{% for joueur, presenceCount in result %}
-					<tr>
-						<th>{{ joueur }}</th>
-						{% for etat in etats %}
-                            <td>{{ presenceCount[etat] }}</td>
-						{% endfor %}
-					</tr>
-				{% endfor %}
+				{% for joueurId, joueurData in result %}
+                    <tr>
+                        <td>{{ joueurData.nom }} {{ joueurData.prenom }}</td>
+                        {% for etat in etats %}
+                            <td>{{ joueurData.presences[etat] }}</td>
+                        {% endfor %}
+                        <td>
+                            <a href="{{ path('presence_individuelle', { 'id_joueur': joueurId }) }}">
+                                <button type="button" class="btn btn-dark">Infos</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
 			</tbody>
 		</table>
 	</div>
 
-    
-    <input class="btn btn-lg btn-danger espace" type="submit" value="Excel">
 
-	{# <a href={{ path('liste_joueurs') }}> Back </a> #}
+	<input
+	class="btn btn-lg btn-danger espace" type="submit" value="Excel">
+
+{# <a href={{ path('liste_joueurs') }}> Back </a> #}
 
 {% endblock %}

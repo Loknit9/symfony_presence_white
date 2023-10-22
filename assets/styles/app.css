@@ -108,6 +108,10 @@ body {
     padding-left: 5em;
 }
 
+.btn_link {
+    --bs-btn-color: black;
+}
+
 /* PresenceForm */
 
 .form_presence {
