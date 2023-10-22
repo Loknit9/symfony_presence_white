@@ -52,10 +52,10 @@ class EquipeListController extends AbstractController
             }
 
             $result[$joueurId] = [
-                'nom' => $joueur->getNom(),
-                'prenom' => $joueur->getPrenom(),
-                'presences' => $presenceCount,
-            ];
+        'nom' => $joueur->getNom(),
+        'prenom' => $joueur->getPrenom(),
+        'presences' => $presenceCount,
+    ];
         };
 
         // afficher ds la vue la liste des joueurs 

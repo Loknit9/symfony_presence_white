@@ -16,17 +16,16 @@ class PresenceIndividuelleController extends AbstractController
     {   
         $em = $doctrine->getManager();
 
-        // obtenir l'equipe qui correspond au paramètre nom
-        $rep = $em->getRepository(Equipe::class);
-
-        // obtenir l'id de l'equipe 
-        $equipeSelect = $rep ->find($req->get("id_equipe"));
-
+        
         // Récupérez le joueur en fonction de l'ID du joueur
         $joueur = $em->getRepository(Personne::class)->find($req->get('id_joueur'));
-
+        
         // Récupérez les présences du joueur
         $presences = $joueur->getPresences();
+
+
+        // $equipeId = $joueur->getEquipesJoueur()->getId();
+        // $equipe = $em->getRepository(Equipe::class)->find($equipeId);
         
         // Initialisez un tableau pour stocker les présences par état
         $presenceEtat = [];
@@ -42,12 +41,13 @@ class PresenceIndividuelleController extends AbstractController
                         $presenceCount++;
                     }
                 }
-                    $presenceByState[$etat] = $presenceCount;
+                    $presenceEtat[$etat] = $presenceCount;
                 }
                 
                 $vars = ['joueur' => $joueur,
                 'etats' => $etats,
-                'presenceEtat' => $presenceEtat,];
+                'presenceEtat' => $presenceEtat];
+                
                 return $this->render('presence_individuelle/index.html.twig', $vars);
     }
 }

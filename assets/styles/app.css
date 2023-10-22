@@ -96,16 +96,20 @@ body {
 
 .container {
     width: 60%;
-    margin: 0 auto;
+    margin-left: 20%;
+    margin-right: 20%;
 }
-
+header {
+    background-color: #f8f9fa;
+}
 .navbar {
-    width: 100%;
-    margin: 0;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-bottom: 2em;
     height: 65px;
     padding-top: 0;
-    padding-left: 5em;
+    
 }
 
 .btn_link {

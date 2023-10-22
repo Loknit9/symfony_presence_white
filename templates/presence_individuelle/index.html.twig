@@ -2,27 +2,40 @@
 
 {% block body %}
 
-    <h3>Salut, {{ app.user.person.prenom }}!
+	<h5>Présences</h5>
+    <h3>Salut,
+		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe {{ nomEquipe }}</h4>
+	{# <h4>Equipe {{ nomEquipe }}</h4> #}
 
-    <h3>Présences de {{ joueur.prenom }} {{ joueur.nom }}</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>État</th>
-                <th>Nombre de présences</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for etat in etats %}
-                <tr>
+
+	<div class="centre">
+		<table class="table">
+            <thead>
+                <th></th>
+                <td></td>
+                {% for etat in etats %}
                     <td>{{ etat }}</td>
-                    <td>{{ presenceEtat [etat] }}</td>
+                {% endfor %}
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ joueur.prenom ~ ' ' ~ joueur.nom  }}</td>
+                    <td>
+                        {% for etat in etats %}
+                            <td>{{ presenceEtat [etat] }}</td>
+                        {% endfor %}
+                    </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {# <a href="{{ path('equipe_list', { 'id': joueur.equipe.id }) }}">Retour à la liste des joueurs</a> #}
-</body>
-</html>
+            </tbody>
+        </table>
+        <ul class="list-group">
+            <li class="list-group-item">P Présent</li>
+            <li class="list-group-item">A absent sans motif</li>
+            <li class="list-group-item">E Excusé pour l'absence</li>
+            <li class="list-group-item">B blessé ou malade</li>
+            <li class="list-group-item">R renfort dans une autre équipe</li>
+        </ul>
+    </div>
+	{# <a href="{{ path('equipe_list', { 'id': joueur.equipe.id }) }}">Retour à la liste des joueurs</a> #}
+{% endblock %}
