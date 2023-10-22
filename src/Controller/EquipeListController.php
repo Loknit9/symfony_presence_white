@@ -31,7 +31,7 @@ class EquipeListController extends AbstractController
 
         $result = [];
 
-        // trouvez le total des présences de chaque joueur
+        // trouvez le total des présences de chaque joue
         foreach ($joueurs as $joueur) {
             $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
 
@@ -51,11 +51,6 @@ class EquipeListController extends AbstractController
 
             $result[$joueurNom] = $presenceCount;
         };
-
-       // Récupérer la URL de la page précédente depuis l'en-tête Referer
-        $referer = $req->headers->get('referer');
-        return $this->redirect($referer);
-
 
         // afficher ds la vue la liste des joueurs
         $vars = ['joueurs' => $joueurs,'nomEquipe' => $nomEquipe, 'etats' => $etats,'result' => $result, ];
