@@ -1,4 +1,5 @@
-{% extends 'nav_coach.html.twig' %}
+{% extends 'base.html.twig' %}
+
 
 {% block title %}Hello
 {% endblock %}
@@ -52,7 +53,4 @@
 				<input class="btn btn-lg btn-danger espace" type="submit" value="Enregistrer">
 
 				{{ form_end (formEvenement, {render_rest: false}) }}
-
-	{# <a href={{ path('calendrier') }}> retour au calendrier </a> #}
-
 {% endblock %}

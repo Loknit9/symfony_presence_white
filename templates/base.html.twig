@@ -18,32 +18,33 @@
 		{% endblock %}
 	</head>
 	<body>
-		<header>
-		{% block nav %}
-			<nav class="navbar navbar-expand-lg bg-body-tertiary">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="{{ path('app_login') }}">Salut Coach!</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div class="navbar-nav">
-							<a class="nav-link" href="{{ path('app_login') }}">login</a>
-							<a class="nav-link" href="{{ path('app_logout') }}">deconnexion</a>
+		<div class="wrapper">
+			<header>
+				{% block nav %}
+					<nav class="navbar navbar-expand-lg bg-body-tertiary">
+						<div class="container-fluid">
+							<a class="navbar-brand" href="{{ path('app_login') }}">Salut Coach!</a>
+							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+								<div class="navbar-nav">
+									<a class="nav-link" href="{{ path('app_login') }}">login</a>
+									<a class="nav-link" href="{{ path('app_logout') }}">deconnexion</a>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			</nav>
-		{% endblock %}
-		</header>
-		<main class="container"> {% block body %}{% endblock %}
-			</main>
-			<div class="container">
-				<footer id="footer">
-					<div id="footer-content">Salut Coach! - Novembre 2023</div>
-				</footer>
+					</nav>
+				{% endblock %}
+			</header>
+			<main class="container"> {% block body %}{% endblock %}
+				</main>
+				<div class="container">
+					<footer class="page-footer" id="footer">
+						<div id="footer-content">Salut Coach! - Novembre 2023</div>
+					</footer>
 
+				</div>
 			</div>
 		</body>
 	</html>
-</main></body>

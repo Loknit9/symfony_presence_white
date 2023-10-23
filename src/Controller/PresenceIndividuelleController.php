@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Equipe;
 use App\Entity\Personne;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
