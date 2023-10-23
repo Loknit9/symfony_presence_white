@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'nav_coach.html.twig' %}
 
 {% block title %}Hello
 {% endblock %}
@@ -32,7 +32,7 @@
                             <td>{{ joueurData.presences[etat] }}</td>
                         {% endfor %}
                         <td>
-                            <a href="{{ path('presence_individuelle', { 'id_joueur': joueurId }) }}">
+                            <a href="{{ path('presence_individuelle', { 'nomEquipe' : nomEquipe,  'id_joueur': joueurId }) }}">
                                 <button type="button" class="btn btn-dark">Infos</button>
                             </a>
                         </td>
