@@ -3,7 +3,7 @@ import "./styles/calendrier.css";
 import { Calendar } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import axios from "axios";
+import frLocale from '@fullcalendar/core/locales/fr';
 
 //pour lancer le code js quand le dom est chargé (pour pouvoir mettre les infos .js dans le haut du twig)
 document.addEventListener("DOMContentLoaded", function() {
@@ -20,14 +20,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // creer l'objet calendar (fullcalendar)
 
     let calendar = new Calendar (div_calendrier, {
+            locale: 'fr',
             events: eventsArray,
             displayEventTime: false, // cacher l'heure
             initialView: "dayGridMonth",
             initialDate: new Date(), // aujourd'hui
             headerToolbar: {
-                left: "prev,next today",
+                left: "today",
                 center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay",
+                right: "prev,next",
             },
             plugins: [interactionPlugin, dayGridPlugin],
 
@@ -36,8 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 console.log(div_calendrier.dataset.equipe);
                 window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
-            }
+            },
+
+            //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier
+            eventClick: function(info) {
+                alert('Event: ' + info.evenement.title);
             
+                // change the border color just for fun
+                info.el.style.borderColor = 'red';
+            
+            }
+
         });
 
         calendar.render();
