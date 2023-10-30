@@ -164,10 +164,12 @@ input[type="radio"]:checked {
 
 
 /* footer */
+.container{
+    margin-top: 5em;
+}
 #footer {
-    height: 50px;
+    height: 60px;
     background-color: #ffffff;
-    /* the footer's total height */
 }
 
 #footer-content {

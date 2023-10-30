@@ -15,12 +15,12 @@
                 <th></th>
                 <td></td>
                 {% for etat in etats %}
-                    <td>{{ etat }}</td>
+                    <th>{{ etat }}</th>
                 {% endfor %}
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ joueur.prenom ~ ' ' ~ joueur.nom  }}</td>
+                    <th>{{ joueur.prenom ~ ' ' ~ joueur.nom  }}</th>
                     <td>
                         {% for etat in etats %}
                             <td>{{ presenceEtat [etat] }}</td>

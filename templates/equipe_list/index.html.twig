@@ -27,7 +27,7 @@
 			<tbody>
 				{% for joueurId, joueurData in result %}
                     <tr>
-                        <td>{{ joueurData.prenom }} {{ joueurData.nom }}</td>
+                        <th>{{ joueurData.prenom }} {{ joueurData.nom }}</th>
                         {% for etat in etats %}
                             <td>{{ joueurData.presences[etat] }}</td>
                         {% endfor %}
