@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block nav %}
+	{% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
 {% block title %}Hello
 {% endblock %}
 
 {% block body %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<h5>Présences</h5>
 	<h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe
-		{{ equipe.nom }}</h4>
+	<h4>Equipe {{ equipe.nom }}</h4>
 
 
 	<div class="centre">
@@ -53,7 +57,4 @@
 				<input class="btn btn-lg btn-danger espace" type="submit" value="Enregistrer">
 
 				{{ form_end (formEvenement, {render_rest: false}) }}
-
-	{# <a href={{ path('calendrier') }}> retour au calendrier </a> #}
-
 {% endblock %}

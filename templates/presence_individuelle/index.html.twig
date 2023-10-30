@@ -1,16 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block nav %}
-    {% include 'nav_equipe.html.twig' %}
-{% endblock %}
-
 {% block body %}
 
 	<h5>Présences</h5>
     <h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe {{ nomEquipe }}</h4>
 
 
 	<div class="centre">
@@ -19,12 +14,10 @@
                 <th></th>
                 <td></td>
                 {% for etat in etats %}
-                    <th>{{ etat }}</th>
                 {% endfor %}
             </thead>
             <tbody>
                 <tr>
-                    <th>{{ joueur.prenom ~ ' ' ~ joueur.nom  }}</th>
                     <td>
                         {% for etat in etats %}
                             <td>{{ presenceEtat [etat] }}</td>
