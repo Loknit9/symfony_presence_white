@@ -40,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
             },
 
             //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier et les présences pour ce jour
-            eventClick: function(infoEvent) {
-                console.log(div_calendrier.dataset.equipe);
-                window.location.href = "/presence/jour/" + info.dateStr + "/" + div_calendrier.dataset.equipe
+            eventClick: function(info) {
+                
+                let title = info.event.title;
+                let date = info.event.start.toISOString();
+
+                window.location.href = "/presence/jour/" + date + "/" + div_calendrier.dataset.equipe + "/" + title;
             
             }
 

@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PresenceJourController extends AbstractController
 {
-    #[Route('/presence/jour/{date_evenement}/{id_equipe}', name: 'presence_jour')]
+    #[Route('/presence/jour/{date_evenement}/{id_equipe}/{title}', name: 'presence_jour')]
     public function presenceJour(ManagerRegistry $doctrine, Request $req)
     {
 
@@ -32,6 +32,8 @@ class PresenceJourController extends AbstractController
         //recupérer les joueurs de cette équipe
         $joueurs = $equipe->getJoueurs();
 
+        $evenementTitle = $req->get('title');
+
         // initialise les états des présences
         $etats = ['P', 'A', 'E', 'B', 'R']; 
 
@@ -50,7 +52,7 @@ class PresenceJourController extends AbstractController
         
                 // Filtrer les présences du joueur pour l'événement spécifique et la date donnée
                 foreach ($joueur->getPresences() as $presence) {
-                    if ($presence->getEtat() === $etat && $presence->getStart() === $dateEvent && $presence->getEvenement() === $evenementType) {
+                    if ($presence->getEtat() === $etat && $evenement->getStart() === $dateEvent && $presence->getEvenement() === $evenementTitle) {
                         $count++;
                     }
                 }
@@ -66,9 +68,10 @@ class PresenceJourController extends AbstractController
                 'presences' => $presenceCount,
             ];
 
+
         }
 
-        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe'=> $id_equipe, 'date_evenement'=>$date ];
+        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe'=> $id_equipe, 'date_evenement'=>$date, 'title'=>$evenementTitle ];
 
         return $this->render('presence_jour/presencejour.html.twig', $vars);
     }
