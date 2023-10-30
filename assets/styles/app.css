@@ -164,17 +164,15 @@ input[type="radio"]:checked {
 
 
 /* footer */
-.container{
-    margin-top: 5em;
-}
-#footer {
-    height: 60px;
+.page-footer {
+    height: 50px;
     background-color: #ffffff;
+    margin-top: 4em;
 }
 
 #footer-content {
     position:absolute;
     bottom:0;
     width:100%;
-    height:60px; 
+    height:60px;
 }

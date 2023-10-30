@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block nav %}
+    {% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
 {% block body %}
 
 	<h5>Présences</h5>
     <h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
-	{# <h4>Equipe {{ nomEquipe }}</h4> #}
+	<h4>Equipe {{ nomEquipe }}</h4>
 
 
 	<div class="centre">
@@ -37,5 +41,4 @@
             <li class="list-group-item">R renfort dans une autre équipe</li>
         </ul>
     </div>
-	{# <a href="{{ path('equipe_list', { 'id': joueur.equipe.id }) }}">Retour à la liste des joueurs</a> #}
 {% endblock %}

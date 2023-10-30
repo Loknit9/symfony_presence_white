@@ -17,9 +17,9 @@ class EquipeListController extends AbstractController
 
         //recupérer l'equipe
         $em = $entityManager;
-        $id = $req->get('id');
+        $id_equipe = $req->get('id');
 
-        $equipe = $em->getRepository(Equipe::class)->find($id);;
+        $equipe = $em->getRepository(Equipe::class)->find($id_equipe);;
 
         $nomEquipe = $equipe->getNom();
         

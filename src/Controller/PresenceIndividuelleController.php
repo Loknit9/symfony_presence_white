@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Equipe;
 use App\Entity\Personne;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PresenceIndividuelleController extends AbstractController
 {
-    #[Route('/presence/individuelle/{id_joueur}', name: 'presence_individuelle')]
+    #[Route('/presence/individuelle/{nomEquipe}/{id_joueur}', name: 'presence_individuelle')]
     public function index(ManagerRegistry $doctrine, Request $req)
     {   
         $em = $doctrine->getManager();
@@ -23,9 +22,7 @@ class PresenceIndividuelleController extends AbstractController
         // Récupérez les présences du joueur
         $presences = $joueur->getPresences();
 
-
-        // $equipeId = $joueur->getEquipesJoueur()->getId();
-        // $equipe = $em->getRepository(Equipe::class)->find($equipeId);
+        $nomEquipe = $req->get('nomEquipe');
         
         // Initialisez un tableau pour stocker les présences par état
         $presenceEtat = [];
@@ -46,7 +43,8 @@ class PresenceIndividuelleController extends AbstractController
                 
                 $vars = ['joueur' => $joueur,
                 'etats' => $etats,
-                'presenceEtat' => $presenceEtat];
+                'presenceEtat' => $presenceEtat,
+                'nomEquipe' => $nomEquipe];
                 
                 return $this->render('presence_individuelle/index.html.twig', $vars);
     }
