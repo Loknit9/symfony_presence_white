@@ -39,12 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
             },
 
-            //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier
-            eventClick: function(info) {
-                alert('Event: ' + info.evenement.title);
-            
-                // change the border color just for fun
-                info.el.style.borderColor = 'red';
+            //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier et les présences pour ce jour
+            eventClick: function(infoEvent) {
+                console.log(div_calendrier.dataset.equipe);
+                window.location.href = "/presence/jour/" + info.dateStr + "/" + div_calendrier.dataset.equipe
             
             }
 

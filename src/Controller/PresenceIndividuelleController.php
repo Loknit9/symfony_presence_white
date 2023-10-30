@@ -19,7 +19,7 @@ class PresenceIndividuelleController extends AbstractController
         // Récupérez le joueur en fonction de l'ID du joueur
         $joueur = $em->getRepository(Personne::class)->find($req->get('id_joueur'));
         
-        // Récupérez les présences du joueur
+        // Récupérez toutes les présences du joueur
         $presences = $joueur->getPresences();
 
         $nomEquipe = $req->get('nomEquipe');
