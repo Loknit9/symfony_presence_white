@@ -19,6 +19,8 @@
 					{% endif %}
 					{% if 'ROLE_COACH' in userRoles %}
 						<a class="nav-link" href="{{ path('home_coach') }}">équipes</a>
+						<a class="nav-link" href="{{ path('equipe_list', {'id': id_equipe}) }}">présences</a>
+
 					{% endif %}
 				</div>
 			</div>
