@@ -21,8 +21,8 @@ class PresenceJourController extends AbstractController
         $rep = $em->getRepository(Equipe::class);
 
         $equipe = $rep->find($req->get('id_equipe'));
-        $date = $req->get('date_evenement');
 
+        $date = $req->get('date_evenement');
         $dateEvent = (new DateTime($date));
         
         // $evenementType = $req->get('type');

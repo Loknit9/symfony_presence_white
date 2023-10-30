@@ -43,9 +43,8 @@ document.addEventListener("DOMContentLoaded", function() {
             eventClick: function(info) {
                 
                 let title = info.event.title;
-                let date = info.event.start.toISOString();
 
-                window.location.href = "/presence/jour/" + date + "/" + div_calendrier.dataset.equipe + "/" + title;
+                window.location.href = "/presence/jour/" + info.dateStr + "/" + div_calendrier.dataset.equipe + "/" + title;
             
             }
 
