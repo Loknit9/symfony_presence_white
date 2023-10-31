@@ -28,13 +28,13 @@ class PresenceJourController extends AbstractController
 
         $title = $req->get('title');
         
-        $id_equipe = $req->get('id_equipe');
-        
-        $evenement = $req->get('id_event');
+        $evenementId = $req->get('id_event');
+        $evenement = $em->getRepository(Evenement::class)->find($evenementId);
 
         //recupérer les joueurs de cette équipe
         $joueurs = $equipe->getJoueurs();
 
+        // dd($evenement);
 
         // initialise les états des présences
         $etats = ['P', 'A', 'E', 'B', 'R']; 
@@ -42,39 +42,38 @@ class PresenceJourController extends AbstractController
         $result = [];
         
         //obtenir les presences des joueurs pour la date recupérée dans l'url //
-        
-        foreach ($joueurs as $joueur) {
-            $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
-            $joueurId = $joueur->getId();
-            
-            $presenceCount = [];
-        
-            foreach ($etats as $etat) {
-                $count = 0;
-        
-                // Filtrer les présences du joueur pour l'événement spécifique et la date donnée
-                foreach ($joueur->getPresences() as $presence) {
-                    if ($presence->getEtat() === $etat && $presence->getEvenement() === $title) {
-                        $presenceStart = $presence->getEvenement()->getStart();
-                        if ($presenceStart !== null && $presenceStart->format('Y-m-d') === $start->format('Y-m-d')) {
+        if ($evenement !== null) {
+            $presences = $evenement->getPresences(); // Récupérer toutes les présences pour cet événement
+    
+            foreach ($joueurs as $joueur) {
+                $joueurId = $joueur->getId();
+                $presenceCount = [];
+    
+                foreach ($etats as $etat) {
+                    $count = 0;
+    
+                    foreach ($presences as $presence) {
+                        $associatedEvent = $presence->getEvenement(); // Récupérer l'événement associé à cette présence
+    
+                        // Comparer les identifiants des événements au lieu des objets eux-mêmes
+                        if ($associatedEvent !== null && $associatedEvent->getId() === $evenement->getId() && $associatedEvent->getStart()->format('Y-m-d') === $startDate->format('Y-m-d') && $presence->getEtat() === $etat) {
                             $count++;
                         }
                     }
+    
+                    $presenceCount[$etat] = $count;
                 }
-                $presenceCount[$etat] = $count;
+    
+                $result[$joueurId] = [
+                    'nom' => $joueur->getNom(),
+                    'prenom' => $joueur->getPrenom(),
+                    'presences' => $presenceCount,
+                ];
             }
-        
-            $result[$joueurId] = [
-                'nom' => $joueur->getNom(),
-                'prenom' => $joueur->getPrenom(),
-                'presences' => $presenceCount,
-        
-            ];
-
-
         }
+    
 
-        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe'=> $id_equipe, 'start'=>$start, 'title'=>$title, 'etats' => $etats, ];
+        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe' => $req->get('id_equipe'), 'start'=>$start, 'title'=>$title, 'etats' => $etats, ];
 
         return $this->render('presence_jour/presencejour.html.twig', $vars);
     }

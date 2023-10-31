@@ -18,33 +18,29 @@
 	<h5>{{ start|date("d/m/Y")}}</h5>
 	<h5>{{ title }}</h5>
 
-
     {# pour afficher les présences pour la date spécifique #}
     <div class="centre">
-		<table class="table">
-			<thead>
-				<tr>
-					<th></th>
-					{% for etat in etats %}
-						<th>{{ etat }}</th>
-					{% endfor %}
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for joueurId, joueurData in result %}
-					<tr>
-					<th>{{ joueurData.nom }}
-                    {{ joueurData.prenom }}</th>
-                    {% for etat, count in joueurData.presences %}
-                        <td>{{ count }}</td>
-                    {% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>*</th>
 
-	<input
-	class="btn btn-lg btn-danger espace" type="submit" value="Excel">
+                    {% for etat in etats %}
+                        <th>{{ etat }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for joueurId, joueurData in result %}
+                    <tr>
+                        <th>{{ joueurData.nom }} {{ joueurData.prenom }}</th>
+                        {% for etat, count in joueurData.presence %}
+                            <td>{{ count }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

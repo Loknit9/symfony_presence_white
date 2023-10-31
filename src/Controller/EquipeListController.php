@@ -34,7 +34,7 @@ class EquipeListController extends AbstractController
 
         // trouvez le total des présences de chaque joue
         foreach ($joueurs as $joueur) {
-            $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
+            // $joueurNom = $joueur->getPrenom() . ' ' . $joueur->getNom();
             $joueurId = $joueur->getId();
             
             $presenceCount = [];
