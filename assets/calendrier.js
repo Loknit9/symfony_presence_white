@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 left: "today",
                 center: "title",
                 right: "prev,next",
+                display: 'backgroundColor',
             },
             plugins: [interactionPlugin, dayGridPlugin],
 
@@ -41,10 +42,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
             //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier et les présences pour ce jour
             eventClick: function(info) {
-                
-                let title = info.event.title;
+                let eventStart = info.event.start; // Récupération de la date de début de l'événement
+                let formattedDate = eventStart.toISOString().split('T')[0]; 
+                let eventId = info.event.id;
 
-                window.location.href = "/presence/jour/" + info.dateStr + "/" + div_calendrier.dataset.equipe + "/" + title;
+                console.log(div_calendrier.dataset.equipe + formattedDate);
+
+                alert('Event: ' + info.event.title + formattedDate);
+
+                window.location.href = "/presence/jour/" + formattedDate + "/" + div_calendrier.dataset.equipe + "/" + info.event.title + "/" + eventId;
             
             }
 

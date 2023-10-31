@@ -14,9 +14,10 @@
 	<h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe
-		{{ nomEquipe }}</h4>
-		<h5>{{ date_evenement}}</h5>
+	<h4>Equipe {{ equipe.getNom }}</h4>
+	<h5>{{ start|date("d/m/Y")}}</h5>
+	<h5>{{ title }}</h5>
+
 
     {# pour afficher les présences pour la date spécifique #}
     <div class="centre">
@@ -33,11 +34,11 @@
 			<tbody>
 				{% for joueurId, joueurData in result %}
 					<tr>
-						<th>{{ joueurData.prenom }}
-							{{ joueurData.nom }}</th>
-						{% for etat in etats %}
-							<td>{{ joueurData.presences[date_evenement] }}</td>
-						{% endfor %}
+					<th>{{ joueurData.nom }}
+                    {{ joueurData.prenom }}</th>
+                    {% for etat, count in joueurData.presences %}
+                        <td>{{ count }}</td>
+                    {% endfor %}
 					</tr>
 				{% endfor %}
 			</tbody>

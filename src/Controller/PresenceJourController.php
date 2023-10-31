@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Equipe;
+use App\Entity\Evenement;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PresenceJourController extends AbstractController
 {
-    #[Route('/presence/jour/{date_evenement}/{id_equipe}/{title}', name: 'presence_jour')]
+    #[Route('/presence/jour/{date_evenement}/{id_equipe}/{title}/{id_event}', name: 'presence_jour')]
     public function presenceJour(ManagerRegistry $doctrine, Request $req)
     {
 
@@ -22,17 +23,18 @@ class PresenceJourController extends AbstractController
 
         $equipe = $rep->find($req->get('id_equipe'));
 
-        $date = $req->get('date_evenement');
-        $dateEvent = (new DateTime($date));
-        
-        // $evenementType = $req->get('type');
+        $startDate = $req->get('date_evenement');
+        $start = new DateTime($startDate);
 
+        $title = $req->get('title');
+        
         $id_equipe = $req->get('id_equipe');
         
+        $evenement = $req->get('id_event');
+
         //recupérer les joueurs de cette équipe
         $joueurs = $equipe->getJoueurs();
 
-        $evenementTitle = $req->get('title');
 
         // initialise les états des présences
         $etats = ['P', 'A', 'E', 'B', 'R']; 
@@ -52,26 +54,27 @@ class PresenceJourController extends AbstractController
         
                 // Filtrer les présences du joueur pour l'événement spécifique et la date donnée
                 foreach ($joueur->getPresences() as $presence) {
-                    if ($presence->getEtat() === $etat && $evenement->getStart() === $dateEvent && $presence->getEvenement() === $evenementTitle) {
-                        $count++;
+                    if ($presence->getEtat() === $etat && $presence->getEvenement() === $title) {
+                        $presenceStart = $presence->getEvenement()->getStart();
+                        if ($presenceStart !== null && $presenceStart->format('Y-m-d') === $start->format('Y-m-d')) {
+                            $count++;
+                        }
                     }
                 }
-        
                 $presenceCount[$etat] = $count;
             }
-
-            
         
             $result[$joueurId] = [
                 'nom' => $joueur->getNom(),
                 'prenom' => $joueur->getPrenom(),
                 'presences' => $presenceCount,
+        
             ];
 
 
         }
 
-        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe'=> $id_equipe, 'date_evenement'=>$date, 'title'=>$evenementTitle ];
+        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe'=> $id_equipe, 'start'=>$start, 'title'=>$title, 'etats' => $etats, ];
 
         return $this->render('presence_jour/presencejour.html.twig', $vars);
     }
