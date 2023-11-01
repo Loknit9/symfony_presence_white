@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salut Admin!
+{% endblock %}
+
+{% block body %}
+	{% block content %}
+		<h5>Admin</h5>
+		<h3>Salut,
+			{{ app.user.person.prenom }}!
+		</h3>
+
+		{{ form_start(formPersonne) }}
+		{{ form_widget(formPersonne) }}
+
+		<input type="submit">
+		{{ form_end(formPersonne) }}
+
+	{% endblock %}
+{% endblock %}
