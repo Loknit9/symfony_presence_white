@@ -26,9 +26,6 @@ class Equipe
     private ?string $categorieGenre = null;
 
 
-
-  
-
     #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesCoaches')]
     private Collection $coaches;
 

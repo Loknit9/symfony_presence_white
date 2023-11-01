@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             dateClick: function (info){
                 
                 console.log(div_calendrier.dataset.equipe);
-                window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe ;
+                window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
             },
 
             //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier

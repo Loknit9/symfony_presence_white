@@ -19,7 +19,7 @@ class CalendrierController extends AbstractController
     public function afficherCalendrier(SerializerInterface $serializer, Request $req, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
-        // obtenir l'equipe qui correspond au paramètre nom
+        // obtenir l'equipe qui correspond au paramètre ds url
         $rep = $em->getRepository(Equipe::class);
 
         // obtenir l'id de l'equipe 
