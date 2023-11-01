@@ -19,7 +19,12 @@ class PersonneType extends AbstractType
             ->add('prenom',TextType::class)
             ->add('contact1',EmailType::class)
             ->add('contact2',EmailType::class)
-            ->add('dateNaissance', BirthdayType::class)
+            ->add('dateNaissance', BirthdayType::class,[
+                'widget' => 'single_text',
+                'html5' => false, 
+                'format' => 'dd/MM/yyyy', 
+                'label' => false,
+            ])
             ->add('equipesCoaches',TextType::class)
             ->add('equipesJoueur',TextType::class)
         ;

@@ -26,8 +26,6 @@
 					<th scope="col">contact1</th>
 					<th scope="col">contact2</th>
 					<th scope="col">date de naissance</th>
-					<th scope="col">equipe Coach</th>
-					<th scope="col">equipe Joueurs</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,9 +35,7 @@
 						<th scope="row">{{ personne.nom }}</th>
 						<td>{{ personne.contact1 }}</td>
 						<td>{{ personne.contact2 }}</td>
-						{# <td>{{ personne.dateNaissance }}</td> #}
-						<td>{{ personne.equipesCoaches }}</td>
-						<td>{{ personne.equipesJoueur }}</td>
+						{#  <td>{{ personne.dateNaissance }}</td> #}
 					</tr>
 				{% endfor %}
 			</tbody>
