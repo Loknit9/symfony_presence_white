@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block nav %}
+    {% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
 {% block title %}Salut Admin!
 {% endblock %}
 
@@ -12,7 +16,7 @@
 
 		{{ form_start(formPersonne) }}
 		{{ form_widget(formPersonne) }}
-
+		<input type="submit" value="Enregistrer">
 		{{ form_end(formPersonne) }}
 
 	{% endblock %}
