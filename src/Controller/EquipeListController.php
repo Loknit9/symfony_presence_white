@@ -10,14 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EquipeListController extends AbstractController
 {   
-    #[Route('/equipe/list/{id}', name: 'equipe_list')]
+    #[Route('/equipe/list/{id_equipe}', name: 'equipe_list')]
     public function listjoueurs(ManagerRegistry $doctrine, Request $req, EntityManagerInterface $entityManager,)
     {
         $em = $doctrine->getManager();
 
         //recupérer l'equipe
         $em = $entityManager;
-        $id_equipe = $req->get('id');
+        $id_equipe = $req->get('id_equipe');
 
         $equipe = $em->getRepository(Equipe::class)->find($id_equipe);;
 

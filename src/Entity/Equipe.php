@@ -20,7 +20,7 @@ class Equipe
     private ?string $nom = null;
 
     #[ORM\Column]
-    private ?int $categorieAge = null;
+    private ?int $numeroEquipe = null;
 
     #[ORM\Column(length: 20)]
     private ?string $categorieGenre = null;
@@ -75,14 +75,14 @@ class Equipe
         return $this;
     }
 
-    public function getCategorieAge(): ?int
+    public function getNumeroEquipe(): ?int
     {
-        return $this->categorieAge;
+        return $this->numeroEquipe;
     }
 
-    public function setCategorieAge(int $categorieAge): static
+    public function setNumeroEquipe(int $numeroEquipe): static
     {
-        $this->categorieAge = $categorieAge;
+        $this->numeroEquipe = $numeroEquipe;
 
         return $this;
     }
