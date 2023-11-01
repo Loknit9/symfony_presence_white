@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PersonneListController!{% endblock %}
+{% block nav %}
+	{% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
+{% block title %}Hello Admin!
+{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/symfony_presence_white/src/Controller/PersonneListController.php'|file_link(0) }}">src/Controller/PersonneListController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/symfony_presence_white/templates/personne_list/index.html.twig'|file_link(0) }}">templates/personne_list/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<h5>Admin</h5>
+	<h3>Salut,
+		{{ app.user.person.prenom }}!
+	</h3>
+
+	<div class="centre">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">nom</th>
+					<th scope="col">prénom</th>
+					<th scope="col">contact1</th>
+					<th scope="col">contact2</th>
+					<th scope="col">date de naissance</th>
+					<th scope="col">equipe Coach</th>
+					<th scope="col">equipe Joueurs</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for personne in arrayObjetsPersonnes %}
+					<tr>
+						<th scope="row">{{ personne.prenom }}</th>
+						<th scope="row">{{ personne.nom }}</th>
+						<td>{{ personne.contact1 }}</td>
+						<td>{{ personne.contact2 }}</td>
+						{# <td>{{ personne.dateNaissance }}</td> #}
+						<td>{{ personne.equipesCoaches }}</td>
+						<td>{{ personne.equipesJoueur }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
 {% endblock %}
