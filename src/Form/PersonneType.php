@@ -22,7 +22,6 @@ class PersonneType extends AbstractType
             ->add('dateNaissance', BirthdayType::class)
             ->add('equipesCoaches',TextType::class)
             ->add('equipesJoueur',TextType::class)
-            ->add('user', TextType::class)
         ;
     }
 
