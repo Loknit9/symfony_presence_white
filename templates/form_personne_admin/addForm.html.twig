@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block nav %}
-    {% include 'nav_equipe.html.twig' %}
+	{% include 'nav_equipe.html.twig' %}
 {% endblock %}
 
 {% block title %}Salut Admin!
@@ -10,24 +10,31 @@
 {% block body %}
 	{% block content %}
 		<h5>Admin</h5>
-		<h3>Salut,
-			{{ app.user.person.prenom }}!
+		<h3>Salut,{{ app.user.person.prenom }}!
 		</h3>
 		<h5>Ajouter un.e joueureuse ou un.e coach</h5>
-	<form method="post">
-		{# {{ form_start(formPersonne) }} #}
+		{{ form_start(formPersonne) }}
 
-		{# {{ form_widget(formPersonne) }} #}
-		<input id="prénom" class="form-control" type="text" placeholder="prénom" required >
-		<input id="nom" class="form-control" type="text" placeholder="nom" required>
-		<input type="email" class="form-control" id="contact1" aria-describedby="emailHelp" placeholder="email contact1" required>
-		<input type="email" class="form-control" id="contact2" aria-describedby="emailHelp" placeholder="email contact2">
-		<input id="dateNaissance" class="form-control" type="date" placeholder="date naissance yyyy-mm-dd" required>
-		<input id="equipeCoach" class="form-control" type="text" placeholder="equipe/coach">
-		<input id="equipeJoueur" class="form-control" type="text" placeholder="equipe/joueur">
-		<button class="btn btn-lg btn-danger espace" type="submit">Ajouter</button>
-		{# {{ form_end(formPersonne) }} #}
-	</form>
+		<div class='form-group'>
+			{{ form_label(formPersonne.prenom) }}
+			{{ form_widget(formPersonne.prenom) }}
 
-	{% endblock %}
-{% endblock %}
+			{{ form_label(formPersonne.nom) }}
+			{{ form_widget(formPersonne.nom) }}
+			{{ form_label(formPersonne.contact1) }}
+			{{ form_widget(formPersonne.contact1) }}
+			{{ form_label(formPersonne.contact2) }}
+			{{ form_widget(formPersonne.contact2) }}
+			{{ form_label(formPersonne.dateNaissance) }}
+			{{ form_widget(formPersonne.dateNaissance) }}
+			{{ form_label(formPersonne.equipesCoaches) }}
+			{{ form_widget(formPersonne.equipesCoaches) }}
+			{{ form_label(formPersonne.equipesJoueur) }}
+			{{ form_widget(formPersonne.equipesJoueur) }}
+			<button class="btn btn-lg btn-danger espace" type="submit" value="enregistrer">Ajouter</button>
+		</div>
+		{{ form_end(formPersonne) }}
+
+
+	</div>
+{% endblock %}{% endblock %}

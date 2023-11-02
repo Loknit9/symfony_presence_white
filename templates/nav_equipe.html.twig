@@ -16,7 +16,7 @@
 					<a class="nav-link" href="{{ path('app_logout') }}">deconnexion</a>
 					{% if 'ROLE_ADMIN' in userRoles %}
 						<a class="nav-link" href="{{ path('home_admin') }}">équipes</a>
-						<a class="nav-link" href="{{ path('form_personne') }}">gestion</a>
+						<a class="nav-link" href="{{ path('addForm_personne') }}">ajouter</a>
 						<a class="nav-link" href="{{ path('personne_list') }}">joueurs</a>
 					{% endif %}
 					{% if 'ROLE_COACH' in userRoles %}
