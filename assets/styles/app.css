@@ -65,7 +65,7 @@ li {
     margin-bottom: 0.3rem;
 }
 
-.btn btn-primary {
+.btn .btn-primary {
 
     background-color: #fefeff;
     border-radius: 10px;
@@ -75,6 +75,7 @@ li {
     font-size: 28px;
     padding: 20px;
     width: 200px;
+    margin-bottom: 2em;
 
 }
 
@@ -162,6 +163,11 @@ input[type="radio"]:checked {
     width: 35%;
 }
 
+/* bouton */
+.add{
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
 
 /* footer */
 

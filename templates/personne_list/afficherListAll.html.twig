@@ -9,58 +9,58 @@
 
 
 {% block body %}
-	{% block content %}
+{% block content %}
 
 
-		<h5>Admin</h5>
-		<h3>Salut,
-			{{ app.user.person.prenom }}!
-		</h3>
+<h5>Admin</h5>
+<h3>Salut,
+	{{ app.user.person.prenom }}!
+</h3>
 
-		<div class="centre">
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">prénom</th>
-						<th scope="col">nom</th>
-						<th scope="col">contact1</th>
-						<th scope="col">contact2</th>
-						<th scope="col">date de naissance</th>
-						<th scope="col">equipe/coach</th>
-						<th scope="col">equipe/joueur</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for personne in personnesWithDetails %}
-						<tr>
-							<th scope="row">{{ personne.prenom }}</th>
-							<th scope="row">{{ personne.nom }}</th>
-							<td>{{ personne.contact1 }}</td>
-							<td>{{ personne.contact2 }}</td>
-							<td>{{ personne.dateNaissance|date('Y-m-d') }}</td>
-							<td>
-								{% for equipe in personne.equipesCoach %}
-									{{ equipe.nom }}
-									{% if not loop.last %},
-									{% endif %}
-								{% endfor %}
-							</td>
-							<td>
-								{% for equipe in personne.equipesJoueur %}
-									{{ equipe.nom }}
-									{% if not loop.last %},
-									{% endif %}
-								{% endfor %}
-							</td>
-							<td>
-							{# <a href="{{ path('form_update', { 'id_joueur'}) }}"> #}
-								<button type="button" class="btn btn-dark">modifier</button>
-							</a>
-						</td>
-						</tr>
+<div
+	class="centre">
+	{# <a href="{{ path('form_update', { 'id_joueur'}) }}"> #}
+	<button type="button" class="btn add btn-danger">ajouter joueur/coach</button>
+</a>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th scope="col">prénom</th>
+			<th scope="col">nom</th>
+			<th scope="col">contact1</th>
+			<th scope="col">contact2</th>
+			<th scope="col">date de naissance</th>
+			<th scope="col">equipe/coach</th>
+			<th scope="col">equipe/joueur</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for personne in personnesWithDetails %}
+			<tr>
+				<th scope="row">{{ personne.prenom }}</th>
+				<th scope="row">{{ personne.nom }}</th>
+				<td>{{ personne.contact1 }}</td>
+				<td>{{ personne.contact2 }}</td>
+				<td>{{ personne.dateNaissance|date('Y-m-d') }}</td>
+				<td>
+					{% for equipe in personne.equipesCoach %}
+						{{ equipe.nom }}
+						{% if not loop.last %},
+						{% endif %}
 					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	{% endblock %}
-{% endblock %}
+				</td>
+				<td>
+					{% for equipe in personne.equipesJoueur %}
+						{{ equipe.nom }}
+						{% if not loop.last %},
+						{% endif %}
+					{% endfor %}
+				</td>
+				<td>
+					{# <a href="{{ path('form_update', { 'id_joueur'}) }}"> #}
+					<button type="button" class="btn btn-dark">modifier</button>
+				</td>
+			</tr>
+		</a>
+	</tbody>
+</td></tr>{% endfor %}</tbody></table></div>{% endblock %}{% endblock %}

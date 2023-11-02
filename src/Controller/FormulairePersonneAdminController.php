@@ -21,7 +21,7 @@ class FormulairePersonneAdminController extends AbstractController
 
         $vars = ['formPersonne' => $formPersonne->createView()];
 
-        return $this->render('form_personne_admin/form.html.twig', $vars );
+        return $this->render('form_personne_admin/addForm.html.twig', $vars );
     }
 
 // ajouter un joueur ou un coach, afficher et traiter le formulaire//
@@ -32,7 +32,7 @@ class FormulairePersonneAdminController extends AbstractController
        // créer une entité vide
         $personne = new Personne();
         
-       // créer un objet formulaire et associer l'entité à cet obet formulaire
+       // créer un objet formulaire et associer l'entité à cet objet formulaire
 
         $formPersonne = $this->createForm(PersonneType::class, $personne);
 

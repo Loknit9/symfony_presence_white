@@ -13,11 +13,21 @@
 		<h3>Salut,
 			{{ app.user.person.prenom }}!
 		</h3>
+		<h5>Ajouter un.e joueureuse ou un.e coach</h5>
+	<form method="post">
+		{# {{ form_start(formPersonne) }} #}
 
-		{{ form_start(formPersonne) }}
-		{{ form_widget(formPersonne) }}
-		<input type="submit" value="Enregistrer">
-		{{ form_end(formPersonne) }}
+		{# {{ form_widget(formPersonne) }} #}
+		<input id="prénom" class="form-control" type="text" placeholder="prénom" required >
+		<input id="nom" class="form-control" type="text" placeholder="nom" required>
+		<input type="email" class="form-control" id="contact1" aria-describedby="emailHelp" placeholder="email contact1" required>
+		<input type="email" class="form-control" id="contact2" aria-describedby="emailHelp" placeholder="email contact2">
+		<input id="dateNaissance" class="form-control" type="date" placeholder="date naissance yyyy-mm-dd" required>
+		<input id="equipeCoach" class="form-control" type="text" placeholder="equipe/coach">
+		<input id="equipeJoueur" class="form-control" type="text" placeholder="equipe/joueur">
+		<button class="btn btn-lg btn-danger espace" type="submit">Ajouter</button>
+		{# {{ form_end(formPersonne) }} #}
+	</form>
 
 	{% endblock %}
 {% endblock %}
