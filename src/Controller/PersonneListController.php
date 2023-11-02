@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Equipe;
 use App\Entity\Personne;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,9 +15,23 @@ class PersonneListController extends AbstractController
 
     {
         $repPersonnes = $doctrine->getRepository(Personne::class);
-        $arrayObjetsPersonnes = $repPersonnes->findAll();
+    $arrayObjetsPersonnes = $repPersonnes->findAll();
 
-        $vars = ['arrayObjetsPersonnes' => $arrayObjetsPersonnes];
-        return $this->render('personne_list/afficherListAll.html.twig', $vars);
+    $personnesWithDetails = [];
+    foreach ($arrayObjetsPersonnes as $personne) {
+        $personnesWithDetails[] = [
+            'prenom' => $personne->getPrenom(),
+            'nom' => $personne->getNom(),
+            'contact1' => $personne->getContact1(), 
+            'contact2' => $personne->getContact2(),
+            'dateNaissance' => $personne->getDateNaissance(),
+            'equipesCoach' => $personne->getEquipesCoaches(),
+            'equipesJoueur' => $personne->getEquipesJoueur(),
+            'id_Joueur' => $personne->getId(),
+        ];
+    }
+
+    $vars = ['personnesWithDetails' => $personnesWithDetails];
+    return $this->render('personne_list/afficherListAll.html.twig', $vars);
     }
 }
