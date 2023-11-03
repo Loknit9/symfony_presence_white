@@ -4,11 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Equipe;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ListeJoueursController extends AbstractController
+class ListeEquipesController extends AbstractController
 {
     #[Route('/liste/equipe', name: 'liste_equipes')]
     public function listeEquipes(ManagerRegistry $doctrine)

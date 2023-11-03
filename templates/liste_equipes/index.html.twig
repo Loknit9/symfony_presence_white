@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello
+{% block nav %}
+	{% include 'nav_equipe.html.twig' %}
 {% endblock %}
+
+{% block title %}Hello Admin!
+{% endblock %}
+
 
 {% block body %}
 
@@ -13,10 +18,10 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">*</th>
 					<th scope="col">nom</th>
 					<th scope="col">numero</th>
 					<th scope="col">genre</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,10 +30,10 @@
 						<th scope="row">{{ equipe.nom }}</th>
 						<td>{{ equipe.numeroEquipe }}</td>
 						<td>{{ equipe.categorieGenre }}</td>
-					{% endfor %}
-					<td>
-						<button type="button" class="btn btn-dark">modifier</button>
-					</td>
+						<td>
+							<button type="button" class="btn btn-dark">modifier</button>
+						</td>
+				{% endfor %}
 				</tr>
 			</tbody>
 		</table>
