@@ -34,11 +34,11 @@ class Personne
     private ?\DateTimeInterface $dateNaissance = null;
 
     #[JoinTable('equipeCoach')]
-    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches')]
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'coaches', cascade:['persist'])]
     private Collection $equipesCoaches;
 
     #[JoinTable('equipeJoueur')]
-    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs')]
+    #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'joueurs', cascade:['persist'])]
     private Collection $equipesJoueur;
 
     #[ORM\OneToMany(mappedBy: 'joueur', targetEntity: Presence::class, orphanRemoval: true)]

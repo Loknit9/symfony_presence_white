@@ -15,7 +15,7 @@ class FormulairePersonneAdminController extends AbstractController
     // ajouter un joueur ou un coach, afficher et traiter le formulaire//
 
     #[Route('/form/personne/admin', name: 'addForm_personne')]
-    public function personneAdd(Request $req, ManagerRegistry $doctrine)
+    public function personneAdd(Request $req, ManagerRegistry $doctrine): Response
     {
         // créer une entité vide
         $personne = new Personne();
@@ -38,7 +38,7 @@ class FormulairePersonneAdminController extends AbstractController
 
             // pour éviter une nouvelle insertion si on recharge la page, on va charger une autre action
             // redirectToRoute reçoit le nom d'une route
-            return $this->redirectToRoute("liste_joueurs");
+            return $this->redirectToRoute("personne_list");
 
         }
         return $this->render('form_personne_admin/addForm.html.twig', ['formPersonne' => $formPersonne->createView()]);

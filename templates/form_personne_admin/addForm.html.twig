@@ -14,8 +14,8 @@
 		</h3>
 		<h5>Ajouter un.e joueureuse ou un.e coach</h5>
 		{{ form_start(formPersonne) }}
-
-		<div class='form-group'>
+		{{ form_widget(formPersonne) }}
+		{# <div class='form-group'>
 			{{ form_label(formPersonne.prenom) }}
 			{{ form_widget(formPersonne.prenom) }}
 
@@ -30,9 +30,9 @@
 			{{ form_label(formPersonne.equipesCoaches) }}
 			{{ form_widget(formPersonne.equipesCoaches) }}
 			{{ form_label(formPersonne.equipesJoueur) }}
-			{{ form_widget(formPersonne.equipesJoueur) }}
+			{{ form_widget(formPersonne.equipesJoueur) }} #}
 			<button class="btn btn-lg btn-danger espace" type="submit" value="enregistrer">Ajouter</button>
-		</div>
+		{# </div> #}
 		{{ form_end(formPersonne) }}
 
 

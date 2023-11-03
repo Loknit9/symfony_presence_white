@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Equipe;
 use App\Entity\Personne;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,18 +27,19 @@ class PersonneType extends AbstractType
                 'input'  => 'datetime_immutable',
                 'years' => range(date('Y'), 1980)
             ])
-            // ->add('equipesCoaches', EntityType::class, [
-            //     'class' => Equipe::class,
-            //     'choice_label' => 'nom',
-            //     'label' => 'Equipe Coach',
-            // ])
-            ->add('equipesJoueur', EntityType::class, [
-                'class' => 'App\Entity\Equipe',
-                'choice_label' => 'nom',
+            ->add('equipesCoaches', EntityType::class, [
+                'class' => Equipe::class,
+                'choice_label' =>'nom',
+                'placeholder' => 'Choose an option',
                 'multiple' => true,
-                'expanded' => false, 
+                ])
+            ->add('equipesJoueur', EntityType::class, [
+                'class' => Equipe::class,
+                'choice_label' =>'nom',
+                'placeholder' => 'Choose an option',
+                'multiple' => true,
             ]);
-    }
+            }
 
     public function configureOptions(OptionsResolver $resolver)
     {
