@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Equipe;
 use App\Entity\Personne;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;

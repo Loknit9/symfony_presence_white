@@ -14,14 +14,14 @@ class EquipeType extends AbstractType
     {
         $builder
             ->add('nom')
-            // ->add('numeroEquipe')
-            // ->add('categorieGenre', ChoiceType::class, [
-            //     'choices' => [
-            //         'F' => 'F',
-            //         'M' => 'M',
-            //     ],
-            //     'placeholder' => 'Genre',
-            // ]);
+            ->add('numeroEquipe')
+            ->add('categorieGenre', ChoiceType::class, [
+                'choices' => [
+                    'F' => 'F',
+                    'M' => 'M',
+                ],
+                'placeholder' => 'Genre',
+            ]);
 
         ;
     }

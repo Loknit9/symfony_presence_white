@@ -17,10 +17,13 @@
 	{{ app.user.person.prenom }}!
 </h3>
 
-<div
-	class="centre">
-	{# <a href="{{ path('form_update', { 'id_joueur'}) }}"> #}
-	<button type="button" class="btn add btn-danger">ajouter joueur/coach</button>
+<div class="centre">
+	<a href="{{ path('addForm_personne') }}">
+		<button type="button" class="btn add btn-danger">+ joueur/coach</button>
+	</a>
+	&emsp;
+	<a href="{{ path('form_equipe_admin') }}">
+	<button type="button" class="btn add btn-danger">+ équipe</button>
 </a>
 <table class="table table-bordered table-hover">
 	<thead>
@@ -57,7 +60,6 @@
 					{% endfor %}
 				</td>
 				<td>
-					{# <a href="{{ path('form_update', { 'id_joueur'}) }}"> #}
 					<button type="button" class="btn btn-dark">modifier</button>
 				</td>
 			</tr>
