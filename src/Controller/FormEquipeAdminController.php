@@ -46,13 +46,14 @@ class FormEquipeAdminController extends AbstractController
     // afficher détail d'une equipe
 
     #[Route('/equipe/infos/{id}', name: 'equipe_infos')]
-    public function equipeInfos(Request $req, ManagerRegistry $doctrine){
-            $id = $req->get('id');
-    
-            $em = $doctrine->getManager();
-            $rep = $em->getRepository(Equipe::class);
-            
-            $equipe = $rep->find($id);
+    public function equipeInfos(Request $req, ManagerRegistry $doctrine)
+    {
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Equipe::class);
+
+        $equipe = $rep->find($id);
 
         $vars = ['equipe' => $equipe];
         return $this->render('form_equipe_admin/equipe_infos.html.twig', $vars);
@@ -60,22 +61,35 @@ class FormEquipeAdminController extends AbstractController
 
 
     // delete Livre
-    #[Route('/equipe/delete/{id}', name:'equipe_delete')]
-    public function livreDelete (Equipe $equipe, ManagerRegistry $doctrine){
-        
+    #[Route('/equipe/delete/{id}', name: 'equipe_delete')]
+    public function livreDelete(Request $req, ManagerRegistry $doctrine)
+    {
+
+        $id = $req->get('id');
+
         $em = $doctrine->getManager();
-        
+        $rep = $em->getRepository(Equipe::class);
+
+        $equipe = $rep->find($id);
+
         $em->remove($equipe);
         $em->flush();
 
-        return $this->redirectToRoute ('liste_equipes');
+        return $this->redirectToRoute('liste_equipes');
     }
 
     // modifier une equipe
 
     #[Route('/equipe/update/{id}', name: 'equipe_update')]
-    public function EquipeUpdate(Equipe $equipe, Request $req, ManagerRegistry $doctrine)
+    public function EquipeUpdate(Request $req, ManagerRegistry $doctrine)
     {
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Equipe::class);
+
+        $equipe = $rep->find($id);
+
         // obtenir le form rempli avec les infos de l'equipe sélectionnée
 
         $formEquipe = $this->createForm(EquipeType::class, $equipe);
@@ -86,8 +100,7 @@ class FormEquipeAdminController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("liste_equipes");
         } else {
-            $vars = ['formEquipe' => $formEquipe];
-            return $this->render("form_equipe_admin/updateequipe.html.twig", $vars);
+            return $this->render("form_equipe_admin/updateequipe.html.twig" , ['formEquipe' => $formEquipe->createView()]);
         }
     }
 }
