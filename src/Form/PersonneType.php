@@ -30,13 +30,11 @@ class PersonneType extends AbstractType
             ->add('equipesCoaches', EntityType::class, [
                 'class' => Equipe::class,
                 'choice_label' =>'nom',
-                'placeholder' => 'Choose an option',
                 'multiple' => true,
                 ])
             ->add('equipesJoueur', EntityType::class, [
                 'class' => Equipe::class,
                 'choice_label' =>'nom',
-                'placeholder' => 'Choose an option',
                 'multiple' => true,
             ]);
             }

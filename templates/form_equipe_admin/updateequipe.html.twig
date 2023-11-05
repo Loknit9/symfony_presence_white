@@ -13,16 +13,11 @@
 		<h3>Salut,
 			{{ app.user.person.prenom }}!
 		</h3>
-		<h5>Ajouter une équipe</h5>
-		<a href="{{ path('liste_equipes') }}">
-			<button type="button" class="btn add btn-danger">listes équipes</button>
-		</a>
-		{{ form_errors(formEquipe) }}
+		
 		{{ form_start(formEquipe) }}
 		{{ form_widget(formEquipe) }}
-		<button class="btn btn-lg btn-danger espace" type="submit" value="enregistrer">Ajouter</button>
+		<button class="btn btn-lg btn-danger espace" type="submit" value="enregistrer">enregistrer</button>
 		{{ form_end(formEquipe) }}
 
 
-	</div>
 {% endblock %}{% endblock %}

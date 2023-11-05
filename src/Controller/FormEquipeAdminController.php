@@ -41,4 +41,53 @@ class FormEquipeAdminController extends AbstractController
 
         return $this->render('form_equipe_admin/addequipe.html.twig', ['formEquipe' => $formEquipe->createView()]);
     }
+
+
+    // afficher détail d'une equipe
+
+    #[Route('/equipe/infos/{id}', name: 'equipe_infos')]
+    public function equipeInfos(Request $req, ManagerRegistry $doctrine){
+            $id = $req->get('id');
+    
+            $em = $doctrine->getManager();
+            $rep = $em->getRepository(Equipe::class);
+            
+            $equipe = $rep->find($id);
+
+        $vars = ['equipe' => $equipe];
+        return $this->render('form_equipe_admin/equipe_infos.html.twig', $vars);
+    }
+
+
+    // delete Livre
+    #[Route('/equipe/delete/{id}', name:'equipe_delete')]
+    public function livreDelete (Equipe $equipe, ManagerRegistry $doctrine){
+        
+        $em = $doctrine->getManager();
+        
+        $em->remove($equipe);
+        $em->flush();
+
+        return $this->redirectToRoute ('liste_equipes');
+    }
+
+    // modifier une equipe
+
+    #[Route('/equipe/update/{id}', name: 'equipe_update')]
+    public function EquipeUpdate(Equipe $equipe, Request $req, ManagerRegistry $doctrine)
+    {
+        // obtenir le form rempli avec les infos de l'equipe sélectionnée
+
+        $formEquipe = $this->createForm(EquipeType::class, $equipe);
+        $formEquipe->handleRequest($req);
+
+        if ($formEquipe->isSubmitted()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("liste_equipes");
+        } else {
+            $vars = ['formEquipe' => $formEquipe];
+            return $this->render("form_equipe_admin/updateequipe.html.twig", $vars);
+        }
+    }
 }

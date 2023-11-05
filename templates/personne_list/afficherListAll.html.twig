@@ -25,6 +25,7 @@
 	<a href="{{ path('form_equipe_admin') }}">
 	<button type="button" class="btn add btn-danger">+ équipe</button>
 </a>
+{% block liste_row %}
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -65,4 +66,4 @@
 			</tr>
 		</a>
 	</tbody>
-</td></tr>{% endfor %}</tbody></table></div>{% endblock %}{% endblock %}
+</td></tr>{% endfor %}</tbody></table>{% endblock %}</div>{% endblock %}{% endblock %}

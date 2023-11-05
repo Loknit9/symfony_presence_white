@@ -27,7 +27,7 @@ class EquipeFixtures extends Fixture implements DependentFixtureInterface
                 'nom' => ($categorie[mt_rand(0, count($categorie) - 1)]).($faker->randomElement(['G', 'B'])).($numeroEquipe[mt_rand(0, count($numeroEquipe) - 1)]),
                 'numeroEquipe' => $numeroEquipe[mt_rand(0, count($numeroEquipe) - 1)],
 
-                'categorieGenre' => $faker->randomElement(['fille', 'garçon']),
+                'categorieGenre' => $faker->randomElement(['F', 'G']),
             ]);
 
             $manager->persist($equipe);

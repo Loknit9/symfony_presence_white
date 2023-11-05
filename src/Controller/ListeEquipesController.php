@@ -22,7 +22,7 @@ class ListeEquipesController extends AbstractController
                 'nom' => $equipe->getNom(),
                 'numeroEquipe' => $equipe->getNumeroEquipe(),
                 'categorieGenre' => $equipe->getCategorieGenre(),
-                'id_Equipe' => $equipe->getId(),
+                'id' => $equipe->getId(),
             ];
         }
 

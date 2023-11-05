@@ -14,6 +14,7 @@ class EquipeType extends AbstractType
     {
         $builder
             ->add('nom')
+            // ->add('id')
             ->add('numeroEquipe', ChoiceType::class,
             [ 'choices' => range(1, 10),
             ])

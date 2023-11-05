@@ -12,12 +12,8 @@
 
 	<h3>Salut,
 		{{ app.user.person.prenom }}!
+
 	</h3>
-
-	<a href="{{ path('form_equipe_admin') }}">
-	<button type="button" class="btn add btn-danger">+ équipe</button>
-</a>
-
 	<div class="centre">
 		<table class="table">
 			<thead>
@@ -29,18 +25,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for equipe in equipesWithDetails %}
 					<tr>
 						<th scope="row">{{ equipe.nom }}</th>
 						<td>{{ equipe.numeroEquipe }}</td>
 						<td>{{ equipe.categorieGenre }}</td>
 						<td>
-							<a href="{{ path ('equipe_infos', {id: equipe.id} ) }}">
-							<button type="button" class="btn btn-dark">infos</button>
+							<a href="{{ path ('equipe_update', {id: equipe.id} ) }}">
+							<button type="button" class="btn btn-dark">modifier</button>
 							</a>
 						</td>
-
-				{% endfor %}
+						<td>
+							<a href="{{ path ('equipe_delete', {id: equipe.id} ) }}"><button type="button" class="btn btn-dark">supprimer</button></a>
+						</td>
 				</tr>
 			</tbody>
 		</table>
