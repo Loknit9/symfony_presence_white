@@ -32,7 +32,7 @@ class Equipe
     #[ORM\ManyToMany(targetEntity: Personne::class, mappedBy: 'equipesJoueur')]
     private Collection $joueurs;
 
-    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: Evenement::class)]
+    #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: Evenement::class, cascade:["remove"], orphanRemoval:true)]
     private Collection $evenements;
 
 

@@ -60,7 +60,8 @@ class FormEquipeAdminController extends AbstractController
     }
 
 
-    // delete Livre
+    // supprimer une equipe
+
     #[Route('/equipe/delete/{id}', name: 'equipe_delete')]
     public function livreDelete(Request $req, ManagerRegistry $doctrine)
     {
@@ -77,6 +78,7 @@ class FormEquipeAdminController extends AbstractController
 
         return $this->redirectToRoute('liste_equipes');
     }
+    
 
     // modifier une equipe
 
