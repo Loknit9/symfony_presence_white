@@ -59,6 +59,7 @@ a {
 /* liste */
 .equipe_list {
     list-style-type: none;
+    margin-top: 2em;
 }
 
 li {

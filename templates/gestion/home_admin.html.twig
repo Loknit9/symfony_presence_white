@@ -1,29 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Admin!{% endblock %}
+{% block title %}Hello Admin!
+{% endblock %}
 
 {% block nav %}
-    {% include 'nav_equipe.html.twig' %}
+	{% include 'nav_equipe.html.twig' %}
 {% endblock %}
 
 {% block body %}
-{% block content %}
+	{% block content %}
 
 
-    <h5>Admin</h5>
-    <h3>Salut, {{ app.user.person.prenom }}! </h3>
+		<h5>Admin</h5>
+		<h3>Salut,
+			{{ app.user.person.prenom }}!
+		</h3>
 
-    <ul class="equipe_list">
-        <div class="d-grid gap-2 col-6 mx-auto">
-            {% for equipe in equipes %} 
-                    <li>
-                        <a href={{ path('equipe_list',{'id_equipe':equipe.id}) }} class="btn btn-outline-dark"> {{ equipe.getNom }} </a>
+		{# <div class="d-grid gap-2 col-6 mx-auto"> #}
+		<ul class="equipe_list">
+			{% for equipe in equipes %}
+				<li>
+					<a href={{ path('equipe_list',{'id_equipe':equipe.id} ) }} class="btn btn-outline-dark">
+						{{ equipe.getNom }}
+					</a>
 
-                    </li>        
-            {% endfor %}
-        </div>
-    </ul>
+				</li>
+			{% endfor %}
+			<li>
+				<a href="{{ path('liste_equipes') }}">
+					<button type="button" class="btn add btn-danger">+ équipe</button>
+				</a>
+			</li>
+		</ul>
+		{# </div> #}
 
-{% endblock %}
+	{% endblock %}
 
 {% endblock %}
