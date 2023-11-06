@@ -79,7 +79,7 @@ class EvenementController extends AbstractController
             
             return $this->redirectToRoute("equipe_list", ['id_equipe' => $equipe->getId()]);
         }
-        $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'id_equipe' => $equipe];
+        $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'equipe' => $equipe];
         
         return $this->render('evenement/index.html.twig', $vars);
     }
