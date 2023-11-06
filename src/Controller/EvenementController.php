@@ -36,6 +36,7 @@ class EvenementController extends AbstractController
         $rep = $em->getRepository(Equipe::class);
         
         $equipe = $rep->find($req->get('id_equipe'));
+        $id_equipe = $req->get('id_equipe');
         $date = $req->get('date_evenement');
                 
         //obtenir la liste des joueurs de l'equipe
@@ -79,7 +80,7 @@ class EvenementController extends AbstractController
             
             return $this->redirectToRoute("equipe_list", ['id_equipe' => $equipe->getId()]);
         }
-        $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'equipe' => $equipe];
+        $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'id_equipe' => $id_equipe];
         
         return $this->render('evenement/index.html.twig', $vars);
     }

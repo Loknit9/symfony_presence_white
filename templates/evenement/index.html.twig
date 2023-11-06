@@ -47,7 +47,7 @@
 					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
 				<tr>
 					<th>{{ prenomJoueur}} {{ nomJoueur}}</th> 
-					<td>{{ form_widget (formPresence.etat, {'attr': {'class': 'espace_radio'}}) }}</td>
+					<td>{{ form_widget (formPresence.etat) }}</td>
                     <td>{{ form_widget (formPresence.joueur) }}</td>
 				</tr>
 				{% endfor %}
