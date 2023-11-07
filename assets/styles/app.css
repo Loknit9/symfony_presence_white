@@ -129,6 +129,10 @@ header {
     margin-top: 1em;
 
 }
+.form-check{
+    display: flex;
+    display: inline;
+}
 
 /* .espace_radio{
     margin-right: 1em;
