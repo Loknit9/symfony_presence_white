@@ -130,10 +130,8 @@ header {
 
 }
 
-
-
 .espace_radio{
-    margin-right: 0.8%;
+    margin-right: 0.6%;
     display: flex;
     flex-direction: row ;
     /* justify-content: space-between; */
