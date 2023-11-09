@@ -26,7 +26,7 @@ class PersonneListController extends AbstractController
             'dateNaissance' => $personne->getDateNaissance(),
             'equipesCoach' => $personne->getEquipesCoaches(),
             'equipesJoueur' => $personne->getEquipesJoueur(),
-            'id_Joueur' => $personne->getId(),
+            'id' => $personne->getId(),
         ];
     }
 

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+	{% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
+{% block title %}Hello Admin!
+{% endblock %}
+
+
+{% block body %}
+
+	<h3>Salut,
+		{{ app.user.person.prenom }}!
+
+	</h3>
+	<div class="centre">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">prénom</th>
+					<th scope="col">nom</th>
+					<th scope="col">contact1</th>
+					<th scope="col">contact2</th>
+					<th scope="col">date de naissance</th>
+					<th scope="col">equipe/coach</th>
+					<th scope="col">equipe/joueur</th>
+					<th> </th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">{{ personne.prenom }}</th>
+					<th scope="row">{{ personne.nom }}</th>
+					<td>{{ personne.contact1 }}</td>
+					<td>{{ personne.contact2 }}</td>
+					<td>{{ personne.dateNaissance|date('Y-m-d') }}</td>
+					<td>
+                        {% for equipeCoach in personne.equipesCoaches %}
+                            {{ equipeCoach.nom }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for equipeJoueur in personne.equipesJoueur %}
+                            {{ equipeJoueur.nom }}<br>
+                        {% endfor %}
+                    </td>
+					<td>
+						<a href="{{ path ('personne_update', {id: personne.id} ) }}">
+							<button type="button" class="btn btn-dark">modifier</button>
+						</a>
+					</td>
+					<td>
+						<a href="{{ path ('personne_delete', {id: personne.id} ) }}">
+							<button type="button" class="btn btn-dark">supprimer</button>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

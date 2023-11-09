@@ -23,47 +23,50 @@
 	</a>
 	&emsp;
 	<a href="{{ path('form_equipe_admin') }}">
-	<button type="button" class="btn add btn-danger">+ équipe</button>
-</a>
-{% block liste_row %}
-<table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th scope="col">prénom</th>
-			<th scope="col">nom</th>
-			<th scope="col">contact1</th>
-			<th scope="col">contact2</th>
-			<th scope="col">date de naissance</th>
-			<th scope="col">equipe/coach</th>
-			<th scope="col">equipe/joueur</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for personne in personnesWithDetails %}
+		<button type="button" class="btn add btn-danger">+ équipe</button>
+	</a>
+	{% block liste_row %}
+	<table class="table table-bordered table-hover">
+		<thead>
 			<tr>
-				<th scope="row">{{ personne.prenom }}</th>
-				<th scope="row">{{ personne.nom }}</th>
-				<td>{{ personne.contact1 }}</td>
-				<td>{{ personne.contact2 }}</td>
-				<td>{{ personne.dateNaissance|date('Y-m-d') }}</td>
-				<td>
-					{% for equipe in personne.equipesCoach %}
-						{{ equipe.nom }}
-						{% if not loop.last %},
-						{% endif %}
-					{% endfor %}
-				</td>
-				<td>
-					{% for equipe in personne.equipesJoueur %}
-						{{ equipe.nom }}
-						{% if not loop.last %},
-						{% endif %}
-					{% endfor %}
-				</td>
-				<td>
-					<button type="button" class="btn btn-dark">modifier</button>
-				</td>
+				<th scope="col">prénom</th>
+				<th scope="col">nom</th>
+				<th scope="col">contact1</th>
+				<th scope="col">contact2</th>
+				<th scope="col">date de naissance</th>
+				<th scope="col">equipe/coach</th>
+				<th scope="col">equipe/joueur</th>
 			</tr>
-		</a>
-	</tbody>
-</td></tr>{% endfor %}</tbody></table>{% endblock %}</div>{% endblock %}{% endblock %}
+		</thead>
+		<tbody>
+			{% for personne in personnesWithDetails %}
+				<tr>
+					<th scope="row">{{ personne.prenom }}</th>
+					<th scope="row">{{ personne.nom }}</th>
+					<td>{{ personne.contact1 }}</td>
+					<td>{{ personne.contact2 }}</td>
+					<td>{{ personne.dateNaissance|date('Y-m-d') }}</td>
+					<td>
+						{% for equipe in personne.equipesCoach %}
+							{{ equipe.nom }}
+							{% if not loop.last %},
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						{% for equipe in personne.equipesJoueur %}
+							{{ equipe.nom }}
+							{% if not loop.last %},
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						<a href="{{ path ('personne_infos', {id: personne.id} ) }}">
+							<button type="button" class="btn btn-dark">infos</button>
+						</a>
+					</td>
+				</tr>
+			</a>
+		</tbody>
+	</td>
+</tr>{% endfor %}</tbody></table>{% endblock %}</div>{% endblock %}{% endblock %}

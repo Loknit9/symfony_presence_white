@@ -44,7 +44,68 @@ class FormulairePersonneAdminController extends AbstractController
         return $this->render('form_personne_admin/addForm.html.twig', ['formPersonne' => $formPersonne->createView()]);
     }
 
-    // obtenir un formulaire pré-rempli pour updater les infos d'un joueur ou un coach //
+
+        // afficher détail d'un joueur/coach
+
+        #[Route('/personne/infos/{id}', name: 'personne_infos')]
+        public function equipeInfos(Request $req, ManagerRegistry $doctrine)
+        {
+            $id = $req->get('id');
+    
+            $em = $doctrine->getManager();
+            $rep = $em->getRepository(Personne::class);
+    
+            $personne = $rep->find($id);
+    
+            $vars = ['personne' => $personne];
+            return $this->render('form_personne_admin/personne_infos.html.twig', $vars);
+        }
+
+
+    // supprimer un joueur ou un coach //
+    #[Route('/personne/delete/{id}', name: 'personne_delete')]
+    public function PersonneDelete(Request $req, ManagerRegistry $doctrine)
+    {
+
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Personne::class);
+
+        $personne = $rep->find($id);
+
+        $em->remove($personne);
+        $em->flush();
+
+        return $this->redirectToRoute('personne_list');
+    }
+    
+
+        // obtenir un formulaire pré-rempli pour updater les infos d'un joueur ou un coach //
+
+    #[Route('/personne/update/{id}', name: 'personne_update')]
+    public function PersonneUpdate(Request $req, ManagerRegistry $doctrine)
+    {
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Personne::class);
+
+        $personne = $rep->find($id);
+
+        // obtenir le form rempli avec les infos de la personne (coach/joueur) sélectionnée
+
+        $formPersonne = $this->createForm(PersonneType::class, $personne);
+        $formPersonne->handleRequest($req);
+
+        if ($formPersonne->isSubmitted()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("personne_list");
+        } else {
+            return $this->render("form_personne_admin/updatepersonne.html.twig" , ['formPersonne' => $formPersonne->createView()]);
+        }
+    }
 
 
 }
