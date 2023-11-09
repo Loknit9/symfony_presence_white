@@ -23,7 +23,6 @@ class PersonneType extends AbstractType
             ->add('contact2', EmailType::class)
             ->add('dateNaissance', DateType::class, [
                 'widget' => 'choice',
-                // 'input'  => 'datetime_immutable',
                 'format' => 'yyyy-MM-dd',
                 'years' => range(date('Y'), 1980)
             ])
