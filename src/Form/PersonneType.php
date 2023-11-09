@@ -4,14 +4,13 @@ namespace App\Form;
 
 use App\Entity\Equipe;
 use App\Entity\Personne;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PersonneType extends AbstractType
 {
@@ -22,9 +21,10 @@ class PersonneType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('contact1', EmailType::class)
             ->add('contact2', EmailType::class)
-            ->add('dateNaissance', BirthdayType::class, [
+            ->add('dateNaissance', DateType::class, [
                 'widget' => 'choice',
-                'input'  => 'datetime_immutable',
+                // 'input'  => 'datetime_immutable',
+                'format' => 'yyyy-MM-dd',
                 'years' => range(date('Y'), 1980)
             ])
             ->add('equipesCoaches', EntityType::class, [
