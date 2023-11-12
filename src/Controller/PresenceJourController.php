@@ -78,7 +78,7 @@ class PresenceJourController extends AbstractController
         
 
 
-        $vars = ['result' => $result, 'equipe' => $equipe, 'id_equipe' => $req->get('id_equipe'), 'date' => $date, 'etats' => $etats,];
+        $vars = ['result' => $result, 'equipe' => $equipe, 'id_equipe' => $req->get('id_equipe'), 'date' => $date, 'etats' => $etats,'evenement'=>$evenement, 'id_event'=>$evenementId];
 
         if ($req->isXmlHttpRequest()) {
             // Si c'est une requête AJAX, renvoyer les données au format JSON
@@ -90,5 +90,24 @@ class PresenceJourController extends AbstractController
 }
     // supprimer les présences pour ce jour
 
-    
+    #[Route('/presence/jour/delete//{id_equipe}/{id}', name: 'presenceJour_delete')]
+    public function PrsenceJourDelete(Request $req, ManagerRegistry $doctrine)
+    {
+
+        //recuperer id equipe pour l'envoyer dans la vue et pouvoir afficher le calendrier
+        $idEquipe = $req->get('id_equipe');
+        
+        //recuperer id evenement
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Evenement::class);
+
+        $evenement = $rep->find($id);
+
+        $em->remove($evenement);
+        $em->flush();
+
+        return $this->redirectToRoute('calendrier', ['id_equipe' => $idEquipe]);
+    }
 }

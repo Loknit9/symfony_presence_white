@@ -43,8 +43,12 @@
 						{% endfor %}
 					</tr>
 				{% endfor %}
+
+		
+					
 			</tbody>
 		</table>
+		<a href="{{ path ('presenceJour_delete', {id:evenement.id,id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-dark">supprimer</button></a>
 	</div>
 
 {% endblock %}
