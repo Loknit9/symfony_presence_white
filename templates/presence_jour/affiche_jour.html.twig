@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block body %}
-
+        {{ asset('calendrier.js/jquery-3.6.0.min.js') | script }}
+    
 	<h5>Présences</h5>
 	<h3>Salut,
 		{{ app.user.person.prenom }}!

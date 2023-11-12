@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PresenceJourController extends AbstractController
 {
-    #[Route('/presence/jour/{date_evenement}/{id_equipe}/{title}/{id_event}', name: 'presence_jour')]
+    #[Route('/presence/jour/{date_evenement}/{id_equipe}/{id_event}', name: 'presence_jour')]
     public function presenceJour(ManagerRegistry $doctrine, Request $req)
     {
 
@@ -25,8 +25,6 @@ class PresenceJourController extends AbstractController
 
         $startDate = $req->get('date_evenement');
         $start = new DateTime($startDate);
-
-        $title = $req->get('title');
         
         $evenementId = $req->get('id_event');
         $evenement = $em->getRepository(Evenement::class)->find($evenementId);
@@ -56,7 +54,7 @@ class PresenceJourController extends AbstractController
                         $associatedEvent = $presence->getEvenement(); // Récupérer l'événement associé à cette présence
     
                         // Comparer les identifiants des événements au lieu des objets eux-mêmes
-                        if ($associatedEvent !== null && $associatedEvent->getId() === $evenement->getId() && $associatedEvent->getStart()->format('Y-m-d') === $startDate->format('Y-m-d') && $presence->getEtat() === $etat) {
+                        if ($associatedEvent !== null && $associatedEvent->getId() === $evenement->getId() && $associatedEvent->getStart()->format('Y-m-d') === $startDate && $presence->getEtat() === $etat) {
                             $count++;
                         }
                     }
@@ -73,7 +71,12 @@ class PresenceJourController extends AbstractController
         }
     
 
-        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe' => $req->get('id_equipe'), 'start'=>$start, 'title'=>$title, 'etats' => $etats, ];
+        $vars = ['result'=>$result, 'equipe' => $equipe, 'id_equipe' => $req->get('id_equipe'), 'start'=>$start,'etats' => $etats, ];
+
+        if ($req->isXmlHttpRequest()) {
+            // Si c'est une requête AJAX, renvoyer les données au format JSON
+            return $this->json($vars);
+        }
 
         return $this->render('presence_jour/affiche_jour.html.twig', $vars);
     }

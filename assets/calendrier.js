@@ -36,27 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
         dateClick: function (info) {
 
             console.log(div_calendrier.dataset.equipe);
-            window.location.href = divCalendar.dataset.route;
+            window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
-        //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier et les présences pour ce jour
-        eventClick: function (info) {
-            let eventStart = info.dateStr; // Récupération de la date de début de l'événement
-            let formattedDate = eventStart.toISOString().split('T')[0];
-            let eventId = info.event.id;
+    });
 
-            console.log(div_calendrier.dataset.equipe + formattedDate);
-
-            alert('Event: ' + info.event.title + formattedDate);
-
-            window.location.href = "/presence/jour/" + formattedDate + "/" + div_calendrier.dataset.equipe + "/" + info.event.title + "/" + eventId;
-
-        }
-
-    
-
-        });
-
-calendar.render();
+    calendar.render();
 
 });

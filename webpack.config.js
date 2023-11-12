@@ -11,13 +11,13 @@ Encore
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     // pour accéder au serveur local
-    // .setPublicPath('/build')
+    .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
     // public path used by the web server to access the output path
     // pour accéder au serveur distant
-    .setPublicPath('/project1/public/build')
+    //.setPublicPath('/project1/public/build')
 
     /*
      * ENTRY CONFIG
