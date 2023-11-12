@@ -19,7 +19,7 @@
 	<h4>Equipe
 		{{ equipe.getNom }}</h4>
 	<h5>{{ date|date("d/m/Y")}}</h5>
-	{# <h5>{{ title }}</h5> #}
+	<h5 class="bold">{{ evenement.getTitle }}</h5>
 
 	{# pour afficher les présences pour la date spécifique #}
 	<div class="centre">
@@ -48,6 +48,7 @@
 					
 			</tbody>
 		</table>
+		<a href="{{ path ('presenceJour_update', {id:evenement.id,id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-dark">modifier</button></a>
 		<a href="{{ path ('presenceJour_delete', {id:evenement.id,id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-dark">supprimer</button></a>
 	</div>
 

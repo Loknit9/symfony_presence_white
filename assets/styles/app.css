@@ -55,6 +55,10 @@ a {
     background-color: #ff0000;
 }
 
+.bold {
+    font-weight: bold;
+    color: #ff0000;
+}
 
 /* liste */
 .equipe_list {

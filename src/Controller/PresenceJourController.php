@@ -90,7 +90,7 @@ class PresenceJourController extends AbstractController
 }
     // supprimer les présences pour ce jour
 
-    #[Route('/presence/jour/delete//{id_equipe}/{id}', name: 'presenceJour_delete')]
+    #[Route('/presence/jour/delete/{id_equipe}/{id}', name: 'presenceJour_delete')]
     public function PrsenceJourDelete(Request $req, ManagerRegistry $doctrine)
     {
 
@@ -109,5 +109,34 @@ class PresenceJourController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('calendrier', ['id_equipe' => $idEquipe]);
+    }
+
+    // modifier les présences pour ce jour
+
+
+    #[Route('/presence/jour/update/{id_equipe}/{id}', name: 'presenceJour_update')]
+    public function EquipeUpdate(Request $req, ManagerRegistry $doctrine)
+    {
+        $idEquipe = $req->get('id_equipe');
+
+        $id = $req->get('id');
+
+        $em = $doctrine->getManager();
+        $rep = $em->getRepository(Evenement::class);
+
+        $evenement = $rep->find($id);
+
+        // obtenir le form rempli avec les infos de l'equipe sélectionnée
+
+        $formEvenement = $this->createForm(EvenementType::class, $evenement);
+        $formEvenement->handleRequest($req);
+
+        if ($formEvenement->isSubmitted()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('calendrier', ['id_equipe' => $idEquipe]);
+        } else {
+            return $this->render("presence_jour/update_presence_jour.html.twig" , ['formEvenement' => $formEvenement->createView()]);
+        }
     }
 }
