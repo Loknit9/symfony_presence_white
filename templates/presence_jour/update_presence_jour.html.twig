@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+	{% include 'nav_equipe.html.twig' %}
+{% endblock %}
+
+
+{% block title %}Hello
+{% endblock %}
+
+{% block body %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<h5>Présences</h5>
+	<h3>Salut,
+		{{ app.user.person.prenom }}!
+	</h3>
+	<h4>Equipe {{ nomEquipe }}</h4>
+    <h5>modifier les présences</h5>
+
+
+	<div class="centre">
+        {{ form_start(formEvenement) }}
+        <div class="espace">
+            {{ form_row(formEvenement.start) }}
+        </div>
+
+        <div class="espace">
+            {{ form_row(formEvenement.title) }}
+        </div>
+
+        {{ form_row(formEvenement.equipe) }}
+
+		<table class="table espace">
+			<thead>
+				<tr>
+					<th scope="col">*</th>
+					<th scope="col">P &emsp;A &emsp;E &emsp;B &emsp;R &emsp;</th>
+				</tr>
+			</thead>
+				
+
+			<tbody>
+
+				{% for formPresence in formEvenement.presences %}
+					{% set nomJoueur = formPresence.vars.data.joueur.nom %}
+					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
+				<tr>
+					<th>{{ prenomJoueur}} {{ nomJoueur}}</th> 
+					<td>{{ form_widget (formPresence.etat, {'attr': {'class': 'espace_radio'} }) }}</td>
+                    <td>{{ form_widget (formPresence.joueur) }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>	
+		</table>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+        {{ form_end(formEvenement) }}
+    </div>
+
+{% endblock %}
