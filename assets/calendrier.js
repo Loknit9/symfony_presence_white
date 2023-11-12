@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
+        eventClick: function(info){
+            alert(info.event.title + " " + info.event.start);
+        }
     });
 
     calendar.render();
