@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "prev,next",
         },
         plugins: [interactionPlugin, dayGridPlugin],
+        
 
         // fixer les evts (click) charger une autre page (avec la date et l'equipe ds l'url)
         dateClick: function (info) {
@@ -39,8 +40,22 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
+        // eventMouseEnter: function(info){
+        //     alert(info.event.title + " " + info.event.start);
+        // }
+
         eventClick: function(info){
-            alert(info.event.title + " " + info.event.start);
+
+            let eventDate = new Date(info.event.startStr);
+
+            let year = eventDate.getFullYear();
+            let month = ('0' + (eventDate.getMonth() + 1)).slice(-2); // Ajoute un zéro devant les mois < 10
+            let day = ('0' + eventDate.getDate()).slice(-2); // Ajoute un zéro devant les jours < 10
+
+            let formattedDate = `${year}-${month}-${day}`;
+            
+            window.location.href = "/presence/jour/" + formattedDate + "/"+div_calendrier.dataset.equipe + "/" +  info.event.id;
+
         }
     });
 

@@ -18,8 +18,8 @@
 	</h3>
 	<h4>Equipe
 		{{ equipe.getNom }}</h4>
-	<h5>{{ start|date("d/m/Y")}}</h5>
-	<h5>{{ title }}</h5>
+	<h5>{{ date|date("d/m/Y")}}</h5>
+	{# <h5>{{ title }}</h5> #}
 
 	{# pour afficher les présences pour la date spécifique #}
 	<div class="centre">
@@ -38,7 +38,7 @@
 					<tr>
 						<th>{{ joueurData.nom }}
 							{{ joueurData.prenom }}</th>
-						{% for etat, count in joueurData.presence %}
+						{% for etat, count in joueurData.presences %}
 							<td>{{ count }}</td>
 						{% endfor %}
 					</tr>
