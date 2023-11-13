@@ -111,22 +111,23 @@ class PresenceJourController extends AbstractController
         return $this->redirectToRoute('calendrier', ['id_equipe' => $idEquipe]);
     }
 
+
+
     // modifier les présences pour ce jour
 
-
     #[Route('/presence/jour/update/{id_equipe}/{id}', name: 'presenceJour_update')]
-    public function EquipeUpdate(Request $req, ManagerRegistry $doctrine)
+    public function PresenceUpdate(Request $req, ManagerRegistry $doctrine)
     {
+        
+        $em = $doctrine->getManager();
         $idEquipe = $req->get('id_equipe');
 
         $id = $req->get('id');
-
-        $em = $doctrine->getManager();
         $rep = $em->getRepository(Evenement::class);
 
         $evenement = $rep->find($id);
 
-        // obtenir le form rempli avec les infos de l'equipe sélectionnée
+        // obtenir le form rempli avec les infos de l'evenement sélectionné
 
         $formEvenement = $this->createForm(EvenementType::class, $evenement);
         $formEvenement->handleRequest($req);

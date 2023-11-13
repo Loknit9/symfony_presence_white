@@ -79,7 +79,7 @@ class EvenementController extends AbstractController
             // dd ($formEvenement->getData());
             $em->flush();
             
-            return $this->redirectToRoute("equipe_list", ['id_equipe' => $equipe->getId()]);
+            return $this->redirectToRoute("presence_jour", ['id_equipe' => $equipe->getId()]);
         }
         $vars = ['formEvenement' => $formEvenement->createView(), 'listeJoueurs' => $listeJoueurs, 'id_equipe' => $id_equipe,'nomEquipe' => $nomEquipe];
         
