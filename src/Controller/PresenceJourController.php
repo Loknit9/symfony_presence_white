@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Equipe;
 use App\Entity\Evenement;
+use App\Form\EvenementType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -90,8 +91,8 @@ class PresenceJourController extends AbstractController
 }
     // supprimer les présences pour ce jour
 
-    #[Route('/presence/jour/delete/{id_equipe}/{id}', name: 'presenceJour_delete')]
-    public function PrsenceJourDelete(Request $req, ManagerRegistry $doctrine)
+    #[Route('/presence/jour/delete//{id_equipe}/{id}', name: 'presenceJour_delete')]
+    public function PresenceJourDelete(Request $req, ManagerRegistry $doctrine)
     {
 
         //recuperer id equipe pour l'envoyer dans la vue et pouvoir afficher le calendrier
@@ -115,12 +116,14 @@ class PresenceJourController extends AbstractController
 
     // modifier les présences pour ce jour
 
-    #[Route('/presence/jour/update/{id_equipe}/{id}', name: 'presenceJour_update')]
+    #[Route('/presence/jour/update//{id_equipe}/{id}', name: 'presenceJour_update')]
     public function PresenceUpdate(Request $req, ManagerRegistry $doctrine)
     {
         
         $em = $doctrine->getManager();
-        $idEquipe = $req->get('id_equipe');
+        $id_equipe = $req->get('id_equipe');
+        $equipe = $em->getRepository(Equipe::class)->find($id_equipe);
+        $nomEquipe = $equipe->getNom();
 
         $id = $req->get('id');
         $rep = $em->getRepository(Evenement::class);
@@ -135,9 +138,9 @@ class PresenceJourController extends AbstractController
         if ($formEvenement->isSubmitted()) {
             $em = $doctrine->getManager();
             $em->flush();
-            return $this->redirectToRoute('calendrier', ['id_equipe' => $idEquipe]);
+            return $this->redirectToRoute('calendrier', ['id_equipe' => $id_equipe]);
         } else {
-            return $this->render("presence_jour/update_presence_jour.html.twig" , ['formEvenement' => $formEvenement->createView()]);
+            return $this->render("presence_jour/update_presence_jour.html.twig" , ['nomEquipe' => $nomEquipe, 'id_equipe' => $id_equipe, 'formEvenement' => $formEvenement->createView()]);
         }
     }
 }

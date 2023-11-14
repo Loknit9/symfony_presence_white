@@ -9,6 +9,8 @@
 {% endblock %}
 
 {% block body %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 	<h5>Présences</h5>
 	<h3>Salut,
@@ -19,17 +21,6 @@
 
 
 	<div class="centre">
-        {{ form_start(formEvenement) }}
-        <div class="espace">
-            {{ form_row(formEvenement.start) }}
-        </div>
-
-        <div class="espace">
-            {{ form_row(formEvenement.title) }}
-        </div>
-
-        {{ form_row(formEvenement.equipe) }}
-
 		<table class="table espace">
 			<thead>
 				<tr>
@@ -37,11 +28,21 @@
 					<th scope="col">P &emsp;A &emsp;E &emsp;B &emsp;R &emsp;</th>
 				</tr>
 			</thead>
-				
+				{{ form_start (formEvenement) }}
+				<div class="espace">
+					{{ form_row (formEvenement.start) }}
+				</div>
+
+				<div class="espace">
+					{{ form_row (formEvenement.title) }}
+				</div>
+
+				{{ form_row (formEvenement.equipe) }}
 
 			<tbody>
 
-				{% for formPresence in formEvenement.presences %}
+					{% for formPresence in formEvenement.presences %}
+                {# obtenir les donnees de l'entite liee au formulaire, on peut acceder a tout  #}
 					{% set nomJoueur = formPresence.vars.data.joueur.nom %}
 					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
 				<tr>
@@ -52,7 +53,9 @@
 				{% endfor %}
 			</tbody>	
 		</table>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-danger">enregistrer</button>
+		<a href="{{ path ('calendrier', {id_equipe: id_equipe} ) }}"><button type="button" class="btn btn-dark">calendrier</button></a>
+
 
         {{ form_end(formEvenement) }}
     </div>

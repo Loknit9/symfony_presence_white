@@ -40,9 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
-        // eventMouseEnter: function(info){
-        //     alert(info.event.title + " " + info.event.start);
-        // }
+        // obtenir les infos de l'evenement précédement enregistré en cliquant sur l'evt ds le calendrier
 
         eventClick: function(info){
 
