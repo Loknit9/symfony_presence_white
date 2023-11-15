@@ -98,6 +98,13 @@ html {
 body {
     margin: 0;
     padding: 0;
+    height:100%;
+    position: relative;
+}
+
+main{
+    position: relative;
+    padding-bottom: 100px;
 }
 
 .container {
@@ -107,6 +114,7 @@ body {
 }
 header {
     background-color: #f8f9fa;
+    position: relative;
 }
 .navbar {
     width: 60%;
@@ -114,13 +122,14 @@ header {
     margin-right: 20%;
     margin-bottom: 2em;
     height: 65px;
-    padding-top: 0;
-    
+    padding-top: 0; 
 }
+
 
 .btn_link {
     --bs-btn-color: black;
 }
+
 
 /* PresenceForm */
 
@@ -180,17 +189,16 @@ input[type="radio"]:checked {
 
 /* footer */
 
-
-
 .page-footer {
     height: 50px;
     background-color: #ffffff;
     margin-top: 4em;
-    /* the footer's total height */
+    position: absolute;
+    bottom: 0;
 }
 
 #footer-content {
     bottom:0;
     width:100%;
-    height:60px;
+    height:40px;
 }

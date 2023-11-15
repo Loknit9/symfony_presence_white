@@ -26,14 +26,18 @@
 					<nav class="navbar navbar-expand-lg bg-body-tertiary">
 						<div class="container-fluid">
 							<a class="navbar-brand" href="{{ path('app_login') }}">Salut Coach!</a>
-							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"></span>
 							</button>
-							<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-								<div class="navbar-nav">
-									<a class="nav-link" href="{{ path('app_login') }}">login</a>
-									<a class="nav-link" href="{{ path('app_logout') }}">deconnexion</a>
-								</div>
+							<div class="collapse navbar-collapse" id="navbarScroll" style="background-color= #f8f9fa">
+								<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+									<li class="nav-item">
+										<a class="nav-link active" href="{{ path('app_login') }}">login</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" href="{{ path('app_logout') }}">deconnexion</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</nav>
