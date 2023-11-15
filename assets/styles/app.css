@@ -123,6 +123,15 @@ header {
     margin-bottom: 2em;
     height: 65px;
     padding-top: 0; 
+    z-index: 6;
+}
+
+.show{
+    background-color: #f8f9fa;
+    z-index: 5;
+    padding-left: inherit;
+    width: 100%;
+    border-radius: 2vw;
 }
 
 
