@@ -46,6 +46,7 @@ class PresenceIndividuelleController extends AbstractController
 
             // Ajoutez la date à $dates
             $dates[] = $presence->getEvenement()->getStart();
+            $titles[] = $presence->getEvenement()->getTitle();
         }
 
         // Utilisez array_map pour convertir les objets DateTime en chaînes
@@ -57,13 +58,32 @@ class PresenceIndividuelleController extends AbstractController
         $dates = array_unique($dates);
         sort($dates);
 
+        // Initialisez un tableau pour stocker les présences par état
+        $presenceEtat = [];
+
+        // Initialisez un tableau des états
+        $etats = ['P', 'A', 'E', 'B', 'R'];
+
+        // Remplissez le tableau des présences par état
+        foreach ($etats as $etat) {
+            $presenceCount = 0;
+            foreach ($presences as $presence) {
+                if ($presence->getEtat() === $etat) {
+                    $presenceCount++;
+                }
+            }
+            $presenceEtat[$etat] = $presenceCount;
+        }
+
         $vars = [
             'joueur' => $joueur,
             'nomEquipe' => $nomEquipe,
             'id_equipe' => $id_equipe,
-            'presences' => $formattedPresences, // Utilisez le tableau trié
+            'presences' => $formattedPresences,
             'etats' => $etats,
             'dates' => $dates,
+            'title' => $titles,
+            'presenceEtat' => $presenceEtat,
         ];
 
         return $this->render('presence_individuelle/index.html.twig', $vars);
