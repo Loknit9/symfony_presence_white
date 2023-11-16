@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             right: "prev,next",
         },
         plugins: [interactionPlugin, dayGridPlugin],
+        
 
         // fixer les evts (click) charger une autre page (avec la date et l'equipe ds l'url)
         dateClick: function (info) {
@@ -39,24 +40,23 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
-        //afficher la page URL de l'evt lorsqu'on clique sur un evenement qui se trouve dans le calendrier et les présences pour ce jour
-        eventClick: function (info) {
-            let eventStart = info.dateStr; // Récupération de la date de début de l'événement
-            let formattedDate = eventStart.toISOString().split('T')[0];
-            let eventId = info.event.id;
+        // obtenir les infos de l'evenement précédement enregistré en cliquant sur l'evt ds le calendrier
 
-            console.log(div_calendrier.dataset.equipe + formattedDate);
+        eventClick: function(info){
 
-            alert('Event: ' + info.event.title + formattedDate);
+            let eventDate = new Date(info.event.startStr);
 
-            window.location.href = "/presence/jour/" + formattedDate + "/" + div_calendrier.dataset.equipe + "/" + info.event.title + "/" + eventId;
+            let year = eventDate.getFullYear();
+            let month = ('0' + (eventDate.getMonth() + 1)).slice(-2); // Ajoute un zéro devant les mois < 10
+            let day = ('0' + eventDate.getDate()).slice(-2); // Ajoute un zéro devant les jours < 10
+
+            let formattedDate = `${year}-${month}-${day}`;
+            
+            window.location.href = "/presence/jour/" + formattedDate + "/"+div_calendrier.dataset.equipe + "/" +  info.event.id;
 
         }
+    });
 
-    
-
-        });
-
-calendar.render();
+    calendar.render();
 
 });

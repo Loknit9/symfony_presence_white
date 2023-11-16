@@ -4,18 +4,20 @@
 	{% include 'nav_equipe.html.twig' %}
 {% endblock %}
 
+
 {% block title %}Hello
 {% endblock %}
 
 {% block body %}
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
 	<h5>Présences</h5>
 	<h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
 	<h4>Equipe {{ nomEquipe }}</h4>
-	<h5>remplir les présences</h5>
+    <h5>modifier les présences</h5>
 
 
 	<div class="centre">
@@ -35,14 +37,11 @@
 					{{ form_row (formEvenement.title) }}
 				</div>
 
-
 				{{ form_row (formEvenement.equipe) }}
 
 			<tbody>
 
-				{# {{ dump (joueur) }} #}
-
-				{% for formPresence in formEvenement.presences %}
+					{% for formPresence in formEvenement.presences %}
                 {# obtenir les donnees de l'entite liee au formulaire, on peut acceder a tout  #}
 					{% set nomJoueur = formPresence.vars.data.joueur.nom %}
 					{% set prenomJoueur = formPresence.vars.data.joueur.prenom %}
@@ -54,8 +53,11 @@
 				{% endfor %}
 			</tbody>	
 		</table>
+        <button type="submit" class="btn btn-danger">enregistrer</button>
+		<a href="{{ path ('calendrier', {id_equipe: id_equipe} ) }}"><button type="button" class="btn btn-dark">calendrier</button></a>
 
-				<input class="btn btn-lg btn-danger espace" type="submit" value="Enregistrer">
 
-				{{ form_end (formEvenement, {render_rest: false}) }}
+        {{ form_end(formEvenement) }}
+    </div>
+
 {% endblock %}

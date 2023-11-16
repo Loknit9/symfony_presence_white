@@ -10,37 +10,47 @@
 
 {% block body %}
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<h5>Présences</h5>
 	<h3>Salut,
 		{{ app.user.person.prenom }}!
 	</h3>
-	<h4>Equipe {{ equipe.getNom }}</h4>
-	<h5>{{ start|date("d/m/Y")}}</h5>
-	<h5>{{ title }}</h5>
+	<h4>Equipe
+		{{ equipe.getNom }}</h4>
+	<h5>{{ date|date("d/m/Y")}}</h5>
+	<h5 class="bold">{{ evenement.getTitle }}</h5>
 
-    {# pour afficher les présences pour la date spécifique #}
-    <div class="centre">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>*</th>
+	{# pour afficher les présences pour la date spécifique #}
+	<div class="centre">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>*</th>
 
-                    {% for etat in etats %}
-                        <th>{{ etat }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for joueurId, joueurData in result %}
-                    <tr>
-                        <th>{{ joueurData.nom }} {{ joueurData.prenom }}</th>
-                        {% for etat, count in joueurData.presence %}
-                            <td>{{ count }}</td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+					{% for etat in etats %}
+						<th>{{ etat }}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for joueurId, joueurData in result %}
+					<tr>
+						<th>{{ joueurData.nom }}
+							{{ joueurData.prenom }}</th>
+						{% for etat, count in joueurData.presences %}
+							<td>{{ count }}</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+
+		
+					
+			</tbody>
+		</table>
+		<a href="{{ path ('presenceJour_delete', {id:evenement.id,id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-dark">supprimer</button></a>
+		<a href="{{ path ('presenceJour_update', {id:evenement.id,id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-dark">modifier</button></a>
+		<a href="{{ path ('calendrier', {id_equipe: equipe.id} ) }}"><button type="button" class="btn btn-danger">calendrier</button></a>
+	</div>
 
 {% endblock %}
