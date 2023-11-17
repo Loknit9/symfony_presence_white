@@ -38,11 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log(div_calendrier.dataset.equipe);
 
-            let routeDateClick = div_calendrier.dataset.route-click-date;
+            // on va modifier les donnees dummy par les vraies valeurs
+            let routeDateClick = div_calendrier.dataset.routeDateClick;
+            routeDateClick = routeDateClick.replace ('dummy_date', info.dateStr);
+            routeDateClick = routeDateClick.replace ('dummy_id_equipe', div_calendrier.dataset.equipe);
+
             
-            alert (routeDateClick);
-            return;
-            window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
+            window.location.href = routeDateClick;
         },
 
         // obtenir les infos de l'evenement précédement enregistré en cliquant sur l'evt ds le calendrier

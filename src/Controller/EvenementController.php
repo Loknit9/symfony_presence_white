@@ -27,14 +27,18 @@ class EvenementController extends AbstractController
     }
     
     
+    // action lancée quand on clique sur le calendrier
     #[Route('/evenement/{date_evenement}/{id_equipe}', name: 'evenement')]
     public function evenement (ManagerRegistry $doctrine, Request $req)
     {      
+
         $em = $doctrine->getManager();
         
         // obtenir l'equipe qui correspond au paramètre nom
         
         $id_equipe = $req->get('id_equipe');
+
+
         $equipe = $em->getRepository(Equipe::class)->find($id_equipe);
         $nomEquipe = $equipe->getNom();
 

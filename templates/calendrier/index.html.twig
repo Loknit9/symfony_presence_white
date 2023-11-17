@@ -22,5 +22,7 @@
     <h3>Salut {{ app.user.person.prenom }}! </h3>
     <h5>Equipe {{ nom_equipe }}</h5>
 
-    <div id="div_calendrier" data-route-click-date="{{ path ('evenement') }}" data-calendrier = "{{ evenementsJSON }}"  data-equipe = {{id_equipe}} class="calendar"></div>
+    {# on génére data-route-click avec de valeurs dummy (faux). on va les remplacer dans le js 
+    par les vraies valeurs #}
+    <div id="div_calendrier" data-route-date-click="{{ path ('evenement', { date_evenement: 'dummy_date', id_equipe: 'dummy_id_equipe'}) }}" data-calendrier = "{{ evenementsJSON }}"  data-equipe = {{id_equipe}} class="calendar"></div>
 {% endblock %}
