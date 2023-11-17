@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
         dateClick: function (info) {
 
             console.log(div_calendrier.dataset.equipe);
+
+            let routeDateClick = div_calendrier.dataset.route-click-date;
+            
+            alert (routeDateClick);
+            return;
             window.location.href = "/evenement/" + info.dateStr + "/" + div_calendrier.dataset.equipe;
         },
 
