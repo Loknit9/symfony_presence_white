@@ -11,28 +11,60 @@
 		{{ app.user.person.prenom }}!
 	</h3>
 	<h4>Equipe {{ nomEquipe }}</h4>
+    <h3>{{ joueur.prenom }} {{ joueur.nom }}</h3>
 
-
-	<div class="centre">
+        <div class="centre">
 		<table class="table">
             <thead>
                 <th></th>
                 <td></td>
                 {% for etat in etats %}
+                    <th></th>
+                    <th></th>
+
                     <th>{{ etat }}</th>
                 {% endfor %}
             </thead>
             <tbody>
                 <tr>
-                    <th>{{ joueur.prenom ~ ' ' ~ joueur.nom  }}</th>
+                    <th>Total</th>
+                    
+
                     <td>
                         {% for etat in etats %}
+                            <td></td>
+                            <td></td>
+
                             <td>{{ presenceEtat [etat] }}</td>
                         {% endfor %}
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="centre">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Dates</th>
+                    <th>Etat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for presence in presences %}
+                    <tr>
+                        <th> {{ presence.title }} </th>
+                        <td> {{ presence.date|date('Y-m-d') }}</td>
+                        <td>{{ presence.etat }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    
         <ul class="list-group">
             <li class="list-group-item">P Présent</li>
             <li class="list-group-item">A absent sans motif</li>
