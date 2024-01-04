@@ -3,6 +3,14 @@
     height: 90vw;
 }
 
+h5{
+    font-size: calc(1rem + 0.9vw);
+}
+
+h3{
+    font-size: calc(1.5rem + 1vw);
+}
+
 :root {
     --primary: #ff0000;
 }
@@ -75,6 +83,10 @@ li {
     margin-bottom: 0.3rem;
 }
 
+.btn{
+    font-size: calc(1rem + 0.9vw);
+}
+
 .btn .btn-primary {
 
     background-color: #fefeff;
@@ -104,6 +116,7 @@ body {
     padding: 0;
     height:100%;
     position: relative;
+    font-size: calc(1rem + 0.9vw);
 }
 
 main{
@@ -116,6 +129,7 @@ main{
     margin-left: 10%;
     margin-right: 20%;
 } */
+
 header {
     background-color: #f8f9fa;
     position: relative;
@@ -145,6 +159,14 @@ header {
 
 
 /* PresenceForm */
+
+.form-select{
+    font-size: calc(1rem + 1.4vw);
+}
+
+.form-control{
+    font-size: calc(1rem + 1.4vw);
+}
 
 .form_presence {
     flex: 2;

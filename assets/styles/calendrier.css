@@ -1,7 +1,7 @@
 .calendar
 {
-    width:60%;
-    height:60%;
+    width:70vw;
+    height:90vw;
 } 
 
 @media  (max-width: 500px) and (orientation: portrait)  {  
@@ -13,11 +13,15 @@
 
     .calendar{
     width: 90vw;
-    height: 60vw;
+    height: 90vw;
     }
 
     .center{
         width: 80vw;
+    }
+
+    .fc table{
+        font-size: 5vw;
     }
 
 
