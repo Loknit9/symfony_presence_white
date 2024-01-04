@@ -28,7 +28,7 @@ class PersonneUserFixtures extends Fixture
 
 
         //creation des personnes 
-        for ($i = 0; $i < 16; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $personne = new Personne();
             $personne->setNom($faker->lastName);
             $personne->setPrenom($faker->firstName);
@@ -71,7 +71,7 @@ class PersonneUserFixtures extends Fixture
         }
 
         //creation des personnes ROLE_COACH
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             $personne = new Personne();
             $personne->setNom($faker->lastName);
             $personne->setPrenom($faker->firstName);

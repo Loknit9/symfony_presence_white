@@ -57,7 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
             let month = ('0' + (eventDate.getMonth() + 1)).slice(-2); // Ajoute un zéro devant les mois < 10
             let day = ('0' + eventDate.getDate()).slice(-2); // Ajoute un zéro devant les jours < 10
 
-            let formattedDate = `${year}-${month}-${day}`;
+            let formattedDate = `${year}-${month}-${day}`
+            
+            let routEventClick = div_calendrier.dataset.routeEventClick;
+            routeEventClick = routeEventClick.replace('dummy_date', formattedDate);
+            routEventClick = routEventClick.replace('')
             
             window.location.href = "/presence/jour/" + formattedDate + "/"+div_calendrier.dataset.equipe + "/" +  info.event.id;
 

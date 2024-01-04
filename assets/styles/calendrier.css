@@ -3,3 +3,22 @@
     width:60%;
     height:60%;
 } 
+
+@media  (max-width: 500px) and (orientation: portrait)  {  
+
+    .container{
+        width: 100vw;
+        height: 100vw;
+    }
+
+    .calendar{
+    width: 90vw;
+    height: 60vw;
+    }
+
+    .center{
+        width: 80vw;
+    }
+
+
+}
