@@ -23,6 +23,15 @@ a {
     color: #ff0000;
 }
 
+.wrapper{
+    min-height: 100%;
+    position: relative;
+}
+
+main{
+    position: relative;
+    padding-bottom: 50px;
+}
 /* input page login */
 :root{
     --bs-link-hover-color: white;
@@ -227,8 +236,7 @@ input[type="radio"]:checked {
 .page-footer {
     height: 50px;
     background-color: #ffffff;
-    margin-top: 4em;
-    /* position: absolute; */
+    position: absolute;
     bottom: 0;
 }
 
